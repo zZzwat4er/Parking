@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_map">
+
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.example.parking.ui.Map.MapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_nav_map_to_nav_user_info"
+            app:destination="@id/nav_user_info" />
+        <action
+            android:id="@+id/action_nav_map_to_nav_top_up_an_account"
+            app:destination="@id/nav_top_up_an_account" />
+        <action
+            android:id="@+id/action_nav_map_to_nav_vehicle"
+            app:destination="@id/nav_vehicle" />
+        <action
+            android:id="@+id/action_nav_map_to_nav_about"
+            app:destination="@id/nav_about" />
+        <action
+            android:id="@+id/action_nav_map_to_nav_notification"
+            app:destination="@id/nav_notification" />
+        <action
+            android:id="@+id/action_nav_map_to_nav_qna"
+            app:destination="@id/nav_qna" />
+        <action
+            android:id="@+id/action_nav_map_to_nav_rate_plan"
+            app:destination="@id/nav_rate_plan" />
+        <action
+            android:id="@+id/action_nav_map_to_nav_buy_place"
+            app:destination="@id/nav_buy_place" />
+        <action
+            android:id="@+id/action_nav_map_to_nav_history"
+            app:destination="@id/nav_history" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_user_info"
+        android:name="com.example.parking.ui.UserInfo.UserInfoFragment"
+        android:label="@string/user_info"
+        tools:layout="@layout/fragment_user_info" >
+        <action
+            android:id="@+id/action_nav_user_info_to_nav_user_info_fio_change"
+            app:destination="@id/nav_user_info_fio_change" />
+        <action
+            android:id="@+id/action_nav_user_info_to_nav_user_info_email_change"
+            app:destination="@id/nav_user_info_email_change" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_user_info_fio_change"
+        android:name="com.example.parking.ui.UserInfo.FIOChange.FIOChange"
+        android:label="@string/user_info_fio_change"
+        tools:layout="@layout/fragment_user_info_fio_change" />
+    <fragment
+        android:id="@+id/nav_user_info_email_change"
+        android:name="com.example.parking.ui.UserInfo.EmailChange.EmailChange"
+        android:label="@string/user_info_email_change"
+        tools:layout="@layout/fragment_user_info_email_change" />
+
+    <fragment
+        android:id="@+id/nav_top_up_an_account"
+        android:name="com.example.parking.ui.TopUpAnAccount.TopUpAnAccountFragment"
+        android:label="@string/top_up_an_account"
+        tools:layout="@layout/fragment_top_up_an_account" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.example.parking.ui.History.HistoryFragment"
+        android:label="@string/history"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/nav_notification"
+        android:name="com.example.parking.ui.Notifications.NotificationFragment"
+        android:label="@string/notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/nav_vehicle"
+        android:name="com.example.parking.ui.Vehicle.VehicleFragment"
+        android:label="@string/vehicle"
+        tools:layout="@layout/fragment_vehicle" />
+
+    <fragment
+        android:id="@+id/nav_rate_plan"
+        android:name="com.example.parking.ui.RatePlan.RatePlanFragment"
+        android:label="@string/rate_plan"
+        tools:layout="@layout/fragment_rate_plan" />
+
+    <fragment
+        android:id="@+id/nav_buy_place"
+        android:name="com.example.parking.ui.BuyPlace.BuyPlaceFragment"
+        android:label="@string/buy_place"
+        tools:layout="@layout/fragment_buy_place" />
+
+    <fragment
+        android:id="@+id/nav_qna"
+        android:name="com.example.parking.ui.QNA.QNAFragment"
+        android:label="@string/help_num"
+        tools:layout="@layout/fragment_qna" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.parking.ui.About.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about" />
+</navigation>

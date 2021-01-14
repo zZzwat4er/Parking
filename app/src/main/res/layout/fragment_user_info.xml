@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/user_fio_edit_lastname_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/user_fio_edit_lastname_layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/FIO"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/user_fio_edit_lastname_layout_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6sp"
+            android:paddingBottom="6sp"
+            android:text="User FIO" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/user_fio_edit_lastname_layout"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"/>
+    <LinearLayout
+        android:id="@+id/user_fio_edit_firstname_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_fio_edit_lastname_layout">
+
+        <TextView
+            android:id="@+id/user_phone_layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/user_fio_edit_firstname_layout_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User Phone Num"
+            android:paddingTop="6sp"
+            android:paddingBottom="6sp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/user_fio_edit_firstname_layout"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        />
+    <LinearLayout
+        android:id="@+id/user_fio_edit_secondname_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_fio_edit_firstname_layout">
+
+        <TextView
+            android:id="@+id/user_email_layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/user_fio_edit_secondname_layout_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="User Email"
+            android:paddingTop="6sp"
+            android:paddingBottom="6sp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/user_fio_edit_secondname_layout"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

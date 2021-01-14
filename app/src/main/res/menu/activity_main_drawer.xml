@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_top_up_an_account"
+            android:icon="@drawable/ic_plus"
+            android:title="@string/top_up_an_account" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_clock"
+            android:title="@string/history" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/ic_notification"
+            android:title="@string/notifications" />
+        <item
+            android:id="@+id/nav_vehicle"
+            android:icon="@drawable/ic_car"
+            android:title="@string/vehicle" />
+        <item
+            android:id="@+id/nav_rate_plan"
+            android:icon="@drawable/ic_bar_chart"
+            android:title="@string/rate_plan" />
+        <item
+            android:id="@+id/nav_buy_place"
+            android:icon="@drawable/ic_bar_chart"
+            android:title="@string/buy_place" />
+        <item
+            android:id="@+id/nav_qna"
+            android:icon="@drawable/ic_chat"
+            android:title="@string/help_num" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_about"
+            android:title="@string/about" />
+
+    </group>
+</menu>
