@@ -20,6 +20,9 @@ import com.example.parking.MainActivity;
 import com.example.parking.R;
 import com.example.parking.utility.Account;
 import com.example.parking.utility.AccountHolder;
+import com.example.parking.utility.server_comunnication_api.HttpRequest;
+import com.example.parking.utility.server_comunnication_api.JSONPars;
+import com.example.parking.utility.server_comunnication_api.comAPI;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -98,24 +101,36 @@ public class SignUpFragment extends Fragment{
                         !password.getText().toString().isEmpty() &&
                         Pattern.matches("\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}", phone.getText().toString())) {
                     AccountHolder.email = email.getText().toString();
+                    final String passhash;
                     try {
                         MessageDigest md = MessageDigest.getInstance("MD5");
                         md.update(password.getText().toString().getBytes());
-                        AccountHolder.passwordHush = new BigInteger(1, md.digest()).toString(16);
+                        passhash = new BigInteger(1, md.digest()).toString(16);
                     }catch (NoSuchAlgorithmException e){
                         return;
                     }
-                    AccountHolder.account = Account.createAccount(email.getText().toString(),
+                    if(passhash != null)
+                    comAPI.register(email.getText().toString(),
+                            passhash,
+                            phone.getText().toString(),
                             firstName.getText().toString(),
-                            (secondName.getText().toString().isEmpty())? null : secondName.getText().toString(),
                             lastName.getText().toString(),
-                            Long.valueOf(phone.getText().toString().replaceFirst(
-                                    "\\+7\\s\\((\\d{3})\\)\\s(\\d{3})-(\\d{2})-(\\d{2})",
-                                    "$1$2$3$4")));
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                    AccountHolder.saveData(getActivity().getApplication());
-                    getActivity().finish();
+                            (secondName.getText().toString().isEmpty()) ? null : secondName.getText().toString(),
+                            getActivity().getApplicationContext(),
+                            new HttpRequest.Listener() {
+                                @Override
+                                public void onRespond(String respond) {
+                                    AccountHolder.account = JSONPars.parseAccount(respond);
+                                    if(AccountHolder.account != null) {
+                                        AccountHolder.passwordHush = passhash;
+                                        AccountHolder.email = AccountHolder.account.mEmail;
+                                        AccountHolder.saveData(getActivity().getApplication());
+                                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                    }
+                                }
+                            });
                 }
             }
         });

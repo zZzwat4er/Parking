@@ -30,6 +30,12 @@ public class AccountHolder {
                     mPrefs.getString(passwordHushKey, null), String.class);
         if(mPrefs.contains(accountKey))
             account = gson.fromJson(mPrefs.getString(accountKey, null), Account.class);
+        if(account != null) if(account.mEmail == null || account.mFirstName == null || account.mPhone == null){
+            account = null;
+            passwordHush = null;
+            email = null;
+            saveData(app);
+        }
     }
 
     public static void saveData(Application app){

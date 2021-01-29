@@ -1,5 +1,6 @@
 package com.example.parking.ui.UserInfo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import com.example.parking.LoginActivity;
+import com.example.parking.MainActivity;
 import com.example.parking.R;
 import com.example.parking.utility.AccountHolder;
 
@@ -23,6 +26,7 @@ public class UserInfoFragment extends Fragment {
     private LinearLayout userFIO;
     private LinearLayout userPhone;
     private LinearLayout userEmail;
+    private TextView exitButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,14 +42,27 @@ public class UserInfoFragment extends Fragment {
         userFIO = root.findViewById(R.id.user_fio_edit_lastname_layout);
         userPhone = root.findViewById(R.id.user_fio_edit_firstname_layout);
         userEmail = root.findViewById(R.id.user_fio_edit_secondname_layout);
+        exitButton = root.findViewById(R.id.user_info_exit_button);
 
         TextView setUpper;
         setUpper = (TextView) userFIO.getChildAt(1);
         setUpper.setText(AccountHolder.account.getFullName());
         setUpper = (TextView) userPhone.getChildAt(1);
-        setUpper.setText(AccountHolder.account.getPhoneString());
+        setUpper.setText(AccountHolder.account.mPhone);
         setUpper = (TextView) userEmail.getChildAt(1);
         setUpper.setText(AccountHolder.account.mEmail);
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AccountHolder.account = null;
+                AccountHolder.passwordHush = null;
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                AccountHolder.saveData(getActivity().getApplication());
+                getActivity().finish();
+            }
+        });
 
         userFIO.setOnClickListener(Navigation.createNavigateOnClickListener(
                 R.id.action_nav_user_info_to_nav_user_info_fio_change, null));

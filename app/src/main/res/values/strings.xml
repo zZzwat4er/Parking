@@ -17,6 +17,7 @@
     <string name="enter_email">Электронная почта</string>
     <string name="password">Пароль</string>
     <string name="register">Зарегестрироваться</string>
+    <string name="exit">Выход</string>
 
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>

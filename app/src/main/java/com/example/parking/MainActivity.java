@@ -64,12 +64,12 @@ public class MainActivity extends AppCompatActivity {
         hFio = header.findViewById(R.id.header_fio);
         hPhone = header.findViewById(R.id.header_phone);
         hFio.setText(AccountHolder.account.getFullName());
-        hPhone.setText(AccountHolder.account.getPhoneString());
+        hPhone.setText(AccountHolder.account.mPhone);
     }
 
     public void notifyDataChanged(){
         hFio.setText(AccountHolder.account.getFullName());
-        hPhone.setText(AccountHolder.account.getPhoneString());
+        hPhone.setText(AccountHolder.account.mPhone);
     }
 
     @Override
