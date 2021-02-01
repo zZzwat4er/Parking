@@ -1,5 +1,6 @@
 package com.example.parking.ui.UserInfo.FIOChange;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.parking.MainActivity;
 import com.example.parking.R;
 import com.example.parking.utility.AccountHolder;
+import com.example.parking.utility.server_comunnication_api.HttpRequest;
+import com.example.parking.utility.server_comunnication_api.JSONPars;
+import com.example.parking.utility.server_comunnication_api.comAPI;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
 
 public class FIOChange extends Fragment {
 
@@ -35,12 +43,24 @@ public class FIOChange extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!firstname.getText().toString().isEmpty() && !lastname.getText().toString().isEmpty()){
-                    AccountHolder.account.mFirstName = firstname.getText().toString();
-                    AccountHolder.account.mLastName = lastname.getText().toString();
-                    AccountHolder.account.mSecondName = (secondname.getText().toString().isEmpty())?
-                        null : secondname.getText().toString();
-                    AccountHolder.saveData(getActivity().getApplication());
-                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+                    try {
+                        comAPI.updateFIO(AccountHolder.email,
+                                AccountHolder.passwordHush,
+                                firstname.getText().toString(),
+                                lastname.getText().toString(),
+                                (secondname.getText().toString().isEmpty()? null:secondname.getText().toString()),
+                                getActivity().getApplicationContext(),
+                                new HttpRequest.Listener() {
+                                    @Override
+                                    public void onRespond(String respond) {
+                                        AccountHolder.account = JSONPars.parseAccount(respond);
+                                        if(AccountHolder.account != null) {
+                                            AccountHolder.saveData(getActivity().getApplication());
+                                            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+                                        }
+                                    }
+                                });
+                    }catch (Exception e){}
                 }
             }
         });

@@ -66,8 +66,8 @@ public class UserInfoFragment extends Fragment {
 
         userFIO.setOnClickListener(Navigation.createNavigateOnClickListener(
                 R.id.action_nav_user_info_to_nav_user_info_fio_change, null));
-        userEmail.setOnClickListener(Navigation.createNavigateOnClickListener(
-                R.id.action_nav_user_info_to_nav_user_info_email_change, null));
+//        userEmail.setOnClickListener(Navigation.createNavigateOnClickListener(
+//                R.id.action_nav_user_info_to_nav_user_info_email_change, null));
 
         return root;
     }
