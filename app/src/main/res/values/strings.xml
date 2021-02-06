@@ -19,6 +19,9 @@
     <string name="register">Зарегестрироваться</string>
     <string name="exit">Выход</string>
 
+    <string name="parking_place">Парковочное место:</string>
+    <string name="car_id">Номер машыны</string>
+
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="phone">Телефон</string>
