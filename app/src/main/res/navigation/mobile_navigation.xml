@@ -86,7 +86,24 @@
         android:id="@+id/nav_vehicle"
         android:name="com.example.parking.ui.Vehicle.VehicleFragment"
         android:label="@string/vehicle"
-        tools:layout="@layout/fragment_vehicle" />
+        tools:layout="@layout/fragment_vehicle" >
+        <action
+            android:id="@+id/action_nav_vehicle_to_nav_vehicle_add"
+            app:destination="@id/nav_vehicle_add" />
+        <action
+            android:id="@+id/action_nav_vehicle_to_nav_vehicle_data"
+            app:destination="@id/nav_vehicle_data" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_vehicle_data"
+        android:name="com.example.parking.ui.Vehicle.DataTab.VehicleDataFragment"
+        android:label="@string/vehicle_data"
+        tools:layout="@layout/fragment_vehicle_data" />
+    <fragment
+        android:id="@+id/nav_vehicle_add"
+        android:name="com.example.parking.ui.Vehicle.VehicleAddFragment"
+        android:label="@string/add_vehicle"
+        tools:layout="@layout/fragment_vehicle_add_tab" />
 
     <fragment
         android:id="@+id/nav_rate_plan"

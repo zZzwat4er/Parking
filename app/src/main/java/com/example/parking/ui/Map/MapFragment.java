@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -29,6 +30,8 @@ public class MapFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+
         return root;
     }
 }

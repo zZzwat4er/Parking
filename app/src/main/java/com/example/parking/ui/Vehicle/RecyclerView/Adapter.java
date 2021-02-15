@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.example.parking.R;
+import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.Car;
 
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private Context mCurrentActivity;
-    private List<Car> cars;
+    private Car[] mCars;
 
-    public Adapter(Context currentActivity, List<Car> cars){
+    public Adapter(Context currentActivity, Car[] cars){
         mCurrentActivity = currentActivity;
-        this.cars = cars;
+        mCars = cars;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -61,7 +62,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public int getItemViewType(int position) {
-        if(position == getItemCount()) return 1;
+        if(position == getItemCount() - 1) return 1;
         return 0;
     }
 
@@ -79,15 +80,18 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         switch (holder.getItemViewType()){
             case 0:
                 ViewHolder carHolder = (ViewHolder)holder;
+                Car cCar = mCars[position];
+                carHolder.carID.setText(cCar.plates);
+                carHolder.parkingPlace.setText(cCar.parkingLotId != null? cCar.parkingLotId.toString() : "");
                 break;
             case 1:
-                ButtonViewHolder btnHolder = (ButtonViewHolder)holder;
+                //ButtonViewHolder btnHolder = (ButtonViewHolder)holder;
                 break;
         }
     }
 
     @Override
-    public int getItemCount() {return cars.size() + 1;}
+    public int getItemCount() {return mCars.length + 1;}
 
 
 }

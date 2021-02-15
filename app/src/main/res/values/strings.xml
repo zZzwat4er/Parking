@@ -22,6 +22,13 @@
     <string name="parking_place">Парковочное место:</string>
     <string name="car_id">Номер машыны</string>
 
+    <string name="add_vehicle">Добавить транспорт</string>
+    <string name="vehicle_data">Информация о транспорте</string>
+
+    <string name="plates">A000AA136</string>
+    <string name="gate_card">Карта от ворот</string>
+    <string name="door_card">Карта от дверей</string>
+
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="phone">Телефон</string>

@@ -1,15 +1,20 @@
 package com.example.parking;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,10 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
 
         View header = navigationView.getHeaderView(0);
 
@@ -45,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_rate_plan,
                 R.id.nav_buy_place,
                 R.id.nav_qna,
-                R.id.nav_about,
-                R.id.nav_user_info_fio_change,
-                R.id.nav_user_info_email_change)
+                R.id.nav_about)
                 .setDrawerLayout(drawer).build();
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
@@ -55,11 +61,25 @@ public class MainActivity extends AppCompatActivity {
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.nav_user_info);
+                if(navController.getCurrentDestination().getId() == navController.getGraph().getStartDestination())
+                    navController.navigate(R.id.action_nav_map_to_nav_user_info);
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(Gravity.LEFT);
             }
         });
+        navController.setGraph(R.navigation.mobile_navigation);
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller,
+                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                final boolean isStartPage = destination.getId() == navController.getGraph().getStartDestination();
+                if(isStartPage) getSupportActionBar().hide();
+                else getSupportActionBar().show();
+
+            }
+        });
+
         // setting data
         hFio = header.findViewById(R.id.header_fio);
         hPhone = header.findViewById(R.id.header_phone);
@@ -75,12 +95,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+        return navController.navigateUp();
     }
 
     public void menuButton(View view){
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.openDrawer(Gravity.LEFT);
+    }
+
+    public void addVehicleBtn(View view){
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(
+                R.id.action_nav_vehicle_to_nav_vehicle_add);
     }
 }
