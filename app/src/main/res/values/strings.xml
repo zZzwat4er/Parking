@@ -42,6 +42,8 @@
     <string name="balance_after_payment">Баланс после пополнения: %1$d</string>
     <string name="to_buy">Если хотите купить парковочное место, позвоните в отдел продаж: %1$s</string>
 
+    <string name="approve">Подтвердить</string>
+
     <string name="pay">Оплатить</string>
     <string name="move_on">Продолжить</string>
 </resources>

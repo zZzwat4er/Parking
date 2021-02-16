@@ -2,7 +2,10 @@ package com.example.parking.ui.Vehicle;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,7 @@ public class VehicleFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         viewModel =
                 ViewModelProviders.of(this).get(VehicleViewModel.class);
         View root = inflater.inflate(R.layout.fragment_vehicle, container, false);
@@ -40,8 +44,6 @@ public class VehicleFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.mCars));
 
-
         return root;
     }
-
 }

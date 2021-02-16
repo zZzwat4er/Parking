@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,11 +16,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/plates"/>
+            android:hint="@string/plates" />
     </LinearLayout>
 
     <LinearLayout
@@ -32,11 +32,10 @@
         app:layout_constraintTop_toBottomOf="@id/add_vehicle_plates_layout">
 
         <EditText
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/gate_card"/>
+            android:hint="@string/gate_card" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,10 +48,10 @@
         app:layout_constraintTop_toBottomOf="@id/add_vehicle_main_cid_layout">
 
         <EditText
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/door_card" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,9 +49,4 @@ public class AccountHolder {
         editor.putString(accountKey, gson.toJson(account));
         editor.apply();
     }
-
-    public static boolean downloadData(boolean f){
-        //todo Загрузка данных с сервака + проверка
-        return f;
-    }
 }

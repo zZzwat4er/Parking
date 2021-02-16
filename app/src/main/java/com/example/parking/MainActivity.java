@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -14,6 +15,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -34,18 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         final NavigationView navigationView = findViewById(R.id.nav_view);
 
         View header = navigationView.getHeaderView(0);
 
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_user_info,
+                /*R.id.nav_user_info,
                 R.id.nav_top_up_an_account,
                 R.id.nav_history,
                 R.id.nav_notification,
@@ -53,8 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_rate_plan,
                 R.id.nav_buy_place,
                 R.id.nav_qna,
-                R.id.nav_about)
+                R.id.nav_about*/)
                 .setDrawerLayout(drawer).build();
+
+
+
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
@@ -74,8 +75,12 @@ public class MainActivity extends AppCompatActivity {
             public void onDestinationChanged(@NonNull NavController controller,
                                              @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 final boolean isStartPage = destination.getId() == navController.getGraph().getStartDestination();
-                if(isStartPage) getSupportActionBar().hide();
-                else getSupportActionBar().show();
+                if(isStartPage) {
+                    getSupportActionBar().hide();
+                }
+                else {
+                    getSupportActionBar().show();
+                }
 
             }
         });
