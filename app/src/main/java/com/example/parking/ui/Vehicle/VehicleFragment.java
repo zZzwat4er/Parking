@@ -35,14 +35,16 @@ public class VehicleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        viewModel =
-                ViewModelProviders.of(this).get(VehicleViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(VehicleViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_vehicle, container, false);
 
         recyclerView = (RecyclerView) root.findViewById(R.id.vehiacle_rview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.mCars));
+
+
 
         return root;
     }

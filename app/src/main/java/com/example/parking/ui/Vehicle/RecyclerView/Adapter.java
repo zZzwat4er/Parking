@@ -1,5 +1,6 @@
 package com.example.parking.ui.Vehicle.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.example.parking.R;
+import com.example.parking.ui.Vehicle.VehicleViewModel;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.Car;
 
@@ -22,16 +25,17 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private Context mCurrentActivity;
+    private static Activity mCurrentActivity;
     private Car[] mCars;
 
-    public Adapter(Context currentActivity, Car[] cars){
+    public Adapter(Activity currentActivity, Car[] cars){
         mCurrentActivity = currentActivity;
         mCars = cars;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
+        public int id;
         public TextView carID;
         public TextView parkingPlace;
 
@@ -39,7 +43,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View view) {
+                    VehicleViewModel.carID = id;
+                    Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
+                            navigate(R.id.action_nav_vehicle_to_nav_vehicle_data);
                 }
             });
             carID = (TextView) itemView.getChildAt(0);
@@ -81,6 +88,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             case 0:
                 ViewHolder carHolder = (ViewHolder)holder;
                 Car cCar = mCars[position];
+                carHolder.id = cCar.id;
                 carHolder.carID.setText(cCar.plates);
                 carHolder.parkingPlace.setText(cCar.parkingLotId != null? cCar.parkingLotId.toString() : "");
                 break;

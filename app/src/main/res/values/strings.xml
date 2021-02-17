@@ -13,11 +13,16 @@
     <string name="buy_place">Купить парковочное место</string>
     <string name="help_num">Обратная связь</string>
     <string name="about">О приложении</string>
+    
+    <string name="gos_nomer">Госю номер</string>
+    <string name="tariff">Тариф</string>
+    <string name="cards">Карты</string>
 
     <string name="enter_email">Электронная почта</string>
     <string name="password">Пароль</string>
     <string name="register">Зарегестрироваться</string>
     <string name="exit">Выход</string>
+    <string name="delete">Удалить</string>
 
     <string name="parking_place">Парковочное место:</string>
     <string name="car_id">Номер машыны</string>
@@ -28,6 +33,16 @@
     <string name="plates">A000AA136</string>
     <string name="gate_card">Карта от ворот</string>
     <string name="door_card">Карта от дверей</string>
+    <string name="doors">Двери</string>
+    <string name="gates">Ворота</string>
+
+    <string name="card1">Карта1</string>
+    <string name="card2">Карта2</string>
+    <string name="card3">Карта3</string>
+    <string name="card4">Карта4</string>
+    <string name="card5">Карта5</string>
+    <string name="not_necessary">необязательно</string>
+    <string name="necessary">обязательно</string>
 
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
