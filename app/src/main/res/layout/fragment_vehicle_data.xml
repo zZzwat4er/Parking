@@ -26,14 +26,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/vehicle_data_plates_layout_edittext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
+            android:background="#00FFFFFF"
             android:gravity="right"
-            android:text="TextView"
+            android:hint="@string/plates"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/vehicle_data_plates_layout_tittle"

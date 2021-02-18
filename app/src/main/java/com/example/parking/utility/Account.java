@@ -28,6 +28,14 @@ public class Account {
     public String getFullName(){
         return mLastName + " " + mFirstName + ((mSecondName != null)? " " + mSecondName : "");
     }
+
+    @Nullable
+    public Car getCarById(int id){
+        for(Car car : mCars){
+            if(car.id == id) return car;
+        }
+        return null;
+    }
     //endregion
 
 }
