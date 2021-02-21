@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,8 +32,7 @@ public class SignInFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_login_sign_in, container, false);
-
+        final View root = inflater.inflate(R.layout.fragment_login_sign_in, container, false);
         emailField = root.findViewById(R.id.login_email_field);
         passField = root.findViewById(R.id.login_password_field);
 
@@ -46,6 +46,11 @@ public class SignInFragment extends Fragment {
                     MessageDigest md = MessageDigest.getInstance("MD5");
                     md.update(passField.getText().toString().getBytes());
                     final String passHash = new BigInteger(1, md.digest()).toString(16);
+
+                    final ProgressBar pb = root.findViewById(R.id.progressBar);
+                    root.findViewById(R.id.sing_in_button).setEnabled(false);
+                    pb.setVisibility(View.VISIBLE);
+
                     comAPI.login(emailField.getText().toString(),
                             passHash,
                             getActivity().getApplicationContext(),
@@ -58,9 +63,12 @@ public class SignInFragment extends Fragment {
                                         AccountHolder.email = emailField.getText().toString();
                                         AccountHolder.saveData(getActivity().getApplication());
                                         Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        intent.putExtra("S", "login");
                                         startActivity(intent);
                                         getActivity().finish();
                                     }else{
+                                        root.findViewById(R.id.sing_in_button).setEnabled(true);
+                                        pb.setVisibility(View.GONE);
                                         passField.setText("");
                                     }
                                 }

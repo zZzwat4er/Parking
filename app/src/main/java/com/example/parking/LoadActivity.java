@@ -41,6 +41,7 @@ public class LoadActivity extends AppCompatActivity {
         if(account != null && email != null && passwordHush != null){
             //todo сверяем инфу с сервером
             intent = new Intent(this, MainActivity.class);
+            intent.putExtra("S", "load");
             startActivity(intent);
             finish();
         }else{

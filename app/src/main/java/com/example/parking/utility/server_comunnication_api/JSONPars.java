@@ -3,7 +3,10 @@ package com.example.parking.utility.server_comunnication_api;
 import android.util.Log;
 
 import com.example.parking.utility.Account;
+import com.example.parking.utility.ServerError;
 import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 public class JSONPars {
 
@@ -17,7 +20,10 @@ public class JSONPars {
     public static Boolean parseSuccess(){
         return true;
     }
-    public static Integer parseErrorServer(){
-        return 1;
+    public static ServerError parseErrorServer(String json) {
+        Gson gson = new Gson();
+        ServerError err = gson.fromJson(json, ServerError.class);
+        if(err.code == null || err.msg == null) err = null;
+        return err;
     }
 }

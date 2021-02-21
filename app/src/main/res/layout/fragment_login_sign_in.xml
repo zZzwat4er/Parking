@@ -60,4 +60,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sing_in_button" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/sing_in_button"
+        app:layout_constraintEnd_toEndOf="@id/sing_in_button"
+        app:layout_constraintStart_toStartOf="@id/sing_in_button"
+        app:layout_constraintTop_toTopOf="@id/sing_in_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

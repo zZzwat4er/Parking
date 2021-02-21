@@ -49,4 +49,10 @@ public class AccountHolder {
         editor.putString(accountKey, gson.toJson(account));
         editor.apply();
     }
+
+    public static void dataFlesh(Application app){
+        account = null;
+        passwordHush = null;
+        saveData(app);
+    }
 }

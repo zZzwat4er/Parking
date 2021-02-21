@@ -44,9 +44,11 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    VehicleViewModel.carID = id;
-                    Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
-                            navigate(R.id.action_nav_vehicle_to_nav_vehicle_data);
+                    if(((RecyclerView)view.getParent()).isClickable()) {
+                        VehicleViewModel.carID = id;
+                        Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
+                                navigate(R.id.action_nav_vehicle_to_nav_vehicle_data);
+                    }
                 }
             });
             carID = (TextView) itemView.getChildAt(0);
@@ -61,6 +63,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(((RecyclerView)v.getParent()).isClickable()) {
+                        Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).navigate(
+                                R.id.action_nav_vehicle_to_nav_vehicle_add);
+                    }
                 }
             });
         }
@@ -90,7 +96,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 Car cCar = mCars[position];
                 carHolder.id = cCar.id;
                 carHolder.carID.setText(cCar.plates);
-                carHolder.parkingPlace.setText(cCar.parkingLotId != null? cCar.parkingLotId.toString() : "");
+                carHolder.parkingPlace.setText(cCar.parkingLotName != null? carHolder.parkingPlace.getText().toString() +
+                        ": " + cCar.parkingLotName : "");
                 break;
             case 1:
                 //ButtonViewHolder btnHolder = (ButtonViewHolder)holder;

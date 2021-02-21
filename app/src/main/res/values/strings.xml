@@ -13,7 +13,18 @@
     <string name="buy_place">Купить парковочное место</string>
     <string name="help_num">Обратная связь</string>
     <string name="about">О приложении</string>
-    
+
+    <string name="type">Тип</string>
+    <string name="payed_till">Оплачено до</string>
+    <string name="payment_type">Оплата</string>
+    <string name="daily">Ежедневно</string>
+    <string name="monthly">Помесечно</string>
+    <string name="owner">Собственик</string>
+    <string name="do_not_change">Не изменять</string>
+
+    <string name="current_tariff">Текущий тариф</string>
+    <string name="change_tariff">Изменить тариф</string>
+
     <string name="gos_nomer">Госю номер</string>
     <string name="tariff">Тариф</string>
     <string name="cards">Карты</string>
@@ -24,7 +35,7 @@
     <string name="exit">Выход</string>
     <string name="delete">Удалить</string>
 
-    <string name="parking_place">Парковочное место:</string>
+    <string name="parking_place">Парковочное место</string>
     <string name="car_id">Номер машыны</string>
 
     <string name="add_vehicle">Добавить транспорт</string>

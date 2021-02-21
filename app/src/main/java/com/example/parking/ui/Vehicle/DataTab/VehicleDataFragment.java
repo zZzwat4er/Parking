@@ -52,6 +52,13 @@ public class VehicleDataFragment extends Fragment {
                         R.id.action_nav_vehicle_data_to_nav_vehicle_data_cards);
             }
         });
+        tariff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(
+                        R.id.action_nav_vehicle_data_to_nav_vehicle_data_tariff);
+            }
+        });
 
         setHasOptionsMenu(true);
 

@@ -102,12 +102,21 @@
         <action
             android:id="@+id/action_nav_vehicle_data_to_nav_vehicle_data_cards"
             app:destination="@id/nav_vehicle_data_cards" />
+        <action
+            android:id="@+id/action_nav_vehicle_data_to_nav_vehicle_data_tariff"
+            app:destination="@id/nav_vehicle_data_tariff" />
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data_cards"
         android:name="com.example.parking.ui.Vehicle.DataTab.VehicleDataCardsFragment"
         android:label="@string/cards"
         tools:layout="@layout/fragment_vehicle_data_cards" />
+    <fragment
+        android:id="@+id/nav_vehicle_data_tariff"
+        android:name="com.example.parking.ui.Vehicle.DataTab.VehicleDataTariffFragment"
+        android:label="@string/tariff"
+        tools:layout="@layout/fragment_vehicle_data_tariff" />
+
     <fragment
         android:id="@+id/nav_vehicle_add"
         android:name="com.example.parking.ui.Vehicle.VehicleAddFragment"

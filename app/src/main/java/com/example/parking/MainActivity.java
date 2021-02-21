@@ -13,6 +13,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuInflater;
@@ -21,6 +24,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.parking.utility.AccountHolder;
+import com.example.parking.utility.ServerError;
+import com.example.parking.utility.server_comunnication_api.HttpRequest;
+import com.example.parking.utility.server_comunnication_api.JSONPars;
+import com.example.parking.utility.server_comunnication_api.comAPI;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,11 +35,35 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private TextView hFio;
     private TextView hPhone;
-
+    private final Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(getIntent().getStringExtra("S").equals("load") && isNetworkConnected()){
+            comAPI.login(AccountHolder.email,
+                    AccountHolder.passwordHush,
+                    getApplicationContext(),
+                    new HttpRequest.Listener() {
+                        @Override
+                        public void onRespond(String respond) {
+                            AccountHolder.account = JSONPars.parseAccount(respond);
+                            if(AccountHolder.account != null) {
+                                AccountHolder.saveData(getApplication());
+                            }else{
+                                ServerError err = JSONPars.parseErrorServer(respond);
+                                if(err != null){
+                                    if(err.code == 2){
+                                        AccountHolder.dataFlesh(getApplication());
+                                        Intent intent = new Intent(context, LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                            }
+                        }
+                    });
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -108,8 +139,9 @@ public class MainActivity extends AppCompatActivity {
         drawer.openDrawer(Gravity.LEFT);
     }
 
-    public void addVehicleBtn(View view){
-        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(
-                R.id.action_nav_vehicle_to_nav_vehicle_add);
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 }

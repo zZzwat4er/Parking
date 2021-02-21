@@ -10,8 +10,11 @@ public class Car {
 
     public @SerializedName("id") Integer id;
     public @SerializedName("tariff") @Nullable Integer tariff;
+    public @SerializedName("new_tariff") @Nullable Integer newTariff;
     public @SerializedName("parking_lot_type") @Nullable Integer parkingLotType;
-    public @SerializedName("parking_lot_id") @Nullable Integer parkingLotId;
+    public @SerializedName("new_parking_lot_type") @Nullable Integer newParkingLotType;
+    public @SerializedName("parking_lot_id") @Nullable String parkingLotName;
+    public @SerializedName("new_parking_lot_id") @Nullable String newParkingLotName;
     public @SerializedName("plates") String plates;
     public @SerializedName("payed_till") @Nullable Date payedTill;
     public @SerializedName("is_auto_cont") Boolean isAutoCount;

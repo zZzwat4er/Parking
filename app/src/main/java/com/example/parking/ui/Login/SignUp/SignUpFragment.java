@@ -126,6 +126,7 @@ public class SignUpFragment extends Fragment{
                                         AccountHolder.email = AccountHolder.account.mEmail;
                                         AccountHolder.saveData(getActivity().getApplication());
                                         Intent intent = new Intent(getActivity(), MainActivity.class);
+                                        intent.putExtra("S", "login");
                                         startActivity(intent);
                                         getActivity().finish();
                                     }
