@@ -89,9 +89,19 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vehicle_data_tariff_current_place_next_ic"
                 app:layout_constraintStart_toEndOf="@+id/vehicle_data_tariff_current_place_tittle"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/vehicle_data_tariff_current_place_next_ic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@android:color/secondary_text_light_nodisable"
+                android:src="@drawable/ic_navigate_next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View
             android:layout_width="match_parent"
@@ -157,9 +167,19 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vehicle_data_tariff_current_payment_type_next_ic"
                 app:layout_constraintStart_toEndOf="@+id/vehicle_data_tariff_current_payment_type_tittle"
                 app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/vehicle_data_tariff_current_payment_type_next_ic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:tint="@android:color/secondary_text_light_nodisable"
+                android:src="@drawable/ic_navigate_next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View
             android:layout_width="match_parent"
@@ -212,14 +232,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/vehicle_data_tariff_change_daily_text"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:visibility="invisible"
+                android:src="@drawable/ic_checkmark"
+                app:tint="#FF00FF00"
+                android:layout_marginEnd="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vehicle_data_tariff_change_daily_tittle"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View
@@ -246,14 +269,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/vehicle_data_tariff_change_monthly_text"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:visibility="invisible"
+                android:src="@drawable/ic_checkmark"
+                app:tint="#FF00FF00"
+                android:layout_marginEnd="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vehicle_data_tariff_change_monthly_tittle"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View
@@ -279,14 +305,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/vehicle_data_tariff_change_owner_text"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/vehicle_data_tariff_change_owner_icon"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
                 android:gravity="right"
+                android:src="@drawable/ic_checkmark"
+                app:tint="#FF00FF00"
+                android:layout_marginEnd="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vehicle_data_tariff_change_owner_tittle"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View
@@ -312,14 +341,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/vehicle_data_tariff_change_dont_change_text"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/vehicle_data_tariff_change_dont_change_icon"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:src="@drawable/ic_checkmark"
+                app:tint="#FF00FF00"
+                android:layout_marginEnd="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vehicle_data_tariff_change_dont_change_tittle"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <View

@@ -73,13 +73,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="0dp"
             android:gravity="right"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/vehicle_data_tariff_layout_tittle"
+            app:layout_constraintEnd_toStartOf="@id/vehicle_data_tariff_layout_next_ic"
+            app:layout_constraintStart_toEndOf="@id/vehicle_data_tariff_layout_tittle"
             app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/vehicle_data_tariff_layout_next_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            app:tint="@android:color/secondary_text_light_nodisable"
+            android:src="@drawable/ic_navigate_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <View
         android:layout_width="match_parent"
@@ -114,13 +124,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
             android:gravity="right"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintEnd_toStartOf="@+id/vehicle_data_card_layout_next_ic"
             app:layout_constraintStart_toEndOf="@+id/vehicle_data_card_layout_tittle"
             app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/vehicle_data_card_layout_next_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            app:tint="@android:color/secondary_text_light_nodisable"
+            android:src="@drawable/ic_navigate_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View

@@ -1,10 +1,18 @@
 package com.example.parking.utility;
 
+
+
 import androidx.annotation.Nullable;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import com.example.parking.R;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Calendar;
 import java.util.Date;
+
 
 public class Car {
 
@@ -21,4 +29,17 @@ public class Car {
     public @SerializedName("main_card") Integer mainCard;
     public @SerializedName("second_main_card") @Nullable Integer secondMainCard;
     public @SerializedName("additional_cards") @Nullable Integer[] additionalCards;
+
+    public String getTariffName(){
+        switch (tariff){
+            case 0: return "ежедневно";
+            case 1: return "помесячно";
+            case 2: return "Собственик";
+            default: return "";
+        }
+    }
+    public String getDate(){
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy, hh:mm");
+        return dateFormat.format(payedTill);
+    }
 }
