@@ -61,7 +61,6 @@ public class VehicleDataFragment extends Fragment {
         });
 
         setHasOptionsMenu(true);
-
         return root;
     }
 

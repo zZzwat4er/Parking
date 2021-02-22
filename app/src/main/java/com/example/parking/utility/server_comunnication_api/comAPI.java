@@ -25,12 +25,27 @@ public class comAPI {
 
     private static PackageInfo pInfo;
 
+    private static @Nullable OnThreadExit mCallBack;
+
+    public static void setCallBack(@Nullable OnThreadExit callback){
+        mCallBack = callback;
+    }
+
+    public interface OnThreadExit{
+        void exit();
+    }
+
     private static void sendReq(String murl, String params, HttpRequest.Listener listener){
         try{
             URL url = new URL(murl);
             HttpRequest req = new HttpRequest(url, params, listener);
             req.start();
-        }catch (MalformedURLException e){}
+            if(mCallBack != null){
+                req.join();
+                mCallBack.exit();
+                mCallBack = null;
+            }
+        }catch (MalformedURLException | InterruptedException e){}
 
     }
 

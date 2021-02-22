@@ -44,6 +44,12 @@ public class FIOChange extends Fragment {
             public void onClick(View v) {
                 if(!firstname.getText().toString().isEmpty() && !lastname.getText().toString().isEmpty()){
                     try {
+                        comAPI.setCallBack(new comAPI.OnThreadExit() {
+                            @Override
+                            public void exit() {
+                                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+                            }
+                        });
                         comAPI.updateFIO(AccountHolder.email,
                                 AccountHolder.passwordHush,
                                 firstname.getText().toString(),
@@ -56,8 +62,7 @@ public class FIOChange extends Fragment {
                                         AccountHolder.account = JSONPars.parseAccount(respond);
                                         if(AccountHolder.account != null) {
                                             AccountHolder.saveData(getActivity().getApplication());
-                                            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
-                                        }
+                                            }
                                     }
                                 });
                     }catch (Exception e){}
