@@ -74,14 +74,6 @@ public class HttpRequest extends Thread{
             }
             //endregion
 
-            //region call a user def function that should be defined
-            // code repeats some Volley request code but without some thread guard
-            //todo: mb add some guard for response
-            Listener listener;
-            listener = mListener;
-            if(listener != null) listener.onRespond(response);
-            //endregion
-
         }
         // if some error has occurred return error massage
         catch (IOException e) {
@@ -95,6 +87,11 @@ public class HttpRequest extends Thread{
         } finally {
             //close our connection and exit the thread
             urlCon.disconnect();
+            //region call a user def function that should be defined
+            // code repeats some Volley request code but without some thread guard
+            //todo: mb add some guard for response
+            if(mListener != null) mListener.onRespond(response);
+            //endregion
             return;
         }
     }

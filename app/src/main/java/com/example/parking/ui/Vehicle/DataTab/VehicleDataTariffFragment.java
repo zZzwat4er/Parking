@@ -54,9 +54,13 @@ public class VehicleDataTariffFragment extends Fragment {
         owner = root.findViewById(R.id.vehicle_data_tariff_change_owner_layout);
         dontChange = root.findViewById(R.id.vehicle_data_tariff_change_dont_change_layout);
 
-        type.setText(currentCar.getTariffName());
-        parkingPlace.setText(String.format("%s(%s)", currentCar.parkingLotName, currentCar.newParkingLotName));
-        payedTill.setText(currentCar.getDate());
+        type.setText(currentCar.tariff != null? currentCar.getTariffName() : "");
+        if(currentCar.newParkingLotName != null)
+            parkingPlace.setText(String.format("%s(%s)",
+                currentCar.parkingLotName,
+                    currentCar.newParkingLotName != null? currentCar.newParkingLotName : ""));
+        else parkingPlace.setText(currentCar.parkingLotName != null? "": currentCar.parkingLotName);
+        payedTill.setText(currentCar.payedTill != null? currentCar.getDate() : "");
 
 
         updateCheckMarks();

@@ -3,14 +3,9 @@ package com.example.parking.utility;
 
 
 import androidx.annotation.Nullable;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
-import com.example.parking.R;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Calendar;
 import java.util.Date;
 
 
