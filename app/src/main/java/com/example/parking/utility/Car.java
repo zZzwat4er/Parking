@@ -15,9 +15,9 @@ public class Car {
     public @SerializedName("tariff") @Nullable Integer tariff;
     public @SerializedName("new_tariff") @Nullable Integer newTariff;
     public @SerializedName("parking_lot_type") @Nullable Integer parkingLotType;
-    public @SerializedName("new_parking_lot_type") @Nullable Integer newParkingLotType;
+//    public @SerializedName("new_parking_lot_type") @Nullable Integer newParkingLotType;
     public @SerializedName("parking_lot_id") @Nullable String parkingLotName;
-    public @SerializedName("new_parking_lot_id") @Nullable String newParkingLotName;
+//    public @SerializedName("new_parking_lot_id") @Nullable String newParkingLotName;
     public @SerializedName("plates") String plates;
     public @SerializedName("payed_till") @Nullable Date payedTill;
     public @SerializedName("is_auto_cont") Boolean isAutoCount;
@@ -26,14 +26,16 @@ public class Car {
     public @SerializedName("additional_cards") @Nullable Integer[] additionalCards;
 
     public String getTariffName(){
+        if (tariff == null) return "";
         switch (tariff){
             case 0: return "ежедневно";
             case 1: return "помесячно";
-            case 2: return "Собственик";
+            case 2: return "собственик";
             default: return "";
         }
     }
     public String getDate(){
+        if(payedTill == null) return "-\t";
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy, hh:mm");
         return dateFormat.format(payedTill);
     }

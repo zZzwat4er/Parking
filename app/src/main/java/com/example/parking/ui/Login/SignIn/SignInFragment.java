@@ -43,7 +43,7 @@ public class SignInFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    MessageDigest md = MessageDigest.getInstance("MD5");
+                    MessageDigest md = MessageDigest.getInstance("SHA-256");
                     md.update(passField.getText().toString().getBytes());
                     final String passHash = new BigInteger(1, md.digest()).toString(16);
 

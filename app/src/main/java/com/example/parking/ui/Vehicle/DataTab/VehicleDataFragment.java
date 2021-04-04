@@ -45,20 +45,14 @@ public class VehicleDataFragment extends Fragment {
 
         ((EditText)plates.getChildAt(1)).setText(currentCar.plates);
 
-        cards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(
-                        R.id.action_nav_vehicle_data_to_nav_vehicle_data_cards);
-            }
-        });
-        tariff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(
-                        R.id.action_nav_vehicle_data_to_nav_vehicle_data_tariff);
-            }
-        });
+        cards.setOnClickListener(Navigation.createNavigateOnClickListener(
+                R.id.action_nav_vehicle_data_to_nav_vehicle_data_cards));
+        tariff.setOnClickListener(Navigation.createNavigateOnClickListener(
+                R.id.action_nav_vehicle_data_to_nav_vehicle_data_tariff));
+
+        if (currentCar.parkingLotName != null)
+            ((TextView)tariff.getChildAt(1)).setText(currentCar.getTariffName()
+                + " - " + currentCar.parkingLotName);
 
         setHasOptionsMenu(true);
         return root;

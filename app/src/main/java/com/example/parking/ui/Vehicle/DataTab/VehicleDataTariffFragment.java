@@ -26,6 +26,8 @@ public class VehicleDataTariffFragment extends Fragment {
     private TextView parkingPlace;
     private TextView payedTill;
     private TextView payment;
+    private ConstraintLayout paymentLayout;
+    private ConstraintLayout parkingPlaceLayout;
 
     private ConstraintLayout daily;
     private ConstraintLayout monthly;
@@ -49,19 +51,19 @@ public class VehicleDataTariffFragment extends Fragment {
         payedTill = root.findViewById(R.id.vehicle_data_tariff_current_payed_till_text);
         payment = root.findViewById(R.id.vehicle_data_tariff_current_payment_type_text);
 
+        paymentLayout = root.findViewById(R.id.vehicle_data_tariff_current_payment_type_layout);
         daily = root.findViewById(R.id.vehicle_data_tariff_change_daily_layout);
         monthly = root.findViewById(R.id.vehicle_data_tariff_change_monthly_layout);
         owner = root.findViewById(R.id.vehicle_data_tariff_change_owner_layout);
         dontChange = root.findViewById(R.id.vehicle_data_tariff_change_dont_change_layout);
 
-        type.setText(currentCar.tariff != null? currentCar.getTariffName() : "");
-        if(currentCar.newParkingLotName != null)
-            parkingPlace.setText(String.format("%s(%s)",
-                currentCar.parkingLotName,
-                    currentCar.newParkingLotName != null? currentCar.newParkingLotName : ""));
-        else parkingPlace.setText(currentCar.parkingLotName != null? "": currentCar.parkingLotName);
-        payedTill.setText(currentCar.payedTill != null? currentCar.getDate() : "");
+        type.setText(currentCar.getTariffName());
+        if(currentCar.parkingLotName != null) parkingPlace.setText(currentCar.parkingLotName);
+        payedTill.setText(currentCar.getDate());
+        //TODO: payment text (ask Stepan about it)
 
+        paymentLayout.setOnClickListener(Navigation.createNavigateOnClickListener(
+                R.id.action_nav_vehicle_data_tariff_to_nav_vehicle_data_tariff_payment));
 
         updateCheckMarks();
 

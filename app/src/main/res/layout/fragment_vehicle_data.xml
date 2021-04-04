@@ -119,18 +119,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/vehicle_data_card_layout_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:gravity="right"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-
-            app:layout_constraintEnd_toStartOf="@+id/vehicle_data_card_layout_next_ic"
-            app:layout_constraintStart_toEndOf="@+id/vehicle_data_card_layout_tittle"
-            app:layout_constraintTop_toTopOf="parent" />
         <ImageView
             android:id="@+id/vehicle_data_card_layout_next_ic"
             android:layout_width="wrap_content"

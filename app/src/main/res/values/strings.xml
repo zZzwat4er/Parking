@@ -25,7 +25,7 @@
     <string name="current_tariff">Текущий тариф</string>
     <string name="change_tariff">Изменить тариф</string>
 
-    <string name="gos_nomer">Госю номер</string>
+    <string name="gos_nomer">Гос. номер</string>
     <string name="tariff">Тариф</string>
     <string name="cards">Карты</string>
 
@@ -60,6 +60,11 @@
     <string name="phone">Телефон</string>
     <string name="email">Email</string>
     <string name="choose_payment_method">Выберете способ оплаты</string>
+    
+    <string name="auto_renewal">Автопродление</string>
+    <string name="from_internal_balance">Со внутренего счета</string>
+    <string name="manually">Вручную</string>
+
 
     <string name="last_name">Фамилия</string>
     <string name="first_name">Имя</string>
