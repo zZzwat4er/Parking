@@ -21,6 +21,7 @@ import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.example.parking.utility.AccountHolder;
@@ -130,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return navController.navigateUp();
     }

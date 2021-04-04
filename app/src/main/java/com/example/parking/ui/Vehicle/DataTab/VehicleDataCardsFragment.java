@@ -111,12 +111,12 @@ public class VehicleDataCardsFragment extends Fragment {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
             if(!cards[0].getText().toString().isEmpty() && !cards[2].getText().toString().isEmpty()) {
-                /*comAPI.setCallBack(new comAPI.OnThreadExit() {
+                comAPI.setCallBack(new comAPI.OnThreadExit() {
                     @Override
                     public void exit() {
                         Navigation.findNavController(root).navigateUp();
                     }
-                });*/
+                });
                 comAPI.updateCards(AccountHolder.email, AccountHolder.passwordHush, currentCar.id,
                         Integer.parseInt(cards[0].getText().toString()),
                         cards[1].getText().toString().isEmpty() ? null : Integer.parseInt(cards[1].getText().toString()),
@@ -132,7 +132,7 @@ public class VehicleDataCardsFragment extends Fragment {
                                 AccountHolder.account = JSONPars.parseAccount(respond);
                                 if (AccountHolder.account != null) {
                                     AccountHolder.saveData(getActivity().getApplication());
-                                    Navigation.findNavController(root).navigateUp();
+                                    //Navigation.findNavController(root).navigateUp();
                                 } else {
                                     ServerError err = JSONPars.parseErrorServer(respond);
                                     if (err != null) {

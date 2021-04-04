@@ -23,7 +23,7 @@ public class HttpRequest extends Thread{
     private final String mParams;// request Type (assigned automatically depends on constructor)
     private final Listener mListener;// class that must be implemented in order to create a request
 
-    private String response = "";
+    private static String response = "";
 
     //class that must be implemented in order to create a request
     //onRespond methods calls when request get answer
@@ -86,7 +86,11 @@ public class HttpRequest extends Thread{
             if(listener != null) listener.onRespond(e.getMessage());
         } finally {
             //close our connection and exit the thread
-            urlCon.disconnect();
+            try {
+                urlCon.disconnect();
+            }catch(NullPointerException e){
+                return;
+            }
             //region call a user def function that should be defined
             // code repeats some Volley request code but without some thread guard
             //todo: mb add some guard for response
