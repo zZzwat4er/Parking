@@ -1,6 +1,6 @@
 package com.example.parking.utility.server_comunnication_api;
 
-public interface JSON_TITTLES {
+public interface JSON_TITLES {
     String app_ver = "and_app_ver";
     String email = "email";
     String pass_hash = "passhash";
@@ -20,4 +20,8 @@ public interface JSON_TITTLES {
     String additional_card_5 = "additional_card_5";
     String payment_amount = "payment_amount";
     String carID = "car_id";
+    String autoPay = "autoPay";
+    String newLot = "new_lot";
+    String newPlates = "new_plates";
+    String newTariff = "new_tariff";
 }
