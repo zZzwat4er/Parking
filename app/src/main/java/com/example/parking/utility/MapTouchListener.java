@@ -16,6 +16,8 @@ public class MapTouchListener implements View.OnTouchListener{
     // These matrices will be used to scale points of the image
     Matrix matrix = new Matrix();
     Matrix savedMatrix = new Matrix();
+    Matrix startMatrix;
+    float[] startParams = new float[9];
 
     // The 3 states (events) which the user is trying to perform
     static final int NONE = 0;
@@ -32,12 +34,17 @@ public class MapTouchListener implements View.OnTouchListener{
     public boolean onTouch(View v, MotionEvent event)
     {
         ImageView view = (ImageView) v;
+        if(startMatrix == null) {
+            startMatrix = new Matrix(view.getImageMatrix());
+            startMatrix.getValues(startParams);
+        }
+        matrix.set(view.getImageMatrix());
         view.setScaleType(ImageView.ScaleType.MATRIX);
         float scale;
 
-        dumpEvent(event);
+        // dumpEvent(event);
         // Handle touch events here...
-
+        float [] params;
         switch (event.getAction() & MotionEvent.ACTION_MASK)
         {
             case MotionEvent.ACTION_DOWN:   // first finger down only
@@ -50,11 +57,23 @@ public class MapTouchListener implements View.OnTouchListener{
             case MotionEvent.ACTION_UP: // first finger lifted
 
             case MotionEvent.ACTION_POINTER_UP: // second finger lifted
+                params = new float[9];
+                matrix.getValues(params);
+                if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 1){
+                    while(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 1) {
+                        matrix.postScale(1.01f, 1.01f, mid.x, mid.y);
+                        matrix.getValues(params);
+                    }
+                }else if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] > 5){
+                    while(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] > 5){
+                        matrix.postScale(.99f, .99f, mid.x, mid.y);
+                        matrix.getValues(params);
+                    }
+                }
 
                 mode = NONE;
                 Log.d(TAG, "mode=NONE");
                 break;
-
             case MotionEvent.ACTION_POINTER_DOWN: // first and second finger down
 
                 oldDist = spacing(event);
@@ -82,11 +101,16 @@ public class MapTouchListener implements View.OnTouchListener{
                     if (newDist > 5f)
                     {
                         matrix.set(savedMatrix);
+                        params = new float[9];
+                        matrix.getValues(params);
                         scale = newDist / oldDist; // setting the scaling of the
                         // matrix...if scale > 1 means
                         // zoom in...if scale < 1 means
                         // zoom out
                         matrix.postScale(scale, scale, mid.x, mid.y);
+
+                        Log.d(TAG, "Global scale=" + params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X]);
+
                     }
                 }
                 break;
