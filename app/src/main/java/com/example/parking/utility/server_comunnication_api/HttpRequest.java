@@ -1,12 +1,5 @@
 package com.example.parking.utility.server_comunnication_api;
 
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-
-import com.example.parking.R;
-import com.example.parking.utility.AccountHolder;
-
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import javax.net.ssl.HttpsURLConnection;
 
 public class HttpRequest extends Thread{
@@ -42,6 +34,7 @@ public class HttpRequest extends Thread{
 
     @Override
     public void run() {
+        response = "";
         HttpURLConnection urlCon = null;
         try {
             //region connection setup
@@ -86,15 +79,13 @@ public class HttpRequest extends Thread{
             if(listener != null) listener.onRespond(e.getMessage());
         } finally {
             //close our connection and exit the thread
-            try {
-                urlCon.disconnect();
-            }catch(NullPointerException e){
-                return;
-            }
+            try {urlCon.disconnect();}
+            catch(NullPointerException e){return;}
             //region call a user def function that should be defined
             // code repeats some Volley request code but without some thread guard
             //todo: mb add some guard for response
             if(mListener != null) mListener.onRespond(response);
+            response = "";
             //endregion
             return;
         }

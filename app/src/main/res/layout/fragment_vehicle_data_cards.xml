@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vehicle_data_cards_main_layout"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <TextView
             android:id="@+id/vehicle_data_cards_main_layout_tittle"
             android:layout_width="wrap_content"
@@ -22,14 +20,12 @@
             android:text="@string/gates"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_main_layout_tittle"
             tools:layout_editor_absoluteX="12dp" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vehicle_data_cards_main1_layout"
             android:layout_width="match_parent"
@@ -39,7 +35,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_main_layout_tittle">
-
             <TextView
                 android:id="@+id/vehicle_data_cards_main1_tittle"
                 android:layout_width="wrap_content"
@@ -48,12 +43,12 @@
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/vehicle_data_cards_main1_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:inputType="number"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:background="#00FFFFFF"
                 android:hint="@string/necessary"
@@ -67,7 +62,6 @@
             android:layout_height="1dp"
             android:background="#77AAAAAA"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_main1_layout" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vehicle_data_cards_main2_layout"
             android:layout_width="match_parent"
@@ -76,7 +70,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_main1_layout">
-
             <TextView
                 android:id="@+id/vehicle_data_cards_main2_tittle"
                 android:layout_width="wrap_content"
@@ -85,12 +78,12 @@
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/vehicle_data_cards_main2_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:inputType="number"
                 android:background="#00FFFFFF"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:hint="@string/not_necessary"
@@ -105,7 +98,6 @@
             android:background="#77AAAAAA"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_main2_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vehicle_data_cards_additional_layout"
         android:layout_width="match_parent"
@@ -114,7 +106,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_main_layout">
-
         <TextView
             android:id="@+id/vehicle_data_cards_additional_layout_tittle"
             android:layout_width="wrap_content"
@@ -122,14 +113,12 @@
             android:text="@string/doors"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_additional_layout_tittle"
             tools:layout_editor_absoluteX="12dp" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vehicle_data_cards_additional1_layout"
             android:layout_width="match_parent"
@@ -139,7 +128,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_additional_layout_tittle">
-
             <TextView
                 android:id="@+id/vehicle_data_cards_additional1_tittle"
                 android:layout_width="wrap_content"
@@ -148,12 +136,12 @@
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/vehicle_data_cards_additional1_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:inputType="number"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:hint="@string/necessary"
                 android:background="#00FFFFFF"
@@ -167,7 +155,6 @@
             android:layout_height="1dp"
             android:background="#77AAAAAA"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_additional1_layout" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vehicle_data_cards_additional2_layout"
             android:layout_width="match_parent"
@@ -176,7 +163,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_additional1_layout">
-
             <TextView
                 android:id="@+id/vehicle_data_cards_additional2_tittle"
                 android:layout_width="wrap_content"
@@ -185,12 +171,12 @@
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/vehicle_data_cards_additional2_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:inputType="number"
                 android:background="#00FFFFFF"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:hint="@string/not_necessary"
@@ -212,7 +198,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_additional2_layout">
-
             <TextView
                 android:id="@+id/vehicle_data_cards_additional3_tittle"
                 android:layout_width="wrap_content"
@@ -221,12 +206,12 @@
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/vehicle_data_cards_additional3_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:inputType="number"
                 android:background="#00FFFFFF"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:hint="@string/not_necessary"
@@ -248,7 +233,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_additional3_layout">
-
             <TextView
                 android:id="@+id/vehicle_data_cards_additional4_tittle"
                 android:layout_width="wrap_content"
@@ -257,12 +241,12 @@
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/vehicle_data_cards_additional4_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:inputType="number"
                 android:background="#00FFFFFF"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:hint="@string/not_necessary"
@@ -284,7 +268,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_additional4_layout">
-
             <TextView
                 android:id="@+id/vehicle_data_cards_additional5_tittle"
                 android:layout_width="wrap_content"
@@ -293,12 +276,12 @@
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <EditText
                 android:id="@+id/vehicle_data_cards_additional5_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:inputType="number"
                 android:background="#00FFFFFF"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:hint="@string/not_necessary"
@@ -312,7 +295,5 @@
             android:layout_height="1dp"
             android:background="#77AAAAAA"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_cards_additional5_layout" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

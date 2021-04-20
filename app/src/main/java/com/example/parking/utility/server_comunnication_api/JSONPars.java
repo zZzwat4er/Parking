@@ -1,12 +1,8 @@
 package com.example.parking.utility.server_comunnication_api;
 
-import android.util.Log;
-
 import com.example.parking.utility.Account;
 import com.example.parking.utility.ServerError;
 import com.google.gson.Gson;
-
-import org.json.JSONObject;
 
 public class JSONPars {
 

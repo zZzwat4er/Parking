@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,13 +27,20 @@ import com.example.parking.ui.Vehicle.VehicleViewModel;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.Car;
 import com.example.parking.utility.ServerError;
+import com.example.parking.utility.StringChecker;
 import com.example.parking.utility.server_comunnication_api.HttpRequest;
 import com.example.parking.utility.server_comunnication_api.JSONPars;
 import com.example.parking.utility.server_comunnication_api.comAPI;
 
+import java.util.regex.Pattern;
+
 public class VehicleDataCardsFragment extends Fragment {
 
     private Car currentCar;
+
+    private String TAG = "cards tab Log";
+
+
 
     private TextView[] cards = new TextView[7];
     private String[] initialStrings = new String[7];
@@ -46,7 +54,6 @@ public class VehicleDataCardsFragment extends Fragment {
         currentCar = AccountHolder.account.getCarById(VehicleViewModel.carID);
 
         root = inflater.inflate(R.layout.fragment_vehicle_data_cards, container, false);
-
         cards[0] = root.findViewById(R.id.vehicle_data_cards_main1_text);
         cards[1] = root.findViewById(R.id.vehicle_data_cards_main2_text);
         cards[2] = root.findViewById(R.id.vehicle_data_cards_additional1_text);
@@ -60,18 +67,13 @@ public class VehicleDataCardsFragment extends Fragment {
         for(int i = 2; i < cards.length; i++){
             cards[i].setText((currentCar.additionalCards[i-2] != null)? currentCar.additionalCards[i-2].toString() : "");
         }
-
         for(int i = 0; i < cards.length; i++) {
             initialStrings[i] = cards[i].getText().toString();
             cards[i].addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                }
-
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                }
-
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
                 @Override
                 public void afterTextChanged(Editable editable) {
                     updateApprove();
@@ -90,8 +92,20 @@ public class VehicleDataCardsFragment extends Fragment {
         if(mMenu == null) return;
         for(int i = 0; i < cards.length; i++) {
             if(!initialStrings[i].equals(cards[i].getText().toString())){
-                mMenu.findItem(R.id.approve).setEnabled(true);
-                return;
+                if(!cards[0].getText().toString().isEmpty() &&
+                        !cards[2].getText().toString().isEmpty()) {
+                    for (int j = i; j < cards.length; j++) {
+                        if(!StringChecker.isCard(cards[j].getText().toString())){
+                            mMenu.findItem(R.id.approve).setEnabled(false);
+                            Log.d(TAG, "pattern " + cards[j].getText().toString() +" does not matches");
+                            return;
+                         }else{
+                            Log.d(TAG, "pattern " + cards[j].getText().toString() +" matches");
+                        }
+                    }
+                    mMenu.findItem(R.id.approve).setEnabled(true);
+                    return;
+                }
             }
         }
         mMenu.findItem(R.id.approve).setEnabled(false);
