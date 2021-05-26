@@ -54,7 +54,6 @@ public class VehicleFragment extends Fragment {
         recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.mCars));
 
         if(isNetworkConnected()){
-
             comAPI.login(AccountHolder.email,
                     AccountHolder.passwordHush,
                     getActivity().getApplicationContext(),

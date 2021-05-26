@@ -20,6 +20,7 @@ import com.example.parking.MainActivity;
 import com.example.parking.R;
 import com.example.parking.utility.Account;
 import com.example.parking.utility.AccountHolder;
+import com.example.parking.utility.StringChecker;
 import com.example.parking.utility.server_comunnication_api.HttpRequest;
 import com.example.parking.utility.server_comunnication_api.JSONPars;
 import com.example.parking.utility.server_comunnication_api.comAPI;
@@ -97,8 +98,8 @@ public class SignUpFragment extends Fragment{
             public void onClick(View v) {
                 if(!lastName.getText().toString().isEmpty() &&
                         !firstName.getText().toString().isEmpty() &&
-                        !email.getText().toString().isEmpty() &&
-                        !password.getText().toString().isEmpty() &&
+                        StringChecker.isEmail(email.getText().toString()) &&
+                        StringChecker.isPassword(password.getText().toString()) &&
                         Pattern.matches("\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}", phone.getText().toString())) {
                     AccountHolder.email = email.getText().toString();
                     final String passhash;
@@ -142,23 +143,9 @@ public class SignUpFragment extends Fragment{
         return Pattern.matches(phoneRegEx, s);
     }
 
-    private void goHomeActivity(){}
-
     private String phoneNumFormat(String s){
         if(!Pattern.matches("^\\+7.*", s)) return "+7";
-//        if(Pattern.matches("^\\+7\\d", s)) return s.replaceFirst("(\\+7)\\s?(\\d{0,3})?",
-//                "$1 ($2");
-//        if(Pattern.matches("^\\+7\\s\\(\\d{3}.", s)) {
-//            s = s.replaceFirst("(\\+7)\\s\\((\\d{3})(\\d{1})", "$1 ($2) $3");
-//            return s;
-//        }
-//        if(Pattern.matches("^\\+7\\s\\(\\d{3}\\)\\s\\d{3}.", s)) return s.replaceFirst("(\\+7)\\s\\((\\d{3})\\)\\s(\\d{3})(\\d{1})",
-//                "$1 ($2) $3-$4");
-//        if(Pattern.matches("^\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}.", s)) return s.replaceFirst("(\\+7)\\s\\((\\d{3})\\)\\s(\\d{3})-(\\d{2})(\\d{1})",
-//                "$1 ($2) $3-$4-$5");
-//        if(!Pattern.matches("^\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{0,2}", s))
-//            return s.replaceFirst("(\\+7)\\s\\((\\d{3})\\)\\s(\\d{3})-(\\d{2})-(\\d{2})(.)", "$1 ($2) $3-$4-$5");
-        s = s.replaceFirst("(\\+7)\\s?\\(?(\\d{0,2})?\\)?\\s?(\\d)?\\)?\\s?(\\d{0,2})?-?(\\d)?-?(\\d)?-?(\\d)?-?(\\d)?(\\d)?(.?)", "$1 ($2$3) $4$5-$6$7-$8$9");
+        s = s.replaceFirst("\\+7\\s?\\(?(\\d)?\\s?\\(?(\\d)?\\)?\\s?(\\d)?\\)?\\s?(\\d)?\\)?\\s?(\\d{0,2})?-?(\\d)?-?(\\d)?-?(\\d)?-?(\\d)?-?(\\d)?(.?)", "+7 ($1$2$3) $4$5-$6$7-$8$9");
         while(!Character.isDigit(s.charAt(s.length() - 1)))
             s = s.substring(0, s.length() - 1);
         return s;

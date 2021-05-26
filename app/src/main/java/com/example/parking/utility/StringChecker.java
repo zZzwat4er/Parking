@@ -8,7 +8,7 @@ public class StringChecker {
 
     private static final String nameRegEx = "^[А-ЯЁA-Zа-яёa-z \\-]{2,}$";
     private static final String cardRegEx = "^\\d{0,10}$";
-    private static final String passRegEx = "^(?=.*[A-Z])(?=.*\\d)[A-Z\\d@$!%*#?&]{8,}$";
+    private static final String passRegEx = "^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$";
     private static final String emailRegEx ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
     private static final String platesRegEx = "^[АВЕКМНОРСТУХABEKMHOPCTYXавекмнорстухabekmhopctyx]{1}\\d{3}(?<!000)[АВЕКМНОРСТУХABEKMHOPCTYXавекмнорстухabekmhopctyx]{2}\\d{2,3}(?<!000|00|0\\d\\d)$";
 
@@ -27,8 +27,8 @@ public class StringChecker {
         put('x', 'х');
     }};
 
-    private static final String rus = "авекмнорстух";
-    private static final String end = "abekmhopctyx";
+//    private static final String rus = "авекмнорстух";
+//    private static final String end = "abekmhopctyx";
 
     public static boolean isName(String s){return Pattern.matches(nameRegEx, s);}
     public static boolean isCard(String s){return Pattern.matches(cardRegEx, s);}

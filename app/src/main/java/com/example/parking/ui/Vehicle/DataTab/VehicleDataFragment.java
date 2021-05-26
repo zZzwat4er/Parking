@@ -71,9 +71,8 @@ public class VehicleDataFragment extends Fragment {
         tariff.setOnClickListener(Navigation.createNavigateOnClickListener(
                 R.id.action_nav_vehicle_data_to_nav_vehicle_data_tariff));
 
-        if (currentCar.parkingLotName != null)
-            ((TextView)tariff.getChildAt(1)).setText(currentCar.getTariffName()
-                + " - " + currentCar.parkingLotName);
+        ((TextView)tariff.getChildAt(1)).setText((currentCar.parkingLotName != null)?
+                currentCar.getTariffName() + " - " + currentCar.parkingLotName : "");
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +159,7 @@ public class VehicleDataFragment extends Fragment {
                                 public void onRespond(String respond) {
                                     AccountHolder.account = JSONPars.parseAccount(respond);
                                     if(AccountHolder.account != null){
+                                        AccountHolder.saveData(getActivity().getApplication());
                                         currentCar = AccountHolder.account.getCarById(VehicleViewModel.carID);
                                         initPlates = currentCar.plates;
                                     }

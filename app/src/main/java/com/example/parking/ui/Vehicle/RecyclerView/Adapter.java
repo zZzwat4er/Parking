@@ -60,10 +60,10 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         public ButtonViewHolder(@NonNull LinearLayout itemView){
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.getChildAt(0).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(((RecyclerView)v.getParent()).isClickable()) {
+                    if(((RecyclerView)v.getParent().getParent()).isClickable()) {
                         Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).navigate(
                                 R.id.action_nav_vehicle_to_nav_vehicle_add);
                     }
@@ -100,7 +100,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                         ": " + cCar.parkingLotName : "");
                 break;
             case 1:
-                //ButtonViewHolder btnHolder = (ButtonViewHolder)holder;
+                ButtonViewHolder btnHolder = (ButtonViewHolder)holder;
                 break;
         }
     }

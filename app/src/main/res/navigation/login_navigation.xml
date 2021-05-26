@@ -4,16 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/login_sign_in">
+    app:startDestination="@id/login_main">
+    <fragment
+        android:id="@+id/login_main"
+        android:name="com.example.parking.ui.Login.FLoginMain"
+        android:label="Main"
+        tools:layout="@layout/f_login_main">
+        <action
+            android:id="@+id/action_login_main_to_login_sign_in"
+            app:destination="@id/login_sign_in" />
+        <action
+            android:id="@+id/action_login_main_to_login_sign_up"
+            app:destination="@id/login_sign_up" />
+    </fragment>
     <fragment
         android:id="@+id/login_sign_in"
         android:name="com.example.parking.ui.Login.SignIn.SignInFragment"
         android:label="Sign in"
-        tools:layout="@layout/fragment_login_sign_in">
-        <action
-            android:id="@+id/action_login_sign_in_to_login_sign_up"
-            app:destination="@id/login_sign_up" />
-    </fragment>
+        tools:layout="@layout/fragment_login_sign_in"/>
     <fragment
         android:id="@+id/login_sign_up"
         android:name="com.example.parking.ui.Login.SignUp.SignUpFragment"
