@@ -41,6 +41,9 @@
     <string name="add_vehicle">Добавить транспорт</string>
     <string name="vehicle_data">Информация о транспорте</string>
 
+    <string name="card_number">Номер карты</string>
+    <string name="card_main">Оснавная карта</string>
+    <string name="card_secondary">Второстипенная карта</string>
     <string name="plates">A000AA136</string>
     <string name="gate_card">Карта от ворот</string>
     <string name="door_card">Карта от дверей</string>

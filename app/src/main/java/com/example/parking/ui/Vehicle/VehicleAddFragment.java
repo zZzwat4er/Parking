@@ -30,7 +30,7 @@ public class VehicleAddFragment extends Fragment {
 
     private EditText plates;
     private EditText main_cid;
-    private EditText addi_cid;
+//    private EditText addi_cid;
     private String TAG = "Add Tab";
     private Menu mMenu;
 
@@ -45,8 +45,8 @@ public class VehicleAddFragment extends Fragment {
                 R.id.add_vehicle_plates_layout)).getChildAt(0);
         main_cid = (EditText)((LinearLayout)root.findViewById(
                 R.id.add_vehicle_main_cid_layout)).getChildAt(0);
-        addi_cid = (EditText)((LinearLayout)root.findViewById(
-                R.id.add_vehicle_additional_cid_layout)).getChildAt(0);
+//        addi_cid = (EditText)((LinearLayout)root.findViewById(
+//                R.id.add_vehicle_additional_cid_layout)).getChildAt(0);
 
         plates.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -58,11 +58,11 @@ public class VehicleAddFragment extends Fragment {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override public void afterTextChanged(Editable s) {updateApprove();}
         });
-        addi_cid.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            @Override public void afterTextChanged(Editable s) {updateApprove();}
-        });
+//        addi_cid.addTextChangedListener(new TextWatcher() {
+//            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+//            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+//            @Override public void afterTextChanged(Editable s) {updateApprove();}
+//        });
 
         setHasOptionsMenu(true);
 
@@ -75,9 +75,9 @@ public class VehicleAddFragment extends Fragment {
         if(mMenu == null) return;
         String tempPlates = plates.getText().toString();
         tempPlates = StringChecker.eng2rus(tempPlates);
-        if(!main_cid.getText().toString().isEmpty() && !addi_cid.getText().toString().isEmpty())
+        if(!main_cid.getText().toString().isEmpty() && !tempPlates.isEmpty())
             if(StringChecker.isCard(main_cid.getText().toString()) &&
-                    StringChecker.isCard(addi_cid.getText().toString()) &&
+//                    StringChecker.isCard(addi_cid.getText().toString()) &&
                     StringChecker.isPlates(tempPlates)){
                 mMenu.findItem(R.id.approve).setEnabled(true);
                 return;
@@ -102,7 +102,7 @@ public class VehicleAddFragment extends Fragment {
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                 if(StringChecker.isCard(main_cid.getText().toString()) &&
-                    StringChecker.isCard(addi_cid.getText().toString()) &&
+//                    StringChecker.isCard(addi_cid.getText().toString()) &&
                     StringChecker.isPlates(tempPlates)){
                     try {
                         comAPI.setCallBack(new comAPI.OnThreadExit() {
@@ -115,7 +115,7 @@ public class VehicleAddFragment extends Fragment {
                                 AccountHolder.passwordHush,
                                 tempPlates,
                                 Integer.parseInt(main_cid.getText().toString()),
-                                Integer.parseInt(addi_cid.getText().toString()),
+//                                Integer.parseInt(addi_cid.getText().toString()), // if returned also check addCar func
                                 getActivity().getApplicationContext(),
                                 new HttpRequest.Listener() {
                                     @Override

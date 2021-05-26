@@ -64,9 +64,9 @@ public class VehicleDataCardsFragment extends Fragment {
 
         cards[0].setText(currentCar.mainCard.toString());
         cards[1].setText((currentCar.secondMainCard != null)? currentCar.secondMainCard.toString() : "");
-        for(int i = 2; i < cards.length; i++){
-            cards[i].setText((currentCar.additionalCards[i-2] != null)? currentCar.additionalCards[i-2].toString() : "");
-        }
+//        for(int i = 2; i < cards.length; i++){
+//            cards[i].setText((currentCar.additionalCards[i-2] != null)? currentCar.additionalCards[i-2].toString() : "");
+//        }
         for(int i = 0; i < cards.length; i++) {
             initialStrings[i] = cards[i].getText().toString();
             cards[i].addTextChangedListener(new TextWatcher() {

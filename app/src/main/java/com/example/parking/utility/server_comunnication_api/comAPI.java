@@ -104,7 +104,7 @@ public class comAPI {
     }
 
     public static void addCar(String email, String passHash, String plates, Integer mainCard,
-                              Integer additionalCard, Context context,
+                              /*Integer additionalCard,*/ Context context,
                               HttpRequest.Listener listener){
         try {
             if (pInfo == null)
@@ -114,8 +114,8 @@ public class comAPI {
                     JSON_TITLES.email + "=" + URLEncoder.encode(email,"UTF-8") + "&" +
                     JSON_TITLES.pass_hash + "=" + URLEncoder.encode(passHash,"UTF-8") + "&" +
                     JSON_TITLES.plates + "=" + URLEncoder.encode(plates,"UTF-8") + "&" +
-                    JSON_TITLES.main_card + "=" + URLEncoder.encode(mainCard.toString(),"UTF-8") + "&" +
-                    JSON_TITLES.additional_card + "=" + URLEncoder.encode(additionalCard.toString(),"UTF-8");
+                    JSON_TITLES.main_card + "=" + URLEncoder.encode(mainCard.toString(),"UTF-8") /*+ "&" +
+                    JSON_TITLES.additional_card + "=" + URLEncoder.encode(additionalCard.toString(),"UTF-8")*/;
 
             sendReq(urls.addCar, params, listener);
         }catch (Exception e){}

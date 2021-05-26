@@ -31,10 +31,12 @@ import com.example.parking.utility.server_comunnication_api.comAPI;
 
 public class VehicleDataFragment extends Fragment {
 
-    private ConstraintLayout plates;
     private EditText platesText;
     private ConstraintLayout tariff;
-    private ConstraintLayout cards;
+//    private ConstraintLayout cards;
+    private ConstraintLayout secondaryCard;
+    private EditText mainCardText;
+    private EditText secondaryCardText;
     private TextView deleteBtn;
     private Car currentCar;
     private Menu mMenu;
@@ -52,11 +54,19 @@ public class VehicleDataFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_vehicle_data, container, false);
 
-        plates = root.findViewById(R.id.vehicle_data_plates_layout);
         platesText = root.findViewById(R.id.vehicle_data_plates_layout_edittext);
+        mainCardText = root.findViewById(R.id.vehicle_data_main_card_layout_edittext);
+        secondaryCard = root.findViewById(R.id.vehicle_data_second_card_layout);
+        secondaryCardText = root.findViewById(R.id.vehicle_data_second_card_layout_edittext);
         tariff = root.findViewById(R.id.vehicle_data_tariff_layout);
-        cards = root.findViewById(R.id.vehicle_data_card_layout);
+//        cards = root.findViewById(R.id.vehicle_data_card_layout);
         deleteBtn = root.findViewById(R.id.vehicle_data_delete_button);
+
+        mainCardText.setText(currentCar.mainCard.toString());
+        secondaryCardText.setText((currentCar.secondMainCard != null)? currentCar.secondMainCard.toString() : "");
+        //todo: set visability depending on tariff
+        //todo: спрасить как карты появляются (ибо вбивать их ручками ***** надо)
+        secondaryCard.setVisibility((currentCar.secondMainCard != null)? View.VISIBLE: View.GONE);
 
         platesText.setText(currentCar.plates);
         initPlates = currentCar.plates;
@@ -66,8 +76,8 @@ public class VehicleDataFragment extends Fragment {
             @Override public void afterTextChanged(Editable s) {updateApprove();}
         });
 
-        cards.setOnClickListener(Navigation.createNavigateOnClickListener(
-                R.id.action_nav_vehicle_data_to_nav_vehicle_data_cards));
+//        cards.setOnClickListener(Navigation.createNavigateOnClickListener(
+//                R.id.action_nav_vehicle_data_to_nav_vehicle_data_cards));
         tariff.setOnClickListener(Navigation.createNavigateOnClickListener(
                 R.id.action_nav_vehicle_data_to_nav_vehicle_data_tariff));
 

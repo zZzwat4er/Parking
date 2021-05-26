@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_layout" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+<!--    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/vehicle_data_card_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,6 +130,39 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vehicle_data_main_card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_layout">
+
+        <TextView
+            android:id="@+id/vehicle_data_main_card_layout_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/card_main"
+            android:textColor="@color/design_default_color_on_secondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/vehicle_data_main_card_layout_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="#00FFFFFF"
+            android:gravity="right"
+            android:hint="@string/card_number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vehicle_data_main_card_layout_tittle"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -138,7 +171,50 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/vehicle_data_card_layout" />
+        app:layout_constraintTop_toBottomOf="@id/vehicle_data_main_card_layout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vehicle_data_second_card_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="6dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_data_main_card_layout">
+
+        <TextView
+            android:id="@+id/vehicle_data_second_card_layout_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/card_secondary"
+            android:textColor="@color/design_default_color_on_secondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/vehicle_data_second_card_layout_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="#00FFFFFF"
+            android:gravity="right"
+            android:hint="@string/card_number"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vehicle_data_second_card_layout_tittle"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintTop_toBottomOf="@id/vehicle_data_second_card_layout" />
 
     <TextView
         android:id="@+id/vehicle_data_delete_button"
@@ -153,6 +229,6 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vehicle_data_card_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_data_second_card_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
