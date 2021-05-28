@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -47,6 +48,36 @@ public class VehicleFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_vehicle, container, false);
 
+        viewModel = new ViewModelProvider(this).get(VehicleViewModel.class);
+        viewModel.getOutPutCode().observe(getActivity(), new Observer<VehicleViewModel.OutputCodes>() {
+            @Override
+            public void onChanged(VehicleViewModel.OutputCodes outputCodes) {
+                switch (outputCodes){
+                    case SUC:
+                        loadinglayout.setVisibility(View.INVISIBLE);
+                        recyclerView.setClickable(true);
+                        recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.mCars));
+                        break;
+
+                    case ERR:
+                        Integer err = viewModel.getErrorCode();
+                        if(err == 2) {
+                            AccountHolder.dataFlesh(getActivity().getApplication());
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }
+                        break;
+
+                    case NONE:
+                    default:
+                        return;
+                }
+                viewModel.resetOutPutCode();
+            }
+        });
+
+
         loadinglayout = root.findViewById(R.id.vehicle_progress_bar_layout);
         recyclerView = (RecyclerView) root.findViewById(R.id.vehiacle_rview);
         recyclerView.setHasFixedSize(true);
@@ -54,37 +85,8 @@ public class VehicleFragment extends Fragment {
         recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.mCars));
 
         if(isNetworkConnected()){
-            comAPI.login(AccountHolder.email,
-                    AccountHolder.passwordHush,
-                    getActivity().getApplicationContext(),
-                    new HttpRequest.Listener() {
-                        @Override
-                        public void onRespond(String respond) {
-                            AccountHolder.account = JSONPars.parseAccount(respond);
-                            if(AccountHolder.account != null) {
-                                loadinglayout.setVisibility(View.INVISIBLE);
-                                recyclerView.setClickable(true);
-                                AccountHolder.saveData(getActivity().getApplication());
-                            }else{
-                                ServerError err = JSONPars.parseErrorServer(respond);
-                                if(err != null){
-                                    if(err.code == 2){
-                                        AccountHolder.dataFlesh(getActivity().getApplication());
-                                        Intent intent = new Intent(getActivity(), LoginActivity.class);
-                                        startActivity(intent);
-                                        getActivity().finish();
-                                    }
-                                }
-                            }
-                        }
-                    });
+            viewModel.serverRequest(getActivity());
         }
-
-        viewModel = ViewModelProviders.of(this).get(VehicleViewModel.class);
-
-
-
-
 
         return root;
     }
