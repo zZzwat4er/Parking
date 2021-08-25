@@ -35,6 +35,7 @@ import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.ServerError;
 import com.example.parking.utility.server_comunnication_api.HttpRequest;
 import com.example.parking.utility.server_comunnication_api.JSONPars;
+import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 import com.example.parking.utility.server_comunnication_api.comAPI;
 
 public class VehicleFragment extends Fragment {
@@ -49,9 +50,9 @@ public class VehicleFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_vehicle, container, false);
 
         viewModel = new ViewModelProvider(this).get(VehicleViewModel.class);
-        viewModel.getOutPutCode().observe(getActivity(), new Observer<VehicleViewModel.OutputCodes>() {
+        viewModel.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
             @Override
-            public void onChanged(VehicleViewModel.OutputCodes outputCodes) {
+            public void onChanged(ServerReqCodes outputCodes) {
                 switch (outputCodes){
                     case SUC:
                         loadinglayout.setVisibility(View.INVISIBLE);

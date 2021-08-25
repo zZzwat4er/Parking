@@ -23,6 +23,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.parking.R;
+import com.example.parking.ui.Vehicle.VehicleAddViewModel;
 import com.example.parking.utility.MapTouchListener;
 
 public class MapFragment extends Fragment{
@@ -41,7 +42,13 @@ public class MapFragment extends Fragment{
         addCarBtn = root.findViewById(R.id.map_add_car_btn);
 
         vehicleBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_map_to_nav_vehicle));
-        addCarBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_map_to_nav_vehicle_add));
+        addCarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_nav_map_to_nav_vehicle_add);
+                VehicleAddViewModel.isFromVehicleTab = false;
+            }
+        });
 
         return root;
     }

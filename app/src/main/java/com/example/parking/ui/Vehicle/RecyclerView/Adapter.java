@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.example.parking.R;
+import com.example.parking.ui.Vehicle.VehicleAddViewModel;
 import com.example.parking.ui.Vehicle.VehicleViewModel;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.Car;
@@ -66,6 +67,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     if(((RecyclerView)v.getParent().getParent()).isClickable()) {
                         Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).navigate(
                                 R.id.action_nav_vehicle_to_nav_vehicle_add);
+                        VehicleAddViewModel.isFromVehicleTab = true;
                     }
                 }
             });
