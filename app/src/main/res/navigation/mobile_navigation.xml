@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/nav_map"
-        android:name="com.example.parking.ui.Map.MapFragment"
+        android:name="com.example.parking.ui.map.MapFragment"
         android:label="Map"
         tools:layout="@layout/fragment_map" >
         <action
@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/nav_user_info"
-        android:name="com.example.parking.ui.UserInfo.UserInfoFragment"
+        android:name="com.example.parking.ui.user_info.UserInfoFragment"
         android:label="@string/user_info"
         tools:layout="@layout/fragment_user_info" >
         <action
@@ -58,36 +58,36 @@
 
     <fragment
         android:id="@+id/nav_user_info_fio_change"
-        android:name="com.example.parking.ui.UserInfo.FIOChange.FIOChange"
+        android:name="com.example.parking.ui.user_info.fio_change.FIOChange"
         android:label="@string/user_info_fio_change"
         tools:layout="@layout/fragment_user_info_fio_change" />
     <fragment
         android:id="@+id/nav_user_info_email_change"
-        android:name="com.example.parking.ui.UserInfo.EmailChange.EmailChange"
+        android:name="com.example.parking.ui.user_info.email_change.EmailChange"
         android:label="@string/user_info_email_change"
         tools:layout="@layout/fragment_user_info_email_change" />
 
     <fragment
         android:id="@+id/nav_top_up_an_account"
-        android:name="com.example.parking.ui.TopUpAnAccount.TopUpAnAccountFragment"
+        android:name="com.example.parking.ui.top_up_an_account.TopUpAnAccountFragment"
         android:label="@string/top_up_an_account"
         tools:layout="@layout/fragment_top_up_an_account" />
 
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.example.parking.ui.History.HistoryFragment"
+        android:name="com.example.parking.ui.history.HistoryFragment"
         android:label="@string/history"
         tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/nav_notification"
-        android:name="com.example.parking.ui.Notifications.NotificationFragment"
+        android:name="com.example.parking.ui.notifications.NotificationFragment"
         android:label="@string/notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/nav_vehicle"
-        android:name="com.example.parking.ui.Vehicle.VehicleFragment"
+        android:name="com.example.parking.ui.vehicle.VehicleFragment"
         android:label="@string/vehicle"
         tools:layout="@layout/fragment_vehicle" >
         <action
@@ -99,7 +99,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data"
-        android:name="com.example.parking.ui.Vehicle.DataTab.VehicleDataFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataFragment"
         android:label="@string/vehicle_data"
         tools:layout="@layout/fragment_vehicle_data" >
         <action
@@ -111,12 +111,12 @@
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data_cards"
-        android:name="com.example.parking.ui.Vehicle.DataTab.VehicleDataCardsFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataCardsFragment"
         android:label="@string/cards"
         tools:layout="@layout/fragment_vehicle_data_cards" />
     <fragment
         android:id="@+id/nav_vehicle_data_tariff"
-        android:name="com.example.parking.ui.Vehicle.DataTab.VehicleDataTariffFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataTariffFragment"
         android:label="@string/tariff"
         tools:layout="@layout/fragment_vehicle_data_tariff" >
         <action
@@ -125,36 +125,36 @@
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data_tariff_payment"
-        android:name="com.example.parking.ui.Vehicle.DataTab.VehicleDataTariffPaymentFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataTariffPaymentFragment"
         android:label="@string/tariff"
         tools:layout="@layout/fragment_vehicle_data_tariff_payment" />
     <fragment
         android:id="@+id/nav_vehicle_add"
-        android:name="com.example.parking.ui.Vehicle.VehicleAddFragment"
+        android:name="com.example.parking.ui.vehicle.VehicleAddFragment"
         android:label="@string/add_vehicle"
         tools:layout="@layout/fragment_vehicle_add_tab" />
 
     <fragment
         android:id="@+id/nav_rate_plan"
-        android:name="com.example.parking.ui.RatePlan.RatePlanFragment"
+        android:name="com.example.parking.ui.rate_plan.RatePlanFragment"
         android:label="@string/rate_plan"
         tools:layout="@layout/fragment_rate_plan" />
 
     <fragment
         android:id="@+id/nav_buy_place"
-        android:name="com.example.parking.ui.BuyPlace.BuyPlaceFragment"
+        android:name="com.example.parking.ui.buy_place.BuyPlaceFragment"
         android:label="@string/buy_place"
         tools:layout="@layout/fragment_buy_place" />
 
     <fragment
         android:id="@+id/nav_qna"
-        android:name="com.example.parking.ui.QNA.QNAFragment"
+        android:name="com.example.parking.ui.qna.QNAFragment"
         android:label="@string/help_num"
         tools:layout="@layout/fragment_qna" />
 
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.example.parking.ui.About.AboutFragment"
+        android:name="com.example.parking.ui.about.AboutFragment"
         android:label="@string/about"
         tools:layout="@layout/fragment_about" />
 </navigation>

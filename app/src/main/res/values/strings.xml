@@ -58,11 +58,14 @@
     <string name="not_necessary">необязательно</string>
     <string name="necessary">обязательно</string>
 
+
+<!-- Login strings -->
     <string name="sign_in">Войти</string>
     <string name="sign_up">Регистрация</string>
     <string name="phone">Телефон</string>
     <string name="email">Email</string>
     <string name="choose_payment_method">Выберете способ оплаты</string>
+    <string name="restore_password">Восстановить пароль</string>>
     
     <string name="auto_renewal">Автопродление</string>
     <string name="from_internal_balance">Со внутренего счета</string>

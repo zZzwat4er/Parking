@@ -7,7 +7,7 @@
     app:startDestination="@id/login_main">
     <fragment
         android:id="@+id/login_main"
-        android:name="com.example.parking.ui.Login.FLoginMain"
+        android:name="com.example.parking.ui.login.FLoginMain"
         android:label="Main"
         tools:layout="@layout/f_login_main">
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/login_sign_in"
-        android:name="com.example.parking.ui.Login.SignIn.SignInFragment"
+        android:name="com.example.parking.ui.login.sign_in.SignInFragment"
         android:label="Sign in"
         tools:layout="@layout/fragment_login_sign_in"/>
     <fragment
         android:id="@+id/login_sign_up"
-        android:name="com.example.parking.ui.Login.SignUp.SignUpFragment"
+        android:name="com.example.parking.ui.login.sign_up.SignUpFragment"
         android:label="Sign up"
         tools:layout="@layout/fragment_login_sign_up"/>
 
