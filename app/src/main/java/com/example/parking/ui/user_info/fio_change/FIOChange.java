@@ -106,6 +106,7 @@ public class FIOChange extends Fragment {
     }
 
     @Override
+    // TODO: rewrite server request
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.approve){
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);

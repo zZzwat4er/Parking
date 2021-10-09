@@ -36,6 +36,9 @@ public class VehicleAddFragment extends Fragment {
     private Menu mMenu;
     VehicleAddViewModel viewModel;
 
+    // TODO: new field functionality
+    // TODO: transform plates to uniform form
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

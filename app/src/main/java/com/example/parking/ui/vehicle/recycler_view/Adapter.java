@@ -16,7 +16,7 @@ import com.example.parking.ui.vehicle.VehicleViewModel;
 import com.example.parking.utility.Car;
 
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-
+    // TODO: logic for new design
     private static Activity mCurrentActivity;
     private final Car[] mCars;
 

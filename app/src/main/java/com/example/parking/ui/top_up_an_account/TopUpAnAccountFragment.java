@@ -26,7 +26,8 @@ public class TopUpAnAccountFragment extends Fragment {
     private EditText paymentView;
     private Button payBtn;
 
-
+    // TODO: exit on on pay btn (or page refresh)
+    // TODO: ways to pay menu
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         viewModel = ViewModelProviders.of(this).get(TopUpAnAccountViewModel.class);

@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <!--TODO: remake row design according to example-->
+
     <TextView
         android:id="@+id/car_id_text"
         android:layout_width="wrap_content"

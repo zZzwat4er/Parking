@@ -20,7 +20,7 @@ import com.example.parking.R;
 import com.example.parking.utility.AccountHolder;
 
 public class UserInfoFragment extends Fragment {
-
+    // TODO: context menu on exit btn with exit approve
     private UserInfoViewModel viewModel;
     private LinearLayout userFIO;
     private LinearLayout userPhone;

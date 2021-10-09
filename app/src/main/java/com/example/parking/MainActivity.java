@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // TODO: rewrite request
         if(getIntent().getStringExtra("S").equals("load") && isNetworkConnected()){
             comAPI.login(AccountHolder.email,
                     AccountHolder.passwordHush,

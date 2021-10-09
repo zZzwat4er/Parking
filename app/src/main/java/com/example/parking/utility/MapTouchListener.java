@@ -9,6 +9,9 @@ import android.widget.ImageView;
 
 public class MapTouchListener implements View.OnTouchListener{
 
+    // TODO: map move boundaries
+    // TODO: map zoom out animation (not instant as it is now)
+    // TODO: double tap zoom
     private static final String TAG = "Touch";
     @SuppressWarnings("unused")
     private static final float MIN_ZOOM = 1f,MAX_ZOOM = 1f;

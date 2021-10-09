@@ -15,7 +15,8 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.parking.R;
 
 public class BuyPlaceFragment extends Fragment {
-
+    //TODO: stop changing text
+    //TODO: handle phone number pres by syscall
     private BuyPlaceViewModel viewModel;
     private TextView textView;
 

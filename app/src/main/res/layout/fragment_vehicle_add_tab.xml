@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <!--TODO: new field-->
+    <!--TODO: add picture with description-->
     <LinearLayout
         android:id="@+id/add_vehicle_plates_layout"
         android:layout_width="match_parent"

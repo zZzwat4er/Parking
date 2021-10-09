@@ -22,7 +22,8 @@ public class MapFragment extends Fragment{
     private Button addCarBtn;
 
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-
+        // TODO: zoom btns logic
+        // TODO: acc balance at the bottom logic
         View root = inflater.inflate(R.layout.fragment_map, container, false);
         ImageView img = root.findViewById(R.id.imageView);
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
