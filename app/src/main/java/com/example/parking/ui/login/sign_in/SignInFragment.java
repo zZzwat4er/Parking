@@ -71,7 +71,7 @@ public class SignInFragment extends Fragment {
                         final ProgressBar pb = root.findViewById(R.id.progressBar);
                         root.findViewById(R.id.sing_in_button).setEnabled(false);
                         pb.setVisibility(View.VISIBLE);
-
+                        // TODO: zaebal peredelai
                         comAPI.login(emailField.getText().toString(),
                                 passHash,
                                 getActivity().getApplicationContext(),

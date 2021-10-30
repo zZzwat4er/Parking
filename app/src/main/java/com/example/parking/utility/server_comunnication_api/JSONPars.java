@@ -10,7 +10,9 @@ public class JSONPars {
 
         Gson gson = new Gson();
         Account acc = gson.fromJson(json, Account.class);
-        if(acc.mEmail == null || acc.mFirstName == null || acc.mPhone == null) acc = null;
+        if(acc != null)
+            if(acc.mEmail == null || acc.mFirstName == null || acc.mPhone == null)
+                acc = null;
         return acc;
     }
     public static Boolean parseSuccess(){

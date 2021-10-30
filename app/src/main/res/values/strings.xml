@@ -3,8 +3,12 @@
     <string name="user_info">Информация о пользователе</string>
     <string name="user_info_fio_change">Смена имени</string>
     <string name="user_info_email_change">Смена почты</string>
+
+<!--User Info-->
     <string name="FIO">ФИО пользователя</string>
     <string name="phone_number">Номер телефона</string>
+    <string name="are_you_sure">Вы уверены что хотите выйти из аккаунта?</string>
+
     <string name="top_up_an_account">Пополнить счет</string>
     <string name="history">История</string>
     <string name="notifications">Уведомления</string>
@@ -35,8 +39,11 @@
     <string name="exit">Выход</string>
     <string name="delete">Удалить</string>
 
+<!--Vehicle data tab-->
     <string name="parking_place">Парковочное место</string>
     <string name="car_id">Номер машыны</string>
+    <string name="not_payed">Не оплачено</string>
+    <string name="payed">Оплачено</string>
 
     <string name="add_vehicle">Добавить транспорт</string>
     <string name="vehicle_data">Информация о транспорте</string>
@@ -44,9 +51,12 @@
     <string name="card_number">Номер карты</string>
     <string name="card_main">Оснавная карта</string>
     <string name="card_secondary">Второстипенная карта</string>
+
+<!--Add vehicle tab-->
     <string name="plates">A000AA136</string>
-    <string name="gate_card">Карта от ворот</string>
-    <string name="door_card">Карта от дверей</string>
+    <string name="EM">EM</string>
+    <string name="TID">TID</string>
+
     <string name="doors">Двери</string>
     <string name="gates">Ворота</string>
 
@@ -78,10 +88,16 @@
     <string name="first_name">Имя</string>
     <string name="second_name">Отчество</string>
 
+<!--Balance-->
+    <string name="balance">Баланс</string>
     <string name="balance_after_payment">Баланс после пополнения: %1$d</string>
-    <string name="to_buy">Если хотите купить парковочное место, позвоните в отдел продаж: %1$s</string>
+
+<!--Buy place-->
+    <string name="to_buy">Для приобретения парковочного места в собственность обращайтесь по телефону:</string>
+    <string name="phone_to_buy">+7(473)207–50–50</string>
 
     <string name="approve">Подтвердить</string>
+    <string name="reject">Отмена</string>
 
     <string name="pay">Оплатить</string>
     <string name="move_on">Продолжить</string>

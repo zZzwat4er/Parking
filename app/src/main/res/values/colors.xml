@@ -3,4 +3,11 @@
     <color name="colorPrimary">#F7F7F7</color>
     <color name="colorPrimaryDark">#A0A0A0</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="MainText">#FFA010</color>
+
+<!--Vehicle info tab colours-->
+    <color name="not_payed">#FF0000</color>
+    <color name="payed">#00FF00</color>
+
 </resources>

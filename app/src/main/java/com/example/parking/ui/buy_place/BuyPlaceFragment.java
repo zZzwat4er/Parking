@@ -1,5 +1,7 @@
 package com.example.parking.ui.buy_place;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,21 +17,19 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.parking.R;
 
 public class BuyPlaceFragment extends Fragment {
-    //TODO: stop changing text
-    //TODO: handle phone number pres by syscall
-    private BuyPlaceViewModel viewModel;
-    private TextView textView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        viewModel =
-                ViewModelProviders.of(this).get(BuyPlaceViewModel.class);
         View root = inflater.inflate(R.layout.fragment_buy_place, container, false);
-        textView = root.findViewById(R.id.buy_place_text);
-        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        //TODO: stop changing text
+        //TODO: handle phone number pres by syscall
+        final TextView phone = root.findViewById(R.id.to_buy_phone_number);
+        phone.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:123456789"));
+                startActivity(callIntent);
             }
         });
         return root;

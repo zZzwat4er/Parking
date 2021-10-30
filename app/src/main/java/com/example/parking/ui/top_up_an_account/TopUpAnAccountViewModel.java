@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.parking.R;
+
 
 public class TopUpAnAccountViewModel extends ViewModel {
 
@@ -11,7 +13,7 @@ public class TopUpAnAccountViewModel extends ViewModel {
 
     public TopUpAnAccountViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Top up an account");
+        mText.setValue("Баланс после пополнения: ");
     }
 
     public void update(Integer paymentValue){

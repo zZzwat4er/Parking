@@ -20,6 +20,8 @@ import com.example.parking.R;
 import com.example.parking.utility.AccountHolder;
 
 public class UserInfoFragment extends Fragment {
+
+    // TODO:
     // TODO: context menu on exit btn with exit approve
     private UserInfoViewModel viewModel;
     private LinearLayout userFIO;
@@ -65,8 +67,6 @@ public class UserInfoFragment extends Fragment {
 
         userFIO.setOnClickListener(Navigation.createNavigateOnClickListener(
                 R.id.action_nav_user_info_to_nav_user_info_fio_change, null));
-//        userEmail.setOnClickListener(Navigation.createNavigateOnClickListener(
-//                R.id.action_nav_user_info_to_nav_user_info_email_change, null));
 
         return root;
     }
