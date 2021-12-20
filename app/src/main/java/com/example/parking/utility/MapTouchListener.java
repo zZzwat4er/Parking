@@ -14,7 +14,7 @@ public class MapTouchListener implements View.OnTouchListener{
     // TODO: double tap zoom
     private static final String TAG = "Touch";
     @SuppressWarnings("unused")
-    private static final float MIN_ZOOM = 1f,MAX_ZOOM = 1f;
+    private static final float MIN_ZOOM = 1f, MAX_ZOOM = 1f;
 
     // These matrices will be used to scale points of the image
     Matrix matrix = new Matrix();

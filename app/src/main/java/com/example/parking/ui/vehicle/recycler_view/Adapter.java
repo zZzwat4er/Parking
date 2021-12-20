@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +32,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public TextView carID;
         public TextView parkingPlace;
 
-        public ViewHolder(@NonNull LinearLayout itemView) {
+        public ViewHolder(@NonNull ConstraintLayout itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -77,7 +78,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 1) return new ButtonViewHolder((LinearLayout) LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.fragment_vehicle_add_button, parent, false));
-        return new ViewHolder((LinearLayout) LayoutInflater.from(parent.getContext())
+        return new ViewHolder((ConstraintLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_vehicle_row, parent, false));
     }
 

@@ -2,11 +2,11 @@ package com.example.parking;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -17,18 +17,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
-import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.example.parking.utility.AccountHolder;
-import com.example.parking.utility.ServerError;
-import com.example.parking.utility.server_comunnication_api.HttpRequest;
-import com.example.parking.utility.server_comunnication_api.JSONPars;
-import com.example.parking.utility.server_comunnication_api.comAPI;
+import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,34 +33,39 @@ public class MainActivity extends AppCompatActivity {
     private TextView hFio;
     private TextView hPhone;
     private final Context context = this;
+    private HttpViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewModel = new ViewModelProvider(this).get(HttpViewModel.class);
+        viewModel.getOutPutCode().observe(this, new Observer<ServerReqCodes>() {
+            @Override
+            public void onChanged(ServerReqCodes serverReqCodes) {
+                Log.d("OBSERVER", "onChanged");
+                switch (serverReqCodes){
+                    case ERR:
+                        Integer err = viewModel.getErrorCode();
+                        if(err == 2) {
+                            AccountHolder.dataFlesh(getApplication());
+                            Intent intent = new Intent(context, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        break;
+                    case SUC:
+                        Log.d("OBSERVER", "onChanged: get suc result");
+                    case NONE:
+                    default:
+                        break;
+                }
+            }
+        });
+
         // TODO: rewrite request
         if(getIntent().getStringExtra("S").equals("load") && isNetworkConnected()){
-            comAPI.login(AccountHolder.email,
-                    AccountHolder.passwordHush,
-                    getApplicationContext(),
-                    new HttpRequest.Listener() {
-                        @Override
-                        public void onRespond(String respond) {
-                            AccountHolder.account = JSONPars.parseAccount(respond);
-                            if(AccountHolder.account != null) {
-                                AccountHolder.saveData(getApplication());
-                            }else{
-                                ServerError err = JSONPars.parseErrorServer(respond);
-                                if(err != null){
-                                    if(err.code == 2){
-                                        AccountHolder.dataFlesh(getApplication());
-                                        Intent intent = new Intent(context, LoginActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                }
-                            }
-                        }
-                    });
+
         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         hPhone = header.findViewById(R.id.header_phone);
         hFio.setText(AccountHolder.account.getFullName());
         hPhone.setText(AccountHolder.account.mPhone);
+        viewModel.serverRequest(this);
     }
 
     public void notifyDataChanged(){

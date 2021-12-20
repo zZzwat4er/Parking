@@ -1,5 +1,6 @@
 package com.example.parking.ui.vehicle.data_tab;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,8 +19,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.parking.LoginActivity;
 import com.example.parking.R;
 import com.example.parking.ui.vehicle.VehicleViewModel;
 import com.example.parking.utility.AccountHolder;
@@ -27,6 +31,7 @@ import com.example.parking.utility.Car;
 import com.example.parking.utility.StringChecker;
 import com.example.parking.utility.server_comunnication_api.HttpRequest;
 import com.example.parking.utility.server_comunnication_api.JSONPars;
+import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 import com.example.parking.utility.server_comunnication_api.comAPI;
 
 public class VehicleDataFragment extends Fragment {
@@ -34,6 +39,8 @@ public class VehicleDataFragment extends Fragment {
     private EditText platesText;
     private ConstraintLayout tariff;
 //    private ConstraintLayout cards;
+    private VehicleDataVM vm;
+    private VehicleDataDelVM vmDel;
     private ConstraintLayout secondaryCard;
     private EditText mainCardText;
     private EditText secondaryCardText;
@@ -61,6 +68,8 @@ public class VehicleDataFragment extends Fragment {
         tariff = root.findViewById(R.id.vehicle_data_tariff_layout);
 //        cards = root.findViewById(R.id.vehicle_data_card_layout);
         deleteBtn = root.findViewById(R.id.vehicle_data_delete_button);
+        vm = new ViewModelProvider(this).get(VehicleDataVM.class);
+        vmDel = new ViewModelProvider(this).get(VehicleDataDelVM.class);
 
         mainCardText.setText(currentCar.mainCard.toString());
         secondaryCardText.setText((currentCar.secondMainCard != null)? currentCar.secondMainCard.toString() : "");
@@ -84,21 +93,58 @@ public class VehicleDataFragment extends Fragment {
         ((TextView)tariff.getChildAt(1)).setText((currentCar.parkingLotName != null)?
                 currentCar.getTariffName() + " - " + currentCar.parkingLotName : "");
 
+        vm.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
+            @Override
+            public void onChanged(ServerReqCodes serverReqCodes) {
+                switch (serverReqCodes){
+                    case ERR:
+                        Integer err = vm.getErrorCode();
+                        if(err == 2) {
+                            AccountHolder.dataFlesh(getActivity().getApplication());
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }
+                        break;
+                    case SUC:
+                        Log.d("OBSERVER", "onChanged: get suc result");
+                        currentCar = AccountHolder.account.getCarById(VehicleViewModel.carID);
+                        initPlates = currentCar.plates;
+                        platesText.setText(currentCar.plates);
+                        platesText.clearFocus();
+                        updateApprove();
+                    case NONE:
+                    default:
+                        break;
+                }
+            }
+        });
+        vmDel.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
+            @Override
+            public void onChanged(ServerReqCodes serverReqCodes) {
+                switch (serverReqCodes){
+                    case ERR:
+                        Integer err = vm.getErrorCode();
+                        if(err == 2) {
+                            AccountHolder.dataFlesh(getActivity().getApplication());
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }
+                        break;
+                    case SUC:
+                        Log.d("OBSERVER", "onChanged: get suc result");
+                        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+                    case NONE:
+                    default:
+                        break;
+                }
+            }
+        });
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                comAPI.deleteCar(
-                        AccountHolder.email,
-                        AccountHolder.passwordHush,
-                        currentCar.id,
-                        getActivity().getApplicationContext(),
-                        new HttpRequest.Listener() {
-                            @Override
-                            public void onRespond(String respond) {
-                                
-                            }
-                        }
-                );
+                vmDel.serverRequest(getActivity(), currentCar.id);
             }
         });
 
@@ -150,32 +196,33 @@ public class VehicleDataFragment extends Fragment {
                 pStr = pStr.toLowerCase();
                 pStr = StringChecker.eng2rus(pStr);
                 if(StringChecker.isPlates(pStr)){
-                    comAPI.setCallBack(new comAPI.OnThreadExit() {
-                        @Override
-                        public void exit() {
-                            platesText.setText(currentCar.plates);
-                            platesText.clearFocus();
-                            updateApprove();
-                        }
-                    });
-                    comAPI.updatePlates(
-                            AccountHolder.email,
-                            AccountHolder.passwordHush,
-                            currentCar.id,
-                            pStr,
-                            getActivity().getApplicationContext(),
-                            new HttpRequest.Listener() {
-                                @Override
-                                public void onRespond(String respond) {
-                                    AccountHolder.account = JSONPars.parseAccount(respond);
-                                    if(AccountHolder.account != null){
-                                        AccountHolder.saveData(getActivity().getApplication());
-                                        currentCar = AccountHolder.account.getCarById(VehicleViewModel.carID);
-                                        initPlates = currentCar.plates;
-                                    }
-                                }
-                            }
-                    );
+                    vm.serverRequest(getActivity(), currentCar.id, pStr);
+//                    comAPI.setCallBack(new comAPI.OnThreadExit() {
+//                        @Override
+//                        public void exit() {
+//                            platesText.setText(currentCar.plates);
+//                            platesText.clearFocus();
+//                            updateApprove();
+//                        }
+//                    });
+//                    comAPI.updatePlates(
+//                            AccountHolder.email,
+//                            AccountHolder.passwordHush,
+//                            currentCar.id,
+//                            pStr,
+//                            getActivity().getApplicationContext(),
+//                            new HttpRequest.Listener() {
+//                                @Override
+//                                public void onRespond(String respond) {
+//                                    AccountHolder.account = JSONPars.parseAccount(respond);
+//                                    if(AccountHolder.account != null){
+//                                        AccountHolder.saveData(getActivity().getApplication());
+//                                        currentCar = AccountHolder.account.getCarById(VehicleViewModel.carID);
+//                                        initPlates = currentCar.plates;
+//                                    }
+//                                }
+//                            }
+//                    );
                 }
                 return true;
             default:

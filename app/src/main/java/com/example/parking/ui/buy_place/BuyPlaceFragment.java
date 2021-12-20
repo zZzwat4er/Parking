@@ -27,8 +27,8 @@ public class BuyPlaceFragment extends Fragment {
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:123456789"));
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse(String.format("tel:%s", phone.getText().toString())));
                 startActivity(callIntent);
             }
         });

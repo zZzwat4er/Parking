@@ -1,5 +1,6 @@
 package com.example.parking.ui.user_info.fio_change;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,13 +16,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.parking.LoginActivity;
 import com.example.parking.R;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.StringChecker;
 import com.example.parking.utility.server_comunnication_api.HttpRequest;
 import com.example.parking.utility.server_comunnication_api.JSONPars;
+import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 import com.example.parking.utility.server_comunnication_api.comAPI;
 
 public class FIOChange extends Fragment {
@@ -35,6 +40,7 @@ public class FIOChange extends Fragment {
             AccountHolder.account.mSecondName,
             AccountHolder.account.mLastName
     };
+    private FIOCangeVM vm;
 
     private final String TAG = "FIO change";
 
@@ -45,6 +51,32 @@ public class FIOChange extends Fragment {
         firstname = root.findViewById(R.id.user_fio_edit_firstname_layout_text);
         secondname = root.findViewById(R.id.user_fio_edit_secondname_layout_text);
         lastname = root.findViewById(R.id.user_fio_edit_lastname_layout_text);
+
+        vm = new ViewModelProvider(this).get(FIOCangeVM.class);
+        vm.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
+            @Override
+            public void onChanged(ServerReqCodes serverReqCodes) {
+                switch (serverReqCodes){
+                    case SUC:
+                        Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+                        break;
+
+                    case ERR:
+                        Integer err = vm.getErrorCode();
+                        if(err == 2) {
+                            AccountHolder.dataFlesh(getActivity().getApplication());
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }
+                        break;
+
+                    case NONE:
+                    default:
+                        break;
+                }
+            }
+        });
 
         firstname.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -112,29 +144,31 @@ public class FIOChange extends Fragment {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
             if(!firstname.getText().toString().isEmpty() && !lastname.getText().toString().isEmpty()){
-                try {
-                    comAPI.setCallBack(new comAPI.OnThreadExit() {
-                        @Override
-                        public void exit() {
-                            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
-                        }
-                    });
-                    comAPI.updateFIO(AccountHolder.email,
-                            AccountHolder.passwordHush,
-                            firstname.getText().toString(),
-                            lastname.getText().toString(),
-                            (secondname.getText().toString().isEmpty()? null:secondname.getText().toString()),
-                            getActivity().getApplicationContext(),
-                            new HttpRequest.Listener() {
-                                @Override
-                                public void onRespond(String respond) {
-                                    AccountHolder.account = JSONPars.parseAccount(respond);
-                                    if(AccountHolder.account != null) {
-                                        AccountHolder.saveData(getActivity().getApplication());
-                                    }
-                                }
-                            });
-                }catch (Exception e){}
+                vm.serverRequest(getActivity(), firstname.getText().toString(),
+                        secondname.getText().toString(), lastname.getText().toString());
+//                try {
+//                    comAPI.setCallBack(new comAPI.OnThreadExit() {
+//                        @Override
+//                        public void exit() {
+//                            Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+//                        }
+//                    });
+//                    comAPI.updateFIO(AccountHolder.email,
+//                            AccountHolder.passwordHush,
+//                            firstname.getText().toString(),
+//                            lastname.getText().toString(),
+//                            (secondname.getText().toString().isEmpty()? null:secondname.getText().toString()),
+//                            getActivity().getApplicationContext(),
+//                            new HttpRequest.Listener() {
+//                                @Override
+//                                public void onRespond(String respond) {
+//                                    AccountHolder.account = JSONPars.parseAccount(respond);
+//                                    if(AccountHolder.account != null) {
+//                                        AccountHolder.saveData(getActivity().getApplication());
+//                                    }
+//                                }
+//                            });
+//                }catch (Exception e){}
             }
             return true;
         }

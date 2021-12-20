@@ -32,7 +32,7 @@ public class VehicleAddFragment extends Fragment {
 
     private EditText plates;
     private EditText main_cid;
-    private String TAG = "Add Tab";
+    private final String TAG = "Add Tab";
     private Menu mMenu;
     VehicleAddViewModel viewModel;
 
@@ -71,7 +71,7 @@ public class VehicleAddFragment extends Fragment {
                     case SUC:
                         NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
                         navController.navigateUp();
-                        if(!viewModel.isFromVehicleTab)navController.navigate(R.id.action_nav_map_to_nav_vehicle);
+                        if(!VehicleAddViewModel.isFromVehicleTab)navController.navigate(R.id.action_nav_map_to_nav_vehicle);
                         break;
 
                     case ERR:
@@ -86,42 +86,13 @@ public class VehicleAddFragment extends Fragment {
 
                     case NONE:
                     default:
-                        return;
+                        break;
                 }
-                viewModel.resetOutPutCode();
             }
         });
 
-        //                    try {
-//                        comAPI.setCallBack(new comAPI.OnThreadExit() {
-//                            @Override
-//                            public void exit() {
-//                                Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
-//                            }
-//                        });
-//                        comAPI.addCar(AccountHolder.email,
-//                                AccountHolder.passwordHush,
-//                                tempPlates,
-//                                Integer.parseInt(main_cid.getText().toString()),
-////                                Integer.parseInt(addi_cid.getText().toString()), // if returned also check addCar func
-//                                getActivity().getApplicationContext(),
-//                                new HttpRequest.Listener() {
-//                                    @Override
-//                                    public void onRespond(String respond) {
-//                                        AccountHolder.account = JSONPars.parseAccount(respond);
-//                                        if(AccountHolder.account != null) {
-//                                            AccountHolder.saveData(getActivity().getApplication());
-//                                        }
-//                                    }
-//                                });
-//                    }catch (Exception e){}
-//                }
-
-
         setHasOptionsMenu(true);
-
         updateApprove();
-
         return root;
     }
 
@@ -148,19 +119,19 @@ public class VehicleAddFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.approve:
-                String tempPlates = plates.getText().toString();
-                tempPlates = StringChecker.eng2rus(tempPlates);
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-                if(StringChecker.isCard(main_cid.getText().toString()) &&
-                    StringChecker.isPlates(tempPlates)){
-                    viewModel.serverRequest(getActivity(), tempPlates, main_cid.getText().toString());
-                }
-                //todo approve car addition
-            default:
-            return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.approve) {
+            String tempPlates = plates.getText().toString();
+            tempPlates = tempPlates.toLowerCase();
+            tempPlates = StringChecker.eng2rus(tempPlates);
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+            if (StringChecker.isCard(main_cid.getText().toString()) &&
+                    StringChecker.isPlates(tempPlates)) {
+                viewModel.serverRequest(getActivity(), tempPlates, main_cid.getText().toString());
+            }
+            //todo this fragment has changed so rewrite it
+            //todo approve car addition
         }
+        return super.onOptionsItemSelected(item);
     }
 }
