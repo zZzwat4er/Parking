@@ -1,14 +1,14 @@
-package com.example.parking.ui.qna;
+package com.example.parking.ui.faced_a_problem;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class QNAViewModel extends ViewModel {
+public class FasedAProblemViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public QNAViewModel() {
+    public FasedAProblemViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is QNA");
     }

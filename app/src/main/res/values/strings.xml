@@ -14,8 +14,10 @@
     <string name="notifications">Уведомления</string>
     <string name="vehicle">Транспорт</string>
     <string name="rate_plan">Тарифные планы</string>
-    <string name="buy_place">Купить парковочное место</string>
-    <string name="help_num">Обратная связь</string>
+    <string name="buy_place">Купить место</string>
+    <string name="faced_a_problem">Возникли проблемы?</string>
+    <string name="user_rules">Правила пользования парковкой</string>
+    <string name="entrance_rules">Правила въезда/выезда</string>
     <string name="about">О приложении</string>
 
     <string name="type">Тип</string>
@@ -101,4 +103,11 @@
 
     <string name="pay">Оплатить</string>
     <string name="move_on">Продолжить</string>
+
+<!--user rules text-->
+    <string name="user_rules_text"></string>
+
+<!--entrance rules text-->
+    <string name="entrance_rules_text"></string>
+
 </resources>

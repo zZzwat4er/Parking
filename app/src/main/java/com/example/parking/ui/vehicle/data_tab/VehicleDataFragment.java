@@ -29,10 +29,7 @@ import com.example.parking.ui.vehicle.VehicleViewModel;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.Car;
 import com.example.parking.utility.StringChecker;
-import com.example.parking.utility.server_comunnication_api.HttpRequest;
-import com.example.parking.utility.server_comunnication_api.JSONPars;
 import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
-import com.example.parking.utility.server_comunnication_api.comAPI;
 
 public class VehicleDataFragment extends Fragment {
 
@@ -59,7 +56,7 @@ public class VehicleDataFragment extends Fragment {
 
         if(currentCar == null) Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
 
-        View root = inflater.inflate(R.layout.fragment_vehicle_data, container, false);
+        View root = inflater.inflate(R.layout.f_vehicle_data, container, false);
 
         platesText = root.findViewById(R.id.vehicle_data_plates_layout_edittext);
         mainCardText = root.findViewById(R.id.vehicle_data_main_card_layout_edittext);

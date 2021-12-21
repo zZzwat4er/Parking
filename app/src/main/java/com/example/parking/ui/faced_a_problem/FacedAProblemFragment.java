@@ -1,4 +1,4 @@
-package com.example.parking.ui.qna;
+package com.example.parking.ui.faced_a_problem;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +14,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.parking.R;
 
-public class QNAFragment extends Fragment {
+public class FacedAProblemFragment extends Fragment {
 
-    private QNAViewModel viewModel;
+    private FasedAProblemViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         viewModel =
-                ViewModelProviders.of(this).get(QNAViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_qna, container, false);
+                ViewModelProviders.of(this).get(FasedAProblemViewModel.class);
+        View root = inflater.inflate(R.layout.f_faced_a_problem, container, false);
         final TextView textView = root.findViewById(R.id.qna_text);
         viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

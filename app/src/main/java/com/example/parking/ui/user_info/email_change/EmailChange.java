@@ -21,7 +21,7 @@ public class EmailChange extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
-        View root = inflater.inflate(R.layout.fragment_user_info_email_change, container, false);
+        View root = inflater.inflate(R.layout.f_user_info_email_change, container, false);
 
         email = root.findViewById(R.id.email_layout_text);
         chBtn = root.findViewById(R.id.email_move_on_button);

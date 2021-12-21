@@ -16,7 +16,7 @@ public class VehicleDataTariffPaymentFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_vehicle_data_tariff_payment, container, false);
+        View root = inflater.inflate(R.layout.f_vehicle_data_tariff_payment, container, false);
 
         return root;
     }

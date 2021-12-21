@@ -49,7 +49,7 @@ public class VehicleDataCardsFragment extends Fragment {
 
         currentCar = AccountHolder.account.getCarById(VehicleViewModel.carID);
 
-        root = inflater.inflate(R.layout.fragment_vehicle_data_cards, container, false);
+        root = inflater.inflate(R.layout.f_vehicle_data_cards, container, false);
         cards[0] = root.findViewById(R.id.vehicle_data_cards_main1_text);
         cards[1] = root.findViewById(R.id.vehicle_data_cards_main2_text);
         cards[2] = root.findViewById(R.id.vehicle_data_cards_additional1_text);

@@ -31,7 +31,7 @@ public class VehicleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_vehicle, container, false);
+        View root = inflater.inflate(R.layout.f_vehicle, container, false);
 
         viewModel = new ViewModelProvider(this).get(VehicleViewModel.class);
         viewModel.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {

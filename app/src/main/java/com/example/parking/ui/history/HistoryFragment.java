@@ -22,7 +22,7 @@ public class HistoryFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         historyViewModel =
                 ViewModelProviders.of(this).get(HistoryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_history, container, false);
+        View root = inflater.inflate(R.layout.f_history, container, false);
         final TextView textView = root.findViewById(R.id.history_text);
         historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

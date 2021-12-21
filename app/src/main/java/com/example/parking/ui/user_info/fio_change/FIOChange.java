@@ -24,10 +24,7 @@ import com.example.parking.LoginActivity;
 import com.example.parking.R;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.StringChecker;
-import com.example.parking.utility.server_comunnication_api.HttpRequest;
-import com.example.parking.utility.server_comunnication_api.JSONPars;
 import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
-import com.example.parking.utility.server_comunnication_api.comAPI;
 
 public class FIOChange extends Fragment {
 
@@ -46,7 +43,7 @@ public class FIOChange extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
-        View root = inflater.inflate(R.layout.fragment_user_info_fio_change, container, false);
+        View root = inflater.inflate(R.layout.f_user_info_fio_change, container, false);
 
         firstname = root.findViewById(R.id.user_fio_edit_firstname_layout_text);
         secondname = root.findViewById(R.id.user_fio_edit_secondname_layout_text);

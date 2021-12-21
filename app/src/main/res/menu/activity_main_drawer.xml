@@ -29,9 +29,17 @@
             android:icon="@drawable/ic_bar_chart"
             android:title="@string/buy_place" />
         <item
-            android:id="@+id/nav_qna"
+            android:id="@+id/nav_faced_a_problem"
             android:icon="@drawable/ic_chat"
-            android:title="@string/help_num" />
+            android:title="@string/faced_a_problem" />
+        <item
+            android:id="@+id/nav_user_rules"
+            android:icon="@drawable/ic_chat"
+            android:title="@string/user_rules" />
+        <item
+            android:id="@+id/nav_entrance_rules"
+            android:icon="@drawable/ic_chat"
+            android:title="@string/entrance_rules" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_about"

@@ -36,7 +36,7 @@ public class SignInFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     //TODO: fix crash on incorrect password input
-        final View root = inflater.inflate(R.layout.fragment_login_sign_in, container, false);
+        final View root = inflater.inflate(R.layout.f_login_sign_in, container, false);
         emailField = root.findViewById(R.id.login_email_field);
         passField = root.findViewById(R.id.login_password_field);
 

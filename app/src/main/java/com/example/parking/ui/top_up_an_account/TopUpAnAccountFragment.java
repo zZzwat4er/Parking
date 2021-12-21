@@ -31,7 +31,7 @@ public class TopUpAnAccountFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         viewModel = ViewModelProviders.of(this).get(TopUpAnAccountViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_top_up_an_account, container, false);
+        View root = inflater.inflate(R.layout.f_top_up_an_account, container, false);
 
         //view searching
         textView = root.findViewById(R.id.top_up_an_account_under_payment_text);

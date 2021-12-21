@@ -45,7 +45,7 @@ public class SignUpFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_login_sign_up, container, false);
+        View root = inflater.inflate(R.layout.f_login_sign_up, container, false);
 
         lastName = root.findViewById(R.id.register_last_name_field);
         firstName = root.findViewById(R.id.register_first_name_field);

@@ -44,7 +44,7 @@ public class VehicleAddFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_vehicle_add_tab, container, false);
+        View root = inflater.inflate(R.layout.f_vehicle_add_tab, container, false);
 
         viewModel = new ViewModelProvider(this).get(VehicleAddViewModel.class);
 

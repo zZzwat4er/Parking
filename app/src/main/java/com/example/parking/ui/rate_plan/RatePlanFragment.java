@@ -22,7 +22,7 @@ public class RatePlanFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         viewModel =
                 ViewModelProviders.of(this).get(RatePlanViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_rate_plan, container, false);
+        View root = inflater.inflate(R.layout.f_rate_plan, container, false);
         final TextView textView = root.findViewById(R.id.rate_plan_text);
         viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: rewrite request
         if(getIntent().getStringExtra("S").equals("load") && isNetworkConnected()){
-
+            viewModel.serverRequest(this);
         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -124,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         hPhone = header.findViewById(R.id.header_phone);
         hFio.setText(AccountHolder.account.getFullName());
         hPhone.setText(AccountHolder.account.mPhone);
-        viewModel.serverRequest(this);
     }
 
     public void notifyDataChanged(){

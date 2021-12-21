@@ -77,9 +77,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 1) return new ButtonViewHolder((LinearLayout) LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.fragment_vehicle_add_button, parent, false));
+                    .inflate(R.layout.f_vehicle_add_button, parent, false));
         return new ViewHolder((ConstraintLayout) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_vehicle_row, parent, false));
+                .inflate(R.layout.f_vehicle_row, parent, false));
     }
 
     @Override
