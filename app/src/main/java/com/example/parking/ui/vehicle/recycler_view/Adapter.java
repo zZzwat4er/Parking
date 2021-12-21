@@ -31,21 +31,49 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public int id;
         public TextView carID;
         public TextView parkingPlace;
+        public TextView payed;
 
         public ViewHolder(@NonNull ConstraintLayout itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(((RecyclerView)view.getParent()).isClickable()) {
+
+                }
+            });
+            carID = itemView.findViewById(R.id.car_id_text);
+            parkingPlace = itemView.findViewById(R.id.parking_place);
+            payed = itemView.findViewById(R.id.payed_text);
+            carID.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(((RecyclerView)v.getParent().getParent()).isClickable()) {
                         VehicleViewModel.carID = id;
                         Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
                                 navigate(R.id.action_nav_vehicle_to_nav_vehicle_data);
                     }
                 }
             });
-            carID = (TextView) itemView.getChildAt(0);
-            parkingPlace = (TextView) itemView.getChildAt(1);
+            parkingPlace.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(((RecyclerView)v.getParent().getParent()).isClickable()) {
+                        VehicleViewModel.carID = id;
+                        Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
+                                navigate(R.id.action_nav_vehicle_to_nav_vehicle_data_tariff_place);
+                    }
+                }
+            });
+            payed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(((RecyclerView)v.getParent().getParent()).isClickable()) {
+                        VehicleViewModel.carID = id;
+                        Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
+                                navigate(R.id.action_nav_vehicle_to_nav_vehicle_data_tariff_payment);
+                    }
+                }
+            });
         }
 
     }

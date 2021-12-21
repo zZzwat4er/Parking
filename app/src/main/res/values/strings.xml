@@ -27,6 +27,7 @@
     <string name="monthly">Помесечно</string>
     <string name="owner">Собственик</string>
     <string name="do_not_change">Не изменять</string>
+    <string name="place">Место</string>
 
     <string name="current_tariff">Текущий тариф</string>
     <string name="change_tariff">Изменить тариф</string>

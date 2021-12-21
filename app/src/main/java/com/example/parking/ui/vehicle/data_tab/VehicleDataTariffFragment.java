@@ -49,10 +49,12 @@ public class VehicleDataTariffFragment extends Fragment {
         payment = root.findViewById(R.id.vehicle_data_tariff_current_payment_type_text);
 
         paymentLayout = root.findViewById(R.id.vehicle_data_tariff_current_payment_type_layout);
+        parkingPlaceLayout = root.findViewById(R.id.vehicle_data_tariff_current_place_layout);
         daily = root.findViewById(R.id.vehicle_data_tariff_change_daily_layout);
         monthly = root.findViewById(R.id.vehicle_data_tariff_change_monthly_layout);
         owner = root.findViewById(R.id.vehicle_data_tariff_change_owner_layout);
         dontChange = root.findViewById(R.id.vehicle_data_tariff_change_dont_change_layout);
+
 
         type.setText(currentCar.getTariffName());
         if(currentCar.parkingLotName != null) parkingPlace.setText(currentCar.parkingLotName);
@@ -61,6 +63,8 @@ public class VehicleDataTariffFragment extends Fragment {
 
         paymentLayout.setOnClickListener(Navigation.createNavigateOnClickListener(
                 R.id.action_nav_vehicle_data_tariff_to_nav_vehicle_data_tariff_payment));
+        parkingPlaceLayout.setOnClickListener(Navigation.createNavigateOnClickListener(
+                R.id.action_nav_vehicle_data_tariff_to_nav_vehicle_data_tariff_place));
 
         updateCheckMarks();
 

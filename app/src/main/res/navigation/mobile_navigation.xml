@@ -102,6 +102,12 @@
         <action
             android:id="@+id/action_nav_vehicle_to_nav_vehicle_data"
             app:destination="@id/nav_vehicle_data" />
+        <action
+            android:id="@+id/action_nav_vehicle_to_nav_vehicle_data_tariff_payment"
+            app:destination="@id/nav_vehicle_data_tariff_payment" />
+        <action
+            android:id="@+id/action_nav_vehicle_to_nav_vehicle_data_tariff_place"
+            app:destination="@id/nav_vehicle_data_tariff_place" />
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data"
@@ -128,6 +134,9 @@
         <action
             android:id="@+id/action_nav_vehicle_data_tariff_to_nav_vehicle_data_tariff_payment"
             app:destination="@id/nav_vehicle_data_tariff_payment" />
+        <action
+            android:id="@+id/action_nav_vehicle_data_tariff_to_nav_vehicle_data_tariff_place"
+            app:destination="@id/nav_vehicle_data_tariff_place" />
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data_tariff_payment"
@@ -169,6 +178,12 @@
         android:name="com.example.parking.ui.entrance_rules.EntranceRulesFragment"
         android:label="@string/entrance_rules"
         tools:layout="@layout/f_entrance_rules" />
+
+    <fragment
+        android:id="@+id/nav_vehicle_data_tariff_place"
+        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataTariffPlaceFragment"
+        android:label="@string/place"
+        tools:layout="@layout/f_vehicle_data_tariff_place" />
 
     <fragment
         android:id="@+id/nav_about"

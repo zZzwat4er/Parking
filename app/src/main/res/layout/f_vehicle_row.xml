@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/payed_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="6sp"
