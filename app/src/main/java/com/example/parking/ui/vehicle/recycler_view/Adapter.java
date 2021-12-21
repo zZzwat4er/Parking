@@ -12,8 +12,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.parking.R;
-import com.example.parking.ui.vehicle.VehicleAddViewModel;
-import com.example.parking.ui.vehicle.VehicleViewModel;
+import com.example.parking.ui.vehicle.VehicleAddVM;
+import com.example.parking.ui.vehicle.VehicleVM;
 import com.example.parking.utility.Car;
 
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -33,7 +33,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public TextView parkingPlace;
         public TextView payed;
 
-        public ViewHolder(@NonNull ConstraintLayout itemView) {
+        public ViewHolder(@NonNull final ConstraintLayout itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -47,8 +47,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             carID.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(((RecyclerView)v.getParent().getParent()).isClickable()) {
-                        VehicleViewModel.carID = id;
+                    if(((RecyclerView)itemView.getParent()).isClickable()) {
+                        VehicleVM.carID = id;
                         Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
                                 navigate(R.id.action_nav_vehicle_to_nav_vehicle_data);
                     }
@@ -57,8 +57,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             parkingPlace.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(((RecyclerView)v.getParent().getParent()).isClickable()) {
-                        VehicleViewModel.carID = id;
+                    if(((RecyclerView)itemView.getParent()).isClickable()) {
+                        VehicleVM.carID = id;
                         Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
                                 navigate(R.id.action_nav_vehicle_to_nav_vehicle_data_tariff_place);
                     }
@@ -67,8 +67,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             payed.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(((RecyclerView)v.getParent().getParent()).isClickable()) {
-                        VehicleViewModel.carID = id;
+                    if(((RecyclerView)itemView.getParent()).isClickable()) {
+                        VehicleVM.carID = id;
                         Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).
                                 navigate(R.id.action_nav_vehicle_to_nav_vehicle_data_tariff_payment);
                     }
@@ -87,7 +87,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     if(((RecyclerView)v.getParent().getParent()).isClickable()) {
                         Navigation.findNavController(mCurrentActivity, R.id.nav_host_fragment).navigate(
                                 R.id.action_nav_vehicle_to_nav_vehicle_add);
-                        VehicleAddViewModel.isFromVehicleTab = true;
+                        VehicleAddVM.isFromVehicleTab = true;
                     }
                 }
             });

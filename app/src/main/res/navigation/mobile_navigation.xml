@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/nav_map"
-        android:name="com.example.parking.ui.map.MapFragment"
+        android:name="com.example.parking.ui.map.FMap"
         android:label="Map"
         tools:layout="@layout/f_map" >
         <action
@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/nav_user_info"
-        android:name="com.example.parking.ui.user_info.UserInfoFragment"
+        android:name="com.example.parking.ui.user_info.FUserInfo"
         android:label="@string/user_info"
         tools:layout="@layout/f_user_info" >
         <action
@@ -64,7 +64,7 @@
 
     <fragment
         android:id="@+id/nav_user_info_fio_change"
-        android:name="com.example.parking.ui.user_info.fio_change.FIOChange"
+        android:name="com.example.parking.ui.user_info.fio_change.FFIOChange"
         android:label="@string/user_info_fio_change"
         tools:layout="@layout/f_user_info_fio_change" />
     <fragment
@@ -75,25 +75,25 @@
 
     <fragment
         android:id="@+id/nav_top_up_an_account"
-        android:name="com.example.parking.ui.top_up_an_account.TopUpAnAccountFragment"
+        android:name="com.example.parking.ui.top_up_an_account.FTopUpAnAccount"
         android:label="@string/top_up_an_account"
         tools:layout="@layout/f_top_up_an_account" />
 
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.example.parking.ui.history.HistoryFragment"
+        android:name="com.example.parking.ui.history.FHistory"
         android:label="@string/history"
         tools:layout="@layout/f_history" />
 
     <fragment
         android:id="@+id/nav_notification"
-        android:name="com.example.parking.ui.notifications.NotificationFragment"
+        android:name="com.example.parking.ui.notifications.FNotification"
         android:label="@string/notifications"
         tools:layout="@layout/f_notifications" />
 
     <fragment
         android:id="@+id/nav_vehicle"
-        android:name="com.example.parking.ui.vehicle.VehicleFragment"
+        android:name="com.example.parking.ui.vehicle.FVehicle"
         android:label="@string/vehicle"
         tools:layout="@layout/f_vehicle" >
         <action
@@ -111,7 +111,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data"
-        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.FVehicleData"
         android:label="@string/vehicle_data"
         tools:layout="@layout/f_vehicle_data" >
         <action
@@ -123,12 +123,12 @@
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data_cards"
-        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataCardsFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.FVehicleDataCards"
         android:label="@string/cards"
         tools:layout="@layout/f_vehicle_data_cards" />
     <fragment
         android:id="@+id/nav_vehicle_data_tariff"
-        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataTariffFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.FVehicleDataTariff"
         android:label="@string/tariff"
         tools:layout="@layout/f_vehicle_data_tariff" >
         <action
@@ -140,54 +140,54 @@
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data_tariff_payment"
-        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataTariffPaymentFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.FVehicleDataTariffPayment"
         android:label="@string/tariff"
         tools:layout="@layout/f_vehicle_data_tariff_payment" />
     <fragment
         android:id="@+id/nav_vehicle_add"
-        android:name="com.example.parking.ui.vehicle.VehicleAddFragment"
+        android:name="com.example.parking.ui.vehicle.FVehicleAdd"
         android:label="@string/add_vehicle"
         tools:layout="@layout/f_vehicle_add_tab" />
 
     <fragment
         android:id="@+id/nav_rate_plan"
-        android:name="com.example.parking.ui.rate_plan.RatePlanFragment"
+        android:name="com.example.parking.ui.rate_plan.FRatePlan"
         android:label="@string/rate_plan"
         tools:layout="@layout/f_rate_plan" />
 
     <fragment
         android:id="@+id/nav_buy_place"
-        android:name="com.example.parking.ui.buy_place.BuyPlaceFragment"
+        android:name="com.example.parking.ui.buy_place.FBuyPlace"
         android:label="@string/buy_place"
         tools:layout="@layout/f_buy_place" />
 
     <fragment
         android:id="@+id/nav_faced_a_problem"
-        android:name="com.example.parking.ui.faced_a_problem.FacedAProblemFragment"
+        android:name="com.example.parking.ui.faced_a_problem.FFacedAProblem"
         android:label="@string/faced_a_problem"
         tools:layout="@layout/f_faced_a_problem" />
 
     <fragment
         android:id="@+id/nav_user_rules"
-        android:name="com.example.parking.ui.user_rules.UserRulesFragment"
+        android:name="com.example.parking.ui.user_rules.FUserRules"
         android:label="@string/user_rules"
         tools:layout="@layout/f_user_rules" />
 
     <fragment
         android:id="@+id/nav_entrance_rules"
-        android:name="com.example.parking.ui.entrance_rules.EntranceRulesFragment"
+        android:name="com.example.parking.ui.entrance_rules.FEntranceRules"
         android:label="@string/entrance_rules"
         tools:layout="@layout/f_entrance_rules" />
 
     <fragment
         android:id="@+id/nav_vehicle_data_tariff_place"
-        android:name="com.example.parking.ui.vehicle.data_tab.VehicleDataTariffPlaceFragment"
+        android:name="com.example.parking.ui.vehicle.data_tab.FVehicleDataTariffPlace"
         android:label="@string/place"
         tools:layout="@layout/f_vehicle_data_tariff_place" />
 
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.example.parking.ui.about.AboutFragment"
+        android:name="com.example.parking.ui.about.FAbout"
         android:label="@string/about"
         tools:layout="@layout/f_about" />
 </navigation>

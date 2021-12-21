@@ -6,31 +6,42 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <!--TODO: add lines between views-->
 
-    <TextView
-        android:id="@+id/car_id_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="6sp"
-        android:text="@string/car_id"
-        android:textColor="@color/design_default_color_on_secondary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/parking_place"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/parking_place"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="6sp"
-        android:textSize="18sp"
-        android:text="@string/parking_place"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/car_id_text"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/parking_place"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/textlines"
+            android:padding="6sp"
+            android:text="@string/parking_place"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/car_id_text"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/car_id_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/textlines"
+            android:padding="6sp"
+            android:text="@string/car_id"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/parking_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/payed_text"
@@ -40,8 +51,9 @@
         android:textColor="@color/not_payed"
         android:text="@string/not_payed"
         android:textAlignment="center"
+        android:background="@drawable/textlines"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_id_text" />
+        app:layout_constraintTop_toBottomOf="@+id/topLayout"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

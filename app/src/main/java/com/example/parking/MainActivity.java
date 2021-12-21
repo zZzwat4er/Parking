@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView hFio;
     private TextView hPhone;
     private final Context context = this;
-    private HttpViewModel viewModel;
+    private HttpVM viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewModel = new ViewModelProvider(this).get(HttpViewModel.class);
+        viewModel = new ViewModelProvider(this).get(HttpVM.class);
         viewModel.getOutPutCode().observe(this, new Observer<ServerReqCodes>() {
             @Override
             public void onChanged(ServerReqCodes serverReqCodes) {
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // TODO: rewrite request
         if(getIntent().getStringExtra("S").equals("load") && isNetworkConnected()){
             viewModel.serverRequest(this);
         }
