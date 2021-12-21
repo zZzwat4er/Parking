@@ -18,6 +18,7 @@ import com.example.parking.utility.MapTouchListener;
 
 public class MapFragment extends Fragment{
 
+    private Button balance;
     private Button vehicleBtn;
     private Button addCarBtn;
 
@@ -29,9 +30,11 @@ public class MapFragment extends Fragment{
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
         img.setOnTouchListener(new MapTouchListener());
 
+        balance = root.findViewById(R.id.map_balance_btn);
         vehicleBtn = root.findViewById(R.id.map_vehicle_btn);
         addCarBtn = root.findViewById(R.id.map_add_car_btn);
 
+        balance.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_map_to_nav_top_up_an_account));
         vehicleBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_map_to_nav_vehicle));
         addCarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
