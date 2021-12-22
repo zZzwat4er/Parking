@@ -8,13 +8,14 @@
 
     <ImageView
         android:id="@+id/imageView2"
+        android:layout_height="match_parent"
         android:layout_width="0dp"
-        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="center"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:src="@drawable/bg_first_page" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -29,6 +30,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
+            android:background="@color/MainText"
+            android:textColor="@color/whiteText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/f_log_main_in" />
@@ -38,6 +41,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/sign_in"
+            android:textColor="@color/MainText"
+            android:background="@color/whiteText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/f_log_main_up"
             app:layout_constraintStart_toStartOf="parent" />

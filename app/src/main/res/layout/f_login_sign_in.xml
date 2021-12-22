@@ -41,6 +41,8 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="12dp"
+        android:background="@color/MainText"
+        android:textColor="@color/whiteText"
         android:text="@string/sign_in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -83,5 +85,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sing_in_button" />
+
+    <TextView
+        android:id="@+id/sign_in_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/sign_in_text"
+        android:textColor="@color/MainText"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/login_email_field"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

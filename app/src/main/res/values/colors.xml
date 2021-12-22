@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="MainText">#FFA010</color>
+    <color name="whiteText">#F7F7F7</color>
 
 <!--Vehicle info tab colours-->
     <color name="not_payed">#FF0000</color>

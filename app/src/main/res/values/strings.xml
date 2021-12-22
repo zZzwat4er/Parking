@@ -74,12 +74,16 @@
 
 <!-- Login strings -->
     <string name="sign_in">Войти</string>
+    <string name="sign_in_text">Войти в аккаунт</string>
     <string name="sign_up">Регистрация</string>
     <string name="phone">Телефон</string>
     <string name="email">Email</string>
     <string name="choose_payment_method">Выберете способ оплаты</string>
     <string name="restore_password">Восстановить пароль</string>>
     <string name="send_msg">Отправить СМС</string>
+    <string name="registry_notation">
+        Минимальная длина: 8 символов. Должна быть хотябы 1 буква и 1 цифра Дополнительно можно использовать символы @$!%"#?&amp;
+    </string>
 
     
     <string name="auto_renewal">Автопродление</string>
