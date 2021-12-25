@@ -51,7 +51,7 @@ public class FVehicleAdd extends Fragment {
         plates = (EditText)((LinearLayout)root.findViewById(
                 R.id.add_vehicle_plates_layout)).getChildAt(0);
         main_cid = (EditText)((LinearLayout)root.findViewById(
-                R.id.add_vehicle_main_cid_layout)).getChildAt(0);
+                R.id.add_vehicle_EM_layout)).getChildAt(0);
 
         plates.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
