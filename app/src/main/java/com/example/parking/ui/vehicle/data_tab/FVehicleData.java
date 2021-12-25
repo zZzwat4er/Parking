@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -31,6 +32,8 @@ import com.example.parking.utility.Car;
 import com.example.parking.utility.StringChecker;
 import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 
+import java.util.Objects;
+
 public class FVehicleData extends Fragment {
 
     private EditText platesText;
@@ -45,6 +48,9 @@ public class FVehicleData extends Fragment {
     private Car currentCar;
     private Menu mMenu;
     private String initPlates;
+    private ConstraintLayout exitApproveLayout;
+    private Button exitApprove;
+    private Button exitCancel;
     private String TAG = "Vehicle data";
 
 
@@ -67,6 +73,28 @@ public class FVehicleData extends Fragment {
         deleteBtn = root.findViewById(R.id.vehicle_data_delete_button);
         vm = new ViewModelProvider(this).get(VehicleDataVM.class);
         vmDel = new ViewModelProvider(this).get(VehicleDataDelVM.class);
+        exitApproveLayout = root.findViewById(R.id.ui_exit_approve_l);
+        exitApprove = root.findViewById(R.id.ui_exit_approve);
+        exitCancel = root.findViewById(R.id.ui_exit_reject);
+
+        exitApprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vmDel.serverRequest(getActivity(), currentCar.id);
+            }
+        });
+        exitCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exitApproveLayout.setVisibility(View.GONE);
+            }
+        });
+        exitApproveLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exitApproveLayout.setVisibility(View.GONE);
+            }
+        });
 
         mainCardText.setText(currentCar.mainCard.toString());
         secondaryCardText.setText((currentCar.secondMainCard != null)? currentCar.secondMainCard.toString() : "");
@@ -141,7 +169,7 @@ public class FVehicleData extends Fragment {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vmDel.serverRequest(getActivity(), currentCar.id);
+                exitApproveLayout.setVisibility(View.VISIBLE);
             }
         });
 
