@@ -14,26 +14,26 @@ import androidx.navigation.Navigation;
 
 import com.example.parking.R;
 import com.example.parking.ui.vehicle.VehicleAddVM;
+import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.MapTouchListener;
 
-public class FMap extends Fragment{
+import java.util.Objects;
 
-    private Button balance;
-    private Button vehicleBtn;
-    private Button addCarBtn;
+public class FMap extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         // TODO: zoom btns logic
         View root = inflater.inflate(R.layout.f_map, container, false);
         ImageView img = root.findViewById(R.id.imageView);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).hide();
         img.setOnTouchListener(new MapTouchListener());
 
-        balance = root.findViewById(R.id.map_balance_btn);
-        vehicleBtn = root.findViewById(R.id.map_vehicle_btn);
-        addCarBtn = root.findViewById(R.id.map_add_car_btn);
+        Button balance = root.findViewById(R.id.map_balance_btn);
+        Button vehicleBtn = root.findViewById(R.id.map_vehicle_btn);
+        Button addCarBtn = root.findViewById(R.id.map_add_car_btn);
 
         balance.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_map_to_nav_top_up_an_account));
+        balance.setText(String.format("%s: %d ₽", getString(R.string.balance), AccountHolder.account.mBalance));
         vehicleBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_map_to_nav_vehicle));
         addCarBtn.setOnClickListener(new View.OnClickListener() {
             @Override

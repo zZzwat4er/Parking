@@ -190,7 +190,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/vehicle_data_tariff_change_layout"
+        android:id="@+id/vehicle_data_tariff_become_owner_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
@@ -199,10 +199,11 @@
         app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_current_layout">
 
         <TextView
-            android:id="@+id/vehicle_data_tariff_change_layout_tittle"
+            android:id="@+id/vehicle_data_tariff_become_owner_layout_tittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/change_tariff"
+            android:text="@string/buy_place"
+            android:inputType="textCapCharacters"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -210,154 +211,29 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_layout_tittle"
+            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_become_owner_layout_tittle"
             tools:layout_editor_absoluteX="12dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/vehicle_data_tariff_change_daily_layout"
+            android:id="@+id/vehicle_data_tariff_become_owner_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:paddingVertical="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_layout_tittle">
+            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_become_owner_layout_tittle">
 
             <TextView
-                android:id="@+id/vehicle_data_tariff_change_daily_tittle"
+                android:id="@+id/vehicle_data_tariff_become_owner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/daily"
+                android:text="@string/how_to_become_owner"
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/vehicle_data_tariff_change_daily_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:visibility="invisible"
-                android:src="@drawable/ic_checkmark"
-                app:tint="#FF00FF00"
-                android:layout_marginEnd="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#77AAAAAA"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_daily_layout" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/vehicle_data_tariff_change_monthly_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_daily_layout">
-
-            <TextView
-                android:id="@+id/vehicle_data_tariff_change_monthly_tittle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/monthly"
-                android:textColor="@color/design_default_color_on_secondary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/vehicle_data_tariff_change_monthly_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:visibility="invisible"
-                android:src="@drawable/ic_checkmark"
-                app:tint="#FF00FF00"
-                android:layout_marginEnd="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#77AAAAAA"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_monthly_layout" />
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/vehicle_data_tariff_change_owner_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_monthly_layout">
-
-            <TextView
-                android:id="@+id/vehicle_data_tariff_change_owner_tittle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/owner"
-                android:textColor="@color/design_default_color_on_secondary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/vehicle_data_tariff_change_owner_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:gravity="right"
-                android:src="@drawable/ic_checkmark"
-                app:tint="#FF00FF00"
-                android:layout_marginEnd="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#77AAAAAA"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_owner_layout" />
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/vehicle_data_tariff_change_dont_change_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_owner_layout">
-
-            <TextView
-                android:id="@+id/vehicle_data_tariff_change_dont_change_tittle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/do_not_change"
-                android:textColor="@color/design_default_color_on_secondary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/vehicle_data_tariff_change_dont_change_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:src="@drawable/ic_checkmark"
-                app:tint="#FF00FF00"
-                android:layout_marginEnd="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#77AAAAAA"
-            app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_change_dont_change_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

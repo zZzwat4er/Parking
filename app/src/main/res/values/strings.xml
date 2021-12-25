@@ -14,7 +14,7 @@
     <string name="notifications">Уведомления</string>
     <string name="vehicle">Транспорт</string>
     <string name="rate_plan">Тарифные планы</string>
-    <string name="buy_place">Купить место</string>
+    <string name="buy_place">Купить паркоместо</string>
     <string name="faced_a_problem">Возникли проблемы?</string>
     <string name="user_rules">Правила пользования парковкой</string>
     <string name="entrance_rules">Правила въезда/выезда</string>
@@ -24,6 +24,7 @@
     <string name="payed_till">Оплачено до</string>
     <string name="payment_type">Оплата</string>
     <string name="daily">Ежедневно</string>
+
     <string name="monthly">Помесечно</string>
     <string name="owner">Собственик</string>
     <string name="do_not_change">Не изменять</string>
@@ -43,7 +44,8 @@
     <string name="delete">Удалить</string>
 
 <!--Vehicle data tab-->
-    <string name="parking_place">Парковочное место</string>
+    <string name="parking_place">Место</string>
+    <string name="non_place">Выбрать место</string>
     <string name="car_id">Номер машыны</string>
     <string name="not_payed">Не оплачено</string>
     <string name="payed">Оплачено</string>
@@ -55,6 +57,8 @@
     <string name="card_main">Оснавная карта</string>
     <string name="card_secondary">Второстипенная карта</string>
 
+    <string name="how_to_become_owner">Как стать собствеником?</string>
+    
 <!--Add vehicle tab-->
     <string name="plates">A000AA136</string>
     <string name="EM">EM</string>

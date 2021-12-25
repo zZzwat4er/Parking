@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/textlines"
             android:padding="6sp"
-            android:text="@string/parking_place"
+            android:text="@string/non_place"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/car_id_text"

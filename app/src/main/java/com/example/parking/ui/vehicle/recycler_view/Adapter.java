@@ -118,8 +118,8 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 Car cCar = mCars[position];
                 carHolder.id = cCar.id;
                 carHolder.carID.setText(cCar.plates);
-                carHolder.parkingPlace.setText(cCar.parkingLotName != null? carHolder.parkingPlace.getText().toString() +
-                        ": " + cCar.parkingLotName : "");
+                carHolder.parkingPlace.setText(cCar.parkingLotName != null? mCurrentActivity.getResources().getString(R.string.parking_place) +
+                        ": " + cCar.parkingLotName : mCurrentActivity.getResources().getString(R.string.non_place));
                 break;
             case 1:
                 ButtonViewHolder btnHolder = (ButtonViewHolder)holder;

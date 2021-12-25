@@ -137,6 +137,9 @@
         <action
             android:id="@+id/action_nav_vehicle_data_tariff_to_nav_vehicle_data_tariff_place"
             app:destination="@id/nav_vehicle_data_tariff_place" />
+        <action
+            android:id="@+id/action_nav_vehicle_data_tariff_to_nav_buy_place"
+            app:destination="@id/nav_buy_place" />
     </fragment>
     <fragment
         android:id="@+id/nav_vehicle_data_tariff_payment"
