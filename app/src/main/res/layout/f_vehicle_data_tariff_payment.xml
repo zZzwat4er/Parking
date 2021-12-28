@@ -50,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/vehicle_data_tariff_payment_method_auto_text"
+                android:id="@+id/vehicle_data_tariff_payment_method_auto_checkmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"

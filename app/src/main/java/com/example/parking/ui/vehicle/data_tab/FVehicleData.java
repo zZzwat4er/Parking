@@ -222,32 +222,6 @@ public class FVehicleData extends Fragment {
                 pStr = StringChecker.eng2rus(pStr);
                 if(StringChecker.isPlates(pStr)){
                     vm.serverRequest(getActivity(), currentCar.id, pStr);
-//                    comAPI.setCallBack(new comAPI.OnThreadExit() {
-//                        @Override
-//                        public void exit() {
-//                            platesText.setText(currentCar.plates);
-//                            platesText.clearFocus();
-//                            updateApprove();
-//                        }
-//                    });
-//                    comAPI.updatePlates(
-//                            AccountHolder.email,
-//                            AccountHolder.passwordHush,
-//                            currentCar.id,
-//                            pStr,
-//                            getActivity().getApplicationContext(),
-//                            new HttpRequest.Listener() {
-//                                @Override
-//                                public void onRespond(String respond) {
-//                                    AccountHolder.account = JSONPars.parseAccount(respond);
-//                                    if(AccountHolder.account != null){
-//                                        AccountHolder.saveData(getActivity().getApplication());
-//                                        currentCar = AccountHolder.account.getCarById(VehicleViewModel.carID);
-//                                        initPlates = currentCar.plates;
-//                                    }
-//                                }
-//                            }
-//                    );
                 }
                 return true;
             default:
