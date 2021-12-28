@@ -37,22 +37,31 @@ import java.util.Objects;
 public class FVehicleData extends Fragment {
 
     private EditText platesText;
-    private ConstraintLayout tariff;
-//    private ConstraintLayout cards;
     private VehicleDataVM vm;
     private VehicleDataDelVM vmDel;
-    private ConstraintLayout secondaryCard;
-    private EditText mainCardText;
-    private EditText secondaryCardText;
-    private TextView deleteBtn;
+    private VehicleDataCardChangeVM vmCard;
+    private ConstraintLayout main;
     private Car currentCar;
-    private Menu mMenu;
     private String initPlates;
     private ConstraintLayout exitApproveLayout;
-    private Button exitApprove;
-    private Button exitCancel;
     private String TAG = "Vehicle data";
+    private EditText mainCardText;
+    private EditText secondaryCardText;
+    private String initMainCard;
+    private String initSecondCard;
 
+    private View.OnFocusChangeListener cardsChange = new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            if(!hasFocus) {
+                if(!mainCardText.getText().toString().equals(initMainCard) || !secondaryCardText.getText().toString().equals(initSecondCard)) {
+                    Integer mainCardNum = Integer.parseInt(mainCardText.getText().toString());
+                    Integer secondCardNum = (!secondaryCardText.getText().toString().isEmpty()) ? Integer.parseInt(secondaryCardText.getText().toString()) : null;
+                    vmCard.serverRequest(getActivity(), currentCar.id, mainCardNum, secondCardNum);
+                }
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -63,19 +72,27 @@ public class FVehicleData extends Fragment {
         if(currentCar == null) Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
 
         View root = inflater.inflate(R.layout.f_vehicle_data, container, false);
+        final ConstraintLayout secondaryCard = root.findViewById(R.id.vehicle_data_second_card_layout);
+        final ConstraintLayout tariff = root.findViewById(R.id.vehicle_data_tariff_layout);
+        final TextView deleteBtn = root.findViewById(R.id.vehicle_data_delete_button);
+        final Button exitApprove = root.findViewById(R.id.ui_exit_approve);
+        final Button exitCancel = root.findViewById(R.id.ui_exit_reject);
 
-        platesText = root.findViewById(R.id.vehicle_data_plates_layout_edittext);
         mainCardText = root.findViewById(R.id.vehicle_data_main_card_layout_edittext);
-        secondaryCard = root.findViewById(R.id.vehicle_data_second_card_layout);
         secondaryCardText = root.findViewById(R.id.vehicle_data_second_card_layout_edittext);
-        tariff = root.findViewById(R.id.vehicle_data_tariff_layout);
-//        cards = root.findViewById(R.id.vehicle_data_card_layout);
-        deleteBtn = root.findViewById(R.id.vehicle_data_delete_button);
+        main = root.findViewById(R.id.vehicle_data_layout);
+        platesText = root.findViewById(R.id.vehicle_data_plates_layout_edittext);
+        exitApproveLayout = root.findViewById(R.id.ui_exit_approve_l);
         vm = new ViewModelProvider(this).get(VehicleDataVM.class);
         vmDel = new ViewModelProvider(this).get(VehicleDataDelVM.class);
-        exitApproveLayout = root.findViewById(R.id.ui_exit_approve_l);
-        exitApprove = root.findViewById(R.id.ui_exit_approve);
-        exitCancel = root.findViewById(R.id.ui_exit_reject);
+        vmCard = new ViewModelProvider(this).get(VehicleDataCardChangeVM.class);
+
+        main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                main.clearFocus();
+            }
+        });
 
         exitApprove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,24 +115,41 @@ public class FVehicleData extends Fragment {
 
         mainCardText.setText(currentCar.mainCard.toString());
         secondaryCardText.setText((currentCar.secondMainCard != null)? currentCar.secondMainCard.toString() : "");
-        //todo: set visability depending on tariff
-        //todo: спрасить как карты появляются (ибо вбивать их ручками ***** надо)
         secondaryCard.setVisibility((currentCar.secondMainCard != null)? View.VISIBLE: View.GONE);
+        initMainCard = mainCardText.getText().toString();
+        initSecondCard = secondaryCardText.getText().toString();
+
+        mainCardText.setOnFocusChangeListener(cardsChange);
+        secondaryCardText.setOnFocusChangeListener(cardsChange);
+        platesText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    if (!platesText.getText().toString().isEmpty()) {
+                        Log.d(TAG, "first if");
+                        String pStr = platesText.getText().toString();
+                        pStr = pStr.toLowerCase();
+                        pStr = StringChecker.eng2rus(pStr);
+                        if (!initPlates.equals(pStr)) {
+                            Log.d(TAG, "second if");
+                            if (!StringChecker.isPlates(pStr)) {
+                                Log.d(TAG, "third if");
+                                return;
+                            }
+                            vm.serverRequest(getActivity(), currentCar.id, pStr);
+                            return;
+                        }
+                    }
+                }
+            }
+        });
 
         platesText.setText(currentCar.plates);
         initPlates = currentCar.plates;
-        platesText.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            @Override public void afterTextChanged(Editable s) {updateApprove();}
-        });
 
-//        cards.setOnClickListener(Navigation.createNavigateOnClickListener(
-//                R.id.action_nav_vehicle_data_to_nav_vehicle_data_cards));
         tariff.setOnClickListener(Navigation.createNavigateOnClickListener(
                 R.id.action_nav_vehicle_data_to_nav_vehicle_data_tariff));
-
-        ((TextView)tariff.getChildAt(1)).setText((currentCar.parkingLotName != null)?
+        ((TextView) tariff.getChildAt(1)).setText((currentCar.parkingLotName != null)?
                 currentCar.getTariffName() + " - " + currentCar.parkingLotName : "");
 
         vm.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
@@ -136,8 +170,7 @@ public class FVehicleData extends Fragment {
                         currentCar = AccountHolder.account.getCarById(VehicleVM.carID);
                         initPlates = currentCar.plates;
                         platesText.setText(currentCar.plates);
-                        platesText.clearFocus();
-                        updateApprove();
+                        main.clearFocus();
                     case NONE:
                     default:
                         break;
@@ -166,6 +199,34 @@ public class FVehicleData extends Fragment {
                 }
             }
         });
+        vmCard.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
+            @Override
+            public void onChanged(ServerReqCodes serverReqCodes) {
+                switch (serverReqCodes){
+                    case ERR:
+                        Integer err = vm.getErrorCode();
+                        if(err == 2) {
+                            AccountHolder.dataFlesh(getActivity().getApplication());
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }
+                        break;
+                    case SUC:
+                        Log.d("OBSERVER", "onChanged: get suc result");
+                        currentCar = AccountHolder.account.getCarById(VehicleVM.carID);
+                        mainCardText.setText(currentCar.mainCard.toString());
+                        secondaryCardText.setText((currentCar.secondMainCard != null)? currentCar.secondMainCard.toString() : "");
+                        secondaryCard.setVisibility((currentCar.secondMainCard != null)? View.VISIBLE: View.GONE);
+                        initMainCard = mainCardText.getText().toString();
+                        initSecondCard = secondaryCardText.getText().toString();
+                        main.clearFocus();
+                    case NONE:
+                    default:
+                        break;
+                }
+            }
+        });
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,60 +234,6 @@ public class FVehicleData extends Fragment {
             }
         });
 
-        setHasOptionsMenu(true);
-
-        updateApprove();
-
         return root;
     }
-
-    private void updateApprove(){
-        if(mMenu == null) return;
-        if(mMenu.findItem(R.id.approve) == null) return;
-        if(!platesText.getText().toString().isEmpty()){
-            Log.d(TAG, "first if");
-            String pStr = platesText.getText().toString();
-            pStr = pStr.toLowerCase();
-            pStr = StringChecker.eng2rus(pStr);
-            if(!initPlates.equals(pStr)){
-                Log.d(TAG, "second if");
-                if(!StringChecker.isPlates(pStr)){
-                    Log.d(TAG, "third if");
-                    mMenu.findItem(R.id.approve).setEnabled(false);
-                    return;
-                }
-                mMenu.findItem(R.id.approve).setEnabled(true);
-                return;
-            }
-        }
-        mMenu.findItem(R.id.approve).setEnabled(false);
-    }
-
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.action_bar_appr, menu);
-        mMenu = menu;
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.approve:
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-                String pStr = platesText.getText().toString();
-                pStr = pStr.toLowerCase();
-                pStr = StringChecker.eng2rus(pStr);
-                if(StringChecker.isPlates(pStr)){
-                    vm.serverRequest(getActivity(), currentCar.id, pStr);
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 }

@@ -130,11 +130,6 @@ public class FVehicleDataCards extends Fragment {
                 comAPI.updateCards(AccountHolder.email, AccountHolder.passwordHush, currentCar.id,
                         Integer.parseInt(cards[0].getText().toString()),
                         cards[1].getText().toString().isEmpty() ? null : Integer.parseInt(cards[1].getText().toString()),
-                        Integer.parseInt(cards[2].getText().toString()),
-                        cards[3].getText().toString().isEmpty() ? null : Integer.parseInt(cards[3].getText().toString()),
-                        cards[4].getText().toString().isEmpty() ? null : Integer.parseInt(cards[4].getText().toString()),
-                        cards[5].getText().toString().isEmpty() ? null : Integer.parseInt(cards[5].getText().toString()),
-                        cards[6].getText().toString().isEmpty() ? null : Integer.parseInt(cards[6].getText().toString()),
                         getActivity().getApplicationContext(),
                         new HttpRequest.Listener() {
                             @Override

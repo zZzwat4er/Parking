@@ -137,9 +137,7 @@ public class comAPI {
     }
 
     public static void updateCards(String email, String passHash, Integer carID, Integer mainCard1,
-                                   @Nullable Integer mainCard2, Integer additionalCard1,
-                                   @Nullable Integer additionalCard2, @Nullable Integer additionalCard3,
-                                   @Nullable Integer additionalCard4, @Nullable Integer additionalCard5,
+                                   @Nullable Integer mainCard2,
                                    Context context, HttpRequest.Listener listener){
         try {
             if (pInfo == null)
@@ -150,12 +148,7 @@ public class comAPI {
                     JSON_TITLES.pass_hash + "=" + URLEncoder.encode(passHash,"UTF-8") + "&" +
                     JSON_TITLES.carID + "=" + URLEncoder.encode(carID.toString(),"UTF-8") + "&" +
                     JSON_TITLES.main_card_1 + "=" + URLEncoder.encode(mainCard1.toString(),"UTF-8") + "&" +
-                    JSON_TITLES.additional_card_1 + "=" + URLEncoder.encode(additionalCard1.toString(),"UTF-8") +
-                    (mainCard2 != null? "&" + JSON_TITLES.main_card_2 + "=" + URLEncoder.encode(mainCard2.toString(),"UTF-8"):"") +
-                    (additionalCard2 != null? "&" + JSON_TITLES.additional_card_2 + "=" + URLEncoder.encode(additionalCard2.toString(),"UTF-8"):"") +
-                    (additionalCard3 != null? "&" + JSON_TITLES.additional_card_3 + "=" + URLEncoder.encode(additionalCard3.toString(),"UTF-8"):"") +
-                    (additionalCard4 != null? "&" + JSON_TITLES.additional_card_4 + "=" + URLEncoder.encode(additionalCard4.toString(),"UTF-8"):"") +
-                    (additionalCard5 != null? "&" + JSON_TITLES.additional_card_5 + "=" + URLEncoder.encode(additionalCard5.toString(),"UTF-8"):"");
+                    (mainCard2 != null? "&" + JSON_TITLES.main_card_2 + "=" + URLEncoder.encode(mainCard2.toString(),"UTF-8"):"");
             sendReq(urls.updateCards, params, listener);
         }catch (Exception e){}
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vehicle_data_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -40,6 +40,7 @@
             app:layout_constraintStart_toEndOf="@+id/vehicle_data_plates_layout_tittle"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -80,17 +81,19 @@
             app:layout_constraintEnd_toStartOf="@id/vehicle_data_tariff_layout_next_ic"
             app:layout_constraintStart_toEndOf="@id/vehicle_data_tariff_layout_tittle"
             app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/vehicle_data_tariff_layout_next_ic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            app:tint="@android:color/secondary_text_light_nodisable"
-            app:srcCompat="@drawable/ic_navigate_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_navigate_next"
+            app:tint="@android:color/secondary_text_light_nodisable" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -204,8 +207,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#A0000000"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vehicle_progress_bar"
