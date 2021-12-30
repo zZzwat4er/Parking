@@ -7,6 +7,8 @@ import com.example.parking.utility.ServerError;
 import com.example.parking.utility.ServerSuccess;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class JSONPars {
 
     public static Account parseAccount(String json){
@@ -28,7 +30,15 @@ public class JSONPars {
     public static ParkingLot[] parseParkingLots(String json){
         Gson gson = new Gson();
         ParkingLot[] lots = gson.fromJson(json, ParkingLot[].class);
-        if(lots != null) Log.d("parse lots", String.format("%d", lots.length));
+        if(lots != null) {
+            Log.d("parse lots", String.format("%d", lots.length));
+            ArrayList<ParkingLot> temp = new ArrayList<>();
+            for (ParkingLot lot : lots) {
+                if (lot != null && lot.id != null && lot.type != null) temp.add(lot);
+            }
+            lots = new ParkingLot[temp.size()];
+            lots = temp.toArray(lots);
+        }
         return lots;
     }
 

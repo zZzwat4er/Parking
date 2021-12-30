@@ -3,6 +3,7 @@ package com.example.parking.ui.vehicle.data_tab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,7 @@ import com.example.parking.ui.vehicle.VehicleVM;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.Car;
 import com.example.parking.utility.MapTouchListener;
+import com.example.parking.utility.server_comunnication_api.ParkingLot;
 import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 
 public class FVehicleDataTariffPlace extends Fragment {
@@ -40,6 +42,7 @@ public class FVehicleDataTariffPlace extends Fragment {
     private Integer initState;
     private Integer curState;
     private VehicleDataTariffPlaceVM vm;
+    private VehicleDataTariffPlaceLotVM vmLot;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,6 +50,7 @@ public class FVehicleDataTariffPlace extends Fragment {
         if(cCar == null) Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
 
         vm = new ViewModelProvider(this).get(VehicleDataTariffPlaceVM.class);
+        vmLot = new ViewModelProvider(this).get(VehicleDataTariffPlaceLotVM.class);
         initState = curState = 0;
 
         View root = inflater.inflate(R.layout.f_vehicle_data_tariff_place, container, false);
@@ -63,6 +67,14 @@ public class FVehicleDataTariffPlace extends Fragment {
             public void onClick(View v) {
                 if(wheelSelector.getVisibility() == View.VISIBLE) wheelSelector.setVisibility(View.GONE);
                 else wheelSelector.setVisibility(View.VISIBLE);
+            }
+        });
+
+        wheelSelector.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                Log.d("valueChanged", String.format("%s", newVal));
+
             }
         });
 
@@ -90,7 +102,38 @@ public class FVehicleDataTariffPlace extends Fragment {
                 }
             }
         });
+        vmLot.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
+            @Override
+            public void onChanged(ServerReqCodes serverReqCodes) {
+                switch (serverReqCodes){
+                    case ERR:
+                        Integer err = vm.getErrorCode();
+                        if(err != null && err == 2) {
+                            AccountHolder.dataFlesh(getActivity().getApplication());
+                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                            startActivity(intent);
+                            getActivity().finish();
+                        }
+                        break;
+                    case SUC:
+                        ParkingLot[] lots = vmLot.getLots();
+                        String[] data = new String[lots.length + 1];
+                        data[0] = cCar.parkingLotName != null? String.format("%s - (текущее)", cCar.parkingLotName) : getString(R.string.no_place);
+                        for(int i = 0; i < lots.length; i++){
+                            data[i + 1] = lots[i].toString();
+                        }
+                        wheelSelector.setMinValue(0);
+                        wheelSelector.setMaxValue(lots.length);
+                        wheelSelector.setDisplayedValues(data);
+                        break;
+                    case NONE:
+                    default:
+                        break;
+                }
+            }
+        });
 
+        vmLot.serverRequest(getActivity());
         setHasOptionsMenu(true);
         updateApprove();
 
