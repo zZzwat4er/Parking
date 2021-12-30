@@ -21,7 +21,7 @@ public class JSONPars {
     public static ServerError parseErrorServer(String json) {
         Gson gson = new Gson();
         ServerError err = gson.fromJson(json, ServerError.class);
-        if(err.code == null || err.msg == null) err = null;
+        if(err != null && (err.code == null || err.msg == null)) err = null;
         return err;
     }
 }

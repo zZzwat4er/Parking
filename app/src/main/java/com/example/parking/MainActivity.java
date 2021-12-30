@@ -132,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        InputMethodManager imm = (InputMethodManager) this.getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+//        InputMethodManager imm = (InputMethodManager) this.getSystemService(INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return navController.navigateUp();
     }

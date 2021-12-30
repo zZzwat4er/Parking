@@ -1,6 +1,7 @@
 package com.example.parking.ui.login.sign_in;
 
 import android.app.Activity;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -37,6 +38,7 @@ public class SignInVM extends ViewModel {
                     @Override
                     public void onRespond(String respond) {
                         Account acc;
+                        Log.d("asdf", respond);
                         if((acc = JSONPars.parseAccount(respond)) != null) {
                             AccountHolder.account = acc;
                             AccountHolder.saveData(activity.getApplication());
@@ -46,7 +48,7 @@ public class SignInVM extends ViewModel {
                         else{
                             ServerError err = JSONPars.parseErrorServer(respond);
                             sOut.postValue(ServerReqCodes.ERR);
-                            errCode = err.code;
+                            if (errCode != null) errCode = err.code;
                         }
                     }
                 });
