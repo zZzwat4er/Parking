@@ -128,7 +128,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     @Override
-    public int getItemCount() {return mCars.length + 1;}
+    public int getItemCount() {return (mCars != null)? mCars.length + 1 : 1;}
 
 
 }

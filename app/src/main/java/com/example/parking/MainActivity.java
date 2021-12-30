@@ -24,7 +24,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.example.parking.utility.AccountHolder;
+import com.example.parking.utility.server_comunnication_api.HttpRequest;
+import com.example.parking.utility.server_comunnication_api.JSONPars;
+import com.example.parking.utility.server_comunnication_api.ParkingLot;
 import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
+import com.example.parking.utility.server_comunnication_api.comAPI;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -141,6 +145,18 @@ public class MainActivity extends AppCompatActivity {
     public void menuButton(View view){
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.openDrawer(Gravity.LEFT);
+    }
+
+    public void testFunc(View v){
+        comAPI.getAvailableParkingLots(this,
+                new HttpRequest.Listener() {
+                    @Override
+                    public void onRespond(String respond) {
+                        Log.d("respond", respond);
+                        ParkingLot[] lots = JSONPars.parseParkingLots(respond);
+                        Log.d("lots", (lots == null)? "null" : "nonnull");
+                    }
+                });
     }
 
     private boolean isNetworkConnected() {
