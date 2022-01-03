@@ -45,9 +45,11 @@ public class HttpVM extends ViewModel {
                             errCode = 0;
                         }
                         else{
+                            Log.d("respond", respond);
                             ServerError err = JSONPars.parseErrorServer(respond);
                             sOut.postValue(ServerReqCodes.ERR);
-                            errCode = err.code;
+                            if(err != null) errCode = err.code;
+                            else errCode = -1;
                         }
                     }
                 });

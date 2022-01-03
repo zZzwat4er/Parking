@@ -30,6 +30,7 @@ import com.example.parking.ui.vehicle.VehicleVM;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.Car;
 import com.example.parking.utility.StringChecker;
+import com.example.parking.utility.server_comunnication_api.ParkingLot;
 import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 
 import java.util.Objects;
@@ -115,7 +116,9 @@ public class FVehicleData extends Fragment {
 
         mainCardText.setText(currentCar.mainCard.toString());
         secondaryCardText.setText((currentCar.secondMainCard != null)? currentCar.secondMainCard.toString() : "");
-        secondaryCard.setVisibility((currentCar.secondMainCard != null)? View.VISIBLE: View.GONE);
+        secondaryCard.setVisibility((currentCar.parkingLotType != null && currentCar.parkingLotType == ParkingLot.DOUBLE_PLACE)? View.VISIBLE: View.GONE);
+
+
         initMainCard = mainCardText.getText().toString();
         initSecondCard = secondaryCardText.getText().toString();
 

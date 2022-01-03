@@ -53,7 +53,8 @@ public class VehicleDataTariffPaymentVM extends ViewModel {
                         else{
                             ServerError err = JSONPars.parseErrorServer(respond);
                             sOut.postValue(ServerReqCodes.ERR);
-                            errCode = err.code;
+                            if(err != null) errCode = err.code;
+                            else errCode = -1;
                         }
                     }
                 });

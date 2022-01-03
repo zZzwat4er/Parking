@@ -74,7 +74,8 @@ public class FVehicleDataTariffPlace extends Fragment {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 Log.d("valueChanged", String.format("%s", newVal));
-
+                curState = newVal;
+                updateApprove();
             }
         });
 
@@ -164,8 +165,7 @@ public class FVehicleDataTariffPlace extends Fragment {
         if (item.getItemId() == R.id.approve) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-            //TODO: send lot to request;
-            vm.serverRequest(getActivity(), cCar.id, "place");
+            vm.serverRequest(getActivity(), cCar.id, vmLot.getLots()[curState - 1].id);
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -7,9 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.parking.utility.Account;
-import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.ServerError;
 import com.example.parking.utility.server_comunnication_api.HttpRequest;
 import com.example.parking.utility.server_comunnication_api.JSONPars;
@@ -18,6 +15,7 @@ import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 import com.example.parking.utility.server_comunnication_api.comAPI;
 
 public class VehicleDataTariffPlaceLotVM extends ViewModel {
+
     private Integer errCode;
     private MutableLiveData<ServerReqCodes> sOut;
     private ParkingLot[] lots;
