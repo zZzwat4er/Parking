@@ -1,9 +1,11 @@
 package com.example.parking.ui.vehicle;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,12 +34,10 @@ public class FVehicleAdd extends Fragment {
 
     private EditText plates;
     private EditText main_cid;
-    private final String TAG = "Add Tab";
     private Menu mMenu;
     VehicleAddVM viewModel;
 
-    // TODO: new field functionality
-    // TODO: transform plates to uniform form
+    // TODO: new field functionality (wip Stepa steel does not use it)
 
     @Nullable
     @Override
@@ -64,12 +64,12 @@ public class FVehicleAdd extends Fragment {
             @Override public void afterTextChanged(Editable s) {updateApprove();}
         });
 
-        viewModel.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
+        viewModel.getOutPutCode().observe(requireActivity(), new Observer<ServerReqCodes>() {
             @Override
             public void onChanged(ServerReqCodes serverReqCodes) {
                 switch (serverReqCodes){
                     case SUC:
-                        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
                         navController.navigateUp();
                         if(!VehicleAddVM.isFromVehicleTab)navController.navigate(R.id.action_nav_map_to_nav_vehicle);
                         break;
@@ -77,10 +77,10 @@ public class FVehicleAdd extends Fragment {
                     case ERR:
                         Integer err = viewModel.getErrorCode();
                         if(err == 2) {
-                            AccountHolder.dataFlesh(getActivity().getApplication());
+                            AccountHolder.dataFlesh(requireActivity().getApplication());
                             Intent intent = new Intent(getActivity(), LoginActivity.class);
                             startActivity(intent);
-                            getActivity().finish();
+                            requireActivity().finish();
                         }
                         break;
 
@@ -123,14 +123,16 @@ public class FVehicleAdd extends Fragment {
             String tempPlates = plates.getText().toString();
             tempPlates = tempPlates.toLowerCase();
             tempPlates = StringChecker.eng2rus(tempPlates);
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+            try{
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), 0);
+            }catch (NullPointerException e){
+                if(e.getMessage() != null) Log.d("close KeyBoard", e.getMessage());
+            }
             if (StringChecker.isCard(main_cid.getText().toString()) &&
                     StringChecker.isPlates(tempPlates)) {
-                viewModel.serverRequest(getActivity(), tempPlates, main_cid.getText().toString());
+                viewModel.serverRequest(requireActivity(), tempPlates, main_cid.getText().toString());
             }
-            //todo this fragment has changed so rewrite it
-            //todo approve car addition
         }
         return super.onOptionsItemSelected(item);
     }
