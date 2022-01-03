@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.parking.utility.Account;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.ServerError;
+import com.example.parking.utility.ServerSuccess;
 import com.example.parking.utility.server_comunnication_api.HttpRequest;
 import com.example.parking.utility.server_comunnication_api.JSONPars;
 import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
@@ -39,10 +40,7 @@ public class VehicleDataDelVM extends ViewModel {
                 new HttpRequest.Listener() {
                     @Override
                     public void onRespond(String respond) {
-                        Account acc;
-                        if((acc = JSONPars.parseAccount(respond)) != null) {
-                            AccountHolder.account = acc;
-                            AccountHolder.saveData(activity.getApplication());
+                        if(JSONPars.parseSuccess(respond)) {
                             sOut.postValue(ServerReqCodes.SUC);
                             errCode = 0;
                         }
