@@ -1,5 +1,6 @@
 package com.example.parking.ui.vehicle.data_tab;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -45,17 +46,22 @@ public class FVehicleData extends Fragment {
     private Car currentCar;
     private String initPlates;
     private ConstraintLayout exitApproveLayout;
-    private String TAG = "Vehicle data";
+    private final String TAG = "Vehicle data";
     private EditText mainCardText;
     private EditText secondaryCardText;
     private String initMainCard;
     private String initSecondCard;
+    private ConstraintLayout platesPB;
+    private ConstraintLayout mainCardPB;
+    private ConstraintLayout secondCardPB;
 
-    private View.OnFocusChangeListener cardsChange = new View.OnFocusChangeListener() {
+    private final View.OnFocusChangeListener cardsChange = new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
             if(!hasFocus) {
                 if(!mainCardText.getText().toString().equals(initMainCard) || !secondaryCardText.getText().toString().equals(initSecondCard)) {
+                    mainCardPB.setVisibility(View.VISIBLE);
+                    secondCardPB.setVisibility(View.VISIBLE);
                     Integer mainCardNum = Integer.parseInt(mainCardText.getText().toString());
                     Integer secondCardNum = (!secondaryCardText.getText().toString().isEmpty()) ? Integer.parseInt(secondaryCardText.getText().toString()) : null;
                     vmCard.serverRequest(getActivity(), currentCar.id, mainCardNum, secondCardNum);
@@ -78,6 +84,9 @@ public class FVehicleData extends Fragment {
         final TextView deleteBtn = root.findViewById(R.id.vehicle_data_delete_button);
         final Button exitApprove = root.findViewById(R.id.ui_exit_approve);
         final Button exitCancel = root.findViewById(R.id.ui_exit_reject);
+        platesPB = root.findViewById(R.id.vehicle_plates_change_pb);
+        mainCardPB = root.findViewById(R.id.vehicle_main_card_change_pb);
+        secondCardPB = root.findViewById(R.id.vehicle_second_card_change_pb);
 
         mainCardText = root.findViewById(R.id.vehicle_data_main_card_layout_edittext);
         secondaryCardText = root.findViewById(R.id.vehicle_data_second_card_layout_edittext);
@@ -91,6 +100,12 @@ public class FVehicleData extends Fragment {
         main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), 0);
+                }catch (NullPointerException e){
+                    if(e.getMessage() != null) Log.d("asd", e.getMessage());
+                }
                 main.clearFocus();
             }
         });
@@ -139,8 +154,8 @@ public class FVehicleData extends Fragment {
                                 Log.d(TAG, "third if");
                                 return;
                             }
+                            platesPB.setVisibility(View.VISIBLE);
                             vm.serverRequest(getActivity(), currentCar.id, pStr);
-                            return;
                         }
                     }
                 }
@@ -170,6 +185,7 @@ public class FVehicleData extends Fragment {
                         break;
                     case SUC:
                         Log.d("OBSERVER", "onChanged: get suc result");
+                        platesPB.setVisibility(View.GONE);
                         currentCar = AccountHolder.account.getCarById(VehicleVM.carID);
                         initPlates = currentCar.plates;
                         platesText.setText(currentCar.plates);
@@ -216,11 +232,13 @@ public class FVehicleData extends Fragment {
                         }
                         break;
                     case SUC:
+                        mainCardPB.setVisibility(View.GONE);
+                        secondCardPB.setVisibility(View.GONE);
                         Log.d("OBSERVER", "onChanged: get suc result");
                         currentCar = AccountHolder.account.getCarById(VehicleVM.carID);
                         mainCardText.setText(currentCar.mainCard.toString());
                         secondaryCardText.setText((currentCar.secondMainCard != null)? currentCar.secondMainCard.toString() : "");
-                        secondaryCard.setVisibility((currentCar.secondMainCard != null)? View.VISIBLE: View.GONE);
+                        secondaryCard.setVisibility((currentCar.parkingLotType != null && currentCar.parkingLotType == ParkingLot.DOUBLE_PLACE)? View.VISIBLE: View.GONE);
                         initMainCard = mainCardText.getText().toString();
                         initSecondCard = secondaryCardText.getText().toString();
                         main.clearFocus();

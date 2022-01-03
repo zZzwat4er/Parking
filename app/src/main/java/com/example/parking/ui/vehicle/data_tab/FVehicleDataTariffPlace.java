@@ -172,8 +172,6 @@ public class FVehicleDataTariffPlace extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.approve) {
-            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
             vm.serverRequest(getActivity(), cCar.id, vmLot.getLots()[curState - 1].id);
             return true;
         }
