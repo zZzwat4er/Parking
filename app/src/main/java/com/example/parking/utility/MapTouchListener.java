@@ -32,11 +32,12 @@ public class MapTouchListener implements View.OnTouchListener{
     PointF start = new PointF();
     PointF mid = new PointF();
     float oldDist = 1f;
+    ImageView view;
 
     @Override
     public boolean onTouch(View v, MotionEvent event)
     {
-        ImageView view = (ImageView) v;
+        view = (ImageView) v;
         if(startMatrix == null) {
             startMatrix = new Matrix(view.getImageMatrix());
             startMatrix.getValues(startParams);
@@ -182,4 +183,17 @@ public class MapTouchListener implements View.OnTouchListener{
         Log.d("Touch Events ---------", sb.toString());
     }
 
+    public void zoomIn(){
+        float[] params = new float[9];
+        matrix.getValues(params);
+        matrix.postScale(1.8f, 1.8f, mid.x, mid.y);
+        view.setImageMatrix(matrix);
+    }
+
+    public void zoomOut(){
+        float[] params = new float[9];
+        matrix.getValues(params);
+        matrix.postScale(.6f, .6f, mid.x, mid.y);
+        view.setImageMatrix(matrix);
+    }
 }

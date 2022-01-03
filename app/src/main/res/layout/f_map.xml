@@ -29,7 +29,6 @@
             android:id="@+id/zoom_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="menuButton"
             android:text="+"
             android:layout_marginEnd="12dp"
             app:layout_constraintEnd_toEndOf="parent"
