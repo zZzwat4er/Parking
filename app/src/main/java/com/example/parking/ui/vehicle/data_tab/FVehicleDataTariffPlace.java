@@ -16,6 +16,7 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -43,6 +44,7 @@ public class FVehicleDataTariffPlace extends Fragment {
     private Integer curState;
     private VehicleDataTariffPlaceVM vm;
     private VehicleDataTariffPlaceLotVM vmLot;
+    private ConstraintLayout progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -53,11 +55,12 @@ public class FVehicleDataTariffPlace extends Fragment {
         vmLot = new ViewModelProvider(this).get(VehicleDataTariffPlaceLotVM.class);
         initState = curState = 0;
 
-        View root = inflater.inflate(R.layout.f_vehicle_data_tariff_place, container, false);
+        final View root = inflater.inflate(R.layout.f_vehicle_data_tariff_place, container, false);
         map = root.findViewById(R.id.tariff_place_map);
         place = root.findViewById(R.id.tariff_place_current_place);
         choosePlace = root.findViewById(R.id.tariff_place_current_layout);
         wheelSelector = root.findViewById(R.id.tariff_place_wheel_selector);
+        progressBar = root.findViewById(R.id.tariff_place_progress_bar);
         //TODO: init wheelSelector
 
         place.setText((cCar.parkingLotName != null)? cCar.parkingLotName : getString(R.string.no_place));
@@ -69,7 +72,12 @@ public class FVehicleDataTariffPlace extends Fragment {
                 else wheelSelector.setVisibility(View.VISIBLE);
             }
         });
-
+        progressBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                root.clearFocus();
+            }
+        });
         wheelSelector.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -117,6 +125,7 @@ public class FVehicleDataTariffPlace extends Fragment {
                         }
                         break;
                     case SUC:
+                        progressBar.setVisibility(View.GONE);
                         ParkingLot[] lots = vmLot.getLots();
                         String[] data = new String[lots.length + 1];
                         data[0] = cCar.parkingLotName != null? String.format("%s - (текущее)", cCar.parkingLotName) : getString(R.string.no_place);
