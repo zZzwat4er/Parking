@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,17 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.parking.LoginActivity;
 import com.example.parking.MainActivity;
 import com.example.parking.R;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.StringChecker;
 import com.example.parking.utility.server_comunnication_api.HttpRequest;
 import com.example.parking.utility.server_comunnication_api.JSONPars;
+import com.example.parking.utility.server_comunnication_api.ServerReqCodes;
 import com.example.parking.utility.server_comunnication_api.comAPI;
 
 import java.math.BigInteger;
@@ -34,6 +39,7 @@ public class FSignUp extends Fragment{
     private EditText email;
     private EditText phone;
     private EditText password;
+    private SignUpVM vm;
 
     private String phoneRegEx = "\\+7|" +
             "\\+7\\s\\(\\d{1,3}\\)?|" +
@@ -60,6 +66,27 @@ public class FSignUp extends Fragment{
                 else if (phone.getText().toString().length() <= 3)phone.setText("");
             }
         });
+        vm = new ViewModelProvider(this).get(SignUpVM.class);
+        vm.getOutPutCode().observe(requireActivity(), new Observer<ServerReqCodes>() {
+            @Override
+            public void onChanged(ServerReqCodes serverReqCodes) {
+                switch (serverReqCodes){
+                    case ERR:
+                        Integer err = vm.getErrorCode();
+                        break;
+                    case SUC:
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("S", "login");
+                        startActivity(intent);
+                        requireActivity().finish();
+                    case NONE:
+                    default:
+                        break;
+                }
+            }
+        });
+
+
         phone.addTextChangedListener(new TextWatcher() {
             int selStart = -1;
             String prev;
@@ -107,28 +134,14 @@ public class FSignUp extends Fragment{
                         return;
                     }
                     if(passhash != null)
-                    comAPI.register(email.getText().toString(),
-                            passhash,
-                            phone.getText().toString(),
-                            firstName.getText().toString(),
-                            lastName.getText().toString(),
-                            (secondName.getText().toString().isEmpty()) ? null : secondName.getText().toString(),
-                            getActivity().getApplicationContext(),
-                            new HttpRequest.Listener() {
-                                @Override
-                                public void onRespond(String respond) {
-                                    AccountHolder.account = JSONPars.parseAccount(respond);
-                                    if(AccountHolder.account != null) {
-                                        AccountHolder.passwordHush = passhash;
-                                        AccountHolder.email = AccountHolder.account.mEmail;
-                                        AccountHolder.saveData(getActivity().getApplication());
-                                        Intent intent = new Intent(getActivity(), MainActivity.class);
-                                        intent.putExtra("S", "login");
-                                        startActivity(intent);
-                                        getActivity().finish();
-                                    }
-                                }
-                            });
+                        vm.serverRequest(
+                                requireActivity(),
+                                email.getText().toString(),
+                                passhash,
+                                phone.getText().toString(),
+                                firstName.getText().toString(),
+                                lastName.getText().toString(),
+                                secondName.getText().toString());
                 }
             }
         });
