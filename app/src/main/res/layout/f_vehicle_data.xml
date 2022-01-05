@@ -72,6 +72,7 @@
         android:id="@+id/vehicle_data_tariff_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/clickable_layer"
         android:paddingVertical="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

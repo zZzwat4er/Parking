@@ -11,4 +11,6 @@
     <color name="not_payed">#FF0000</color>
     <color name="payed">#00FF00</color>
 
+    <color name="no_color">#00000000</color>
+
 </resources>

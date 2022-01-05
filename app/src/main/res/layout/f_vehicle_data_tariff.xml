@@ -69,6 +69,7 @@
             android:id="@+id/vehicle_data_tariff_current_place_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/clickable_layer"
             android:paddingVertical="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -148,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:paddingVertical="6dp"
+            style="@style/clickable_layer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_current_payed_till_layout">
@@ -220,6 +222,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:paddingVertical="6dp"
+            style="@style/clickable_layer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_become_owner_layout_tittle">

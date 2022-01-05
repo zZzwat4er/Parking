@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:paddingVertical="6dp"
+            style="@style/clickable_layer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_payment_method_layout_tittle">
@@ -73,6 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="6dp"
+            style="@style/clickable_layer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_payment_method_auto_layout">
