@@ -19,4 +19,13 @@
         <item name="android:textColor">@color/MainText</item>
     </style>
 
+    <style name="round_btn_main">
+        <item name="android:background">@drawable/round_btn_main</item>
+        <item name="android:textColor">@color/whiteText</item>
+    </style>
+    <style name="round_btn_second">
+        <item name="android:background">@drawable/round_brn_second</item>
+        <item name="android:textColor">@color/MainText</item>
+    </style>
+
 </resources>

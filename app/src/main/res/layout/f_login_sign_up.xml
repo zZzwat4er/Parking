@@ -94,7 +94,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="12dp"
         android:text="@string/register"
-        style="@style/btn_main"
+        style="@style/round_btn_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
