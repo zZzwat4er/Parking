@@ -10,5 +10,13 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="btn_main">
+        <item name="android:background">@drawable/main_btn</item>
+        <item name="android:textColor">@color/whiteText</item>
+    </style>
+    <style name="btn_second">
+        <item name="android:background">@drawable/secondary_btn</item>
+        <item name="android:textColor">@color/MainText</item>
+    </style>
 
 </resources>

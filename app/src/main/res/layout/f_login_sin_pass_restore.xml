@@ -35,6 +35,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
+        style="@style/btn_main"
         android:text="@string/send_msg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

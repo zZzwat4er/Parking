@@ -30,8 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
-            android:background="@color/MainText"
-            android:textColor="@color/whiteText"
+            style="@style/btn_main"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/f_log_main_in" />
@@ -41,8 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/sign_in"
-            android:textColor="@color/MainText"
-            android:background="@color/whiteText"
+            style="@style/btn_second"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/f_log_main_up"
             app:layout_constraintStart_toStartOf="parent" />
