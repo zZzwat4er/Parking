@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -30,9 +31,6 @@ public class FMap extends Fragment{
         final MapTouchListener listener = new MapTouchListener();
         img.setOnTouchListener(listener);
 
-
-
-
         Button balance = root.findViewById(R.id.map_balance_btn);
         Button vehicleBtn = root.findViewById(R.id.map_vehicle_btn);
         Button addCarBtn = root.findViewById(R.id.map_add_car_btn);
@@ -43,7 +41,7 @@ public class FMap extends Fragment{
             @Override
             public void onClick(View v) {
                 listener.onTouch(img, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
-                listener.zoomIn();
+                listener.zoomIn(img);
                 listener.onTouch(img, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
             }
         });
@@ -51,7 +49,7 @@ public class FMap extends Fragment{
             @Override
             public void onClick(View v) {
                 listener.onTouch(img, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
-                listener.zoomOut();
+                listener.zoomOut(img);
                 listener.onTouch(img, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
             }
         });

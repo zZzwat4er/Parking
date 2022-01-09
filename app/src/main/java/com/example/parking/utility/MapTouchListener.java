@@ -2,10 +2,13 @@ package com.example.parking.utility;
 
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+
+import static java.lang.Math.abs;
 
 public class MapTouchListener implements View.OnTouchListener{
 
@@ -183,17 +186,29 @@ public class MapTouchListener implements View.OnTouchListener{
         Log.d("Touch Events ---------", sb.toString());
     }
 
-    public void zoomIn(){
+    public void zoomIn(View v){
+        Rect rectf = new Rect();
+        v.getLocalVisibleRect(rectf);
+        float x = rectf.left + (float)(rectf.width()) / 2;
+        float y = rectf.top + (float)(rectf.height()) / 2;
         float[] params = new float[9];
         matrix.getValues(params);
-        matrix.postScale(1.8f, 1.8f, mid.x, mid.y);
-        view.setImageMatrix(matrix);
+        if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 4.8){
+            matrix.postScale(1.8f, 1.8f, x, y);
+            view.setImageMatrix(matrix);
+        }
     }
 
-    public void zoomOut(){
+    public void zoomOut(View v){
+        Rect rectf = new Rect();
+        v.getLocalVisibleRect(rectf);
+        float x = rectf.left + (float)(rectf.width()) / 2;
+        float y = rectf.top + (float)(rectf.height()) / 2;
         float[] params = new float[9];
         matrix.getValues(params);
-        matrix.postScale(.6f, .6f, mid.x, mid.y);
-        view.setImageMatrix(matrix);
+        if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] > 1.2){
+            matrix.postScale(.6f, .6f, x, y);
+            view.setImageMatrix(matrix);
+        }
     }
 }

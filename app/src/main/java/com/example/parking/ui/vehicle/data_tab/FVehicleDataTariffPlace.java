@@ -74,7 +74,7 @@ public class FVehicleDataTariffPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
-                listener.zoomIn();
+                listener.zoomIn(map);
                 listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
             }
         });
@@ -82,7 +82,7 @@ public class FVehicleDataTariffPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
-                listener.zoomOut();
+                listener.zoomOut(map);
                 listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
             }
         });
