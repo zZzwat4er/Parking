@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -64,7 +66,27 @@ public class FVehicleDataTariffPlace extends Fragment {
         //TODO: init wheelSelector
 
         place.setText((cCar.parkingLotName != null)? cCar.parkingLotName : getString(R.string.no_place));
-        map.setOnTouchListener(new MapTouchListener());
+
+        final MapTouchListener listener = new MapTouchListener();
+        map.setOnTouchListener(listener);
+
+        root.findViewById(R.id.zoom_in).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
+                listener.zoomIn();
+                listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
+            }
+        });
+        root.findViewById(R.id.zoom_out).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
+                listener.zoomOut();
+                listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
+            }
+        });
+
         choosePlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

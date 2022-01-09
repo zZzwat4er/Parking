@@ -12,5 +12,6 @@
     <color name="payed">#00FF00</color>
 
     <color name="no_color">#00000000</color>
+    <color name="gray">#F0F0F0</color>
 
 </resources>
