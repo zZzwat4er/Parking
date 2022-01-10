@@ -140,6 +140,8 @@
             android:onClick="menuButton"
             android:textAllCaps="true"
             android:text="@string/menu"
+            android:padding="6dp"
+            android:drawableStart="@drawable/ic_baseline_menu_24"
             style="@style/round_btn_main"
             android:backgroundTint="@color/gray"
             android:textColor="@color/MainText"
