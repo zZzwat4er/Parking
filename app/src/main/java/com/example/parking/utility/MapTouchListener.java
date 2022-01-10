@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.pow;
 
 public class MapTouchListener implements View.OnTouchListener{
 
@@ -66,6 +67,30 @@ public class MapTouchListener implements View.OnTouchListener{
             case MotionEvent.ACTION_POINTER_UP: // second finger lifted
                 params = new float[9];
                 matrix.getValues(params);
+
+                Log.d(TAG, String.format("%f", (params[Matrix.MTRANS_X] - startParams[Matrix.MTRANS_X])));
+                Log.d(TAG, String.format("%f", (params[Matrix.MTRANS_Y] - startParams[Matrix.MTRANS_Y])));
+                while((params[Matrix.MTRANS_X] - startParams[Matrix.MTRANS_X]) > 200){
+                    matrix.postTranslate(-1, 0);
+                    matrix.getValues(params);
+                }
+                while((params[Matrix.MTRANS_Y] - startParams[Matrix.MTRANS_Y]) > 200){
+                    matrix.postTranslate(0, -1);
+                    matrix.getValues(params);
+                }
+                while((params[Matrix.MTRANS_X] - startParams[Matrix.MTRANS_X]) < -300 *
+                        pow(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X], 1.8) ||
+                        (params[Matrix.MTRANS_X] - startParams[Matrix.MTRANS_X]) < -4000){
+                    matrix.postTranslate(1, 0);
+                    matrix.getValues(params);
+                }
+                while((params[Matrix.MTRANS_Y] - startParams[Matrix.MTRANS_Y]) < -300 *
+                        pow(params[Matrix.MSCALE_Y]/startParams[Matrix.MSCALE_Y], 2) ||
+                        (params[Matrix.MTRANS_Y] - startParams[Matrix.MTRANS_Y]) < -5500){
+                    matrix.postTranslate(0, 1);
+                    matrix.getValues(params);
+                }
+
                 if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 1){
                     while(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 1) {
                         matrix.postScale(1.01f, 1.01f, mid.x, mid.y);
