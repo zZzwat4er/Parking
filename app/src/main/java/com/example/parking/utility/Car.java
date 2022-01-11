@@ -35,4 +35,8 @@ public class Car {
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy, hh:mm");
         return dateFormat.format(payedTill);
     }
+
+    public Integer getId() {
+        return id;
+    }
 }

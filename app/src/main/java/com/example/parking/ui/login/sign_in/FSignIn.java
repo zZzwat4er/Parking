@@ -1,5 +1,6 @@
 package com.example.parking.ui.login.sign_in;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +49,16 @@ public class FSignIn extends Fragment {
         passField = root.findViewById(R.id.login_password_field);
         pb = root.findViewById(R.id.progressBar);
         inBtn = root.findViewById(R.id.sing_in_button);
-
+        emailField.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus) emailField.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+            else if(!StringChecker.isEmail(emailField.getText().toString()))
+                emailField.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+        });
+        passField.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus) passField.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+            else if(!StringChecker.isPassword(passField.getText().toString()))
+                passField.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+        });
         root.findViewById(R.id.login_restore_pass_btn).setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_login_sign_in_to_login_pass_restore));
         vm = new ViewModelProvider(this).get(SignInVM.class);
@@ -58,6 +68,7 @@ public class FSignIn extends Fragment {
                 Log.d("OBSERVER", "onChanged");
                 switch (serverReqCodes){
                     case ERR:
+                        passField.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
                         inBtn.setEnabled(true);
                         pb.setVisibility(View.GONE);
                         passField.setText("");
@@ -103,7 +114,10 @@ public class FSignIn extends Fragment {
                     } catch (Exception e) {
                     }
                 }else{
-                    // todo: actions on invalid login/password
+                    if(!StringChecker.isEmail(emailField.getText().toString()))
+                        emailField.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+                    if(!StringChecker.isPassword(passField.getText().toString()))
+                        passField.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
                 }
             }
         });

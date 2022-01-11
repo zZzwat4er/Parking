@@ -65,7 +65,7 @@
     <string name="EM">EM</string>
     <string name="TID">TID</string>
 
-    <string name="add_car_description">Вбивать цифры, выделенные знвком X</string>
+    <string name="add_car_description">Вбивать цифры, выделенные знаком X</string>
     <string name="EM_desc">EM 000XXXXXXX 040, XXXXX</string>
     <string name="TID_desc">TID 00000XXXXX 000, XXXXX</string>
 

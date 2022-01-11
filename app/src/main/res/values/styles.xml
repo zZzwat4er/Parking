@@ -32,4 +32,9 @@
         <item name="android:background">@drawable/layer</item>
     </style>
 
+    <style name="edit_text">
+        <item name="android:padding">6dp</item>
+        <item name="android:background">@drawable/field_form</item>
+    </style>
+
 </resources>

@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.parking.LoginActivity;
+import com.example.parking.MainActivity;
 import com.example.parking.R;
 import com.example.parking.utility.AccountHolder;
 import com.example.parking.utility.StringChecker;
@@ -56,6 +57,7 @@ public class FFIOChange extends Fragment {
                 switch (serverReqCodes){
                     case SUC:
                         Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigateUp();
+                        MainActivity.notifyDataChanged();
                         break;
 
                     case ERR:

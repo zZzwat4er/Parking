@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,9 +20,9 @@ import com.example.parking.utility.Car;
 public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     // TODO: logic for new design
     private static Activity mCurrentActivity;
-    private final Car[] mCars;
+    private final @Nullable Car[] mCars;
 
-    public Adapter(Activity currentActivity, Car[] cars){
+    public Adapter(Activity currentActivity, @Nullable Car[] cars){
         mCurrentActivity = currentActivity;
         mCars = cars;
     }

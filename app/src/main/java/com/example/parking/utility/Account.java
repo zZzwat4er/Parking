@@ -1,8 +1,15 @@
 package com.example.parking.utility;
 
+import android.os.Build;
+
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Account {
     public @SerializedName("email") String mEmail;
@@ -36,6 +43,13 @@ public class Account {
         }
         return null;
     }
+
+    @Nullable
+    public Car[] getCars() {
+        if (mCars != null) Arrays.sort(mCars, (o1, o2) -> o2.getId().compareTo(o1.getId()));
+        return mCars;
+    }
+
     //endregion
 
 }

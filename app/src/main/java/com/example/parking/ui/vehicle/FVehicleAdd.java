@@ -53,6 +53,20 @@ public class FVehicleAdd extends Fragment {
         main_cid = (EditText)((LinearLayout)root.findViewById(
                 R.id.add_vehicle_EM_layout)).getChildAt(0);
 
+        plates.setOnFocusChangeListener((v, hasFocus) ->{
+            String tempPlates = plates.getText().toString();
+            tempPlates = tempPlates.toLowerCase();
+            tempPlates = StringChecker.eng2rus(tempPlates);
+            if(hasFocus) plates.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+            else if(!StringChecker.isPlates(tempPlates))
+                plates.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+        });
+        main_cid.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus) main_cid.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+            else if(!StringChecker.isCard(main_cid.getText().toString()))
+                main_cid.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+        });
+
         plates.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}

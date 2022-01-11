@@ -19,7 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/plates" />
+            android:hint="@string/plates"
+            android:layout_margin="6dp"
+            style="@style/edit_text"/>
     </LinearLayout>
 
     <LinearLayout
@@ -35,7 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/EM" />
+            android:hint="@string/EM"
+            android:layout_margin="6dp"
+            style="@style/edit_text"/>
     </LinearLayout>
 
     <LinearLayout
@@ -51,7 +55,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/TID" />
+            android:hint="@string/TID"
+            android:layout_margin="6dp"
+            style="@style/edit_text"/>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

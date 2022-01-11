@@ -34,8 +34,8 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private TextView hFio;
-    private TextView hPhone;
+    private static TextView hFio;
+    private static TextView hPhone;
     private final Context context = this;
     private HttpVM viewModel;
 
@@ -127,9 +127,10 @@ public class MainActivity extends AppCompatActivity {
         hPhone = header.findViewById(R.id.header_phone);
         hFio.setText(AccountHolder.account.getFullName());
         hPhone.setText(AccountHolder.account.mPhone);
+        hideSystemUI();
     }
 
-    public void notifyDataChanged(){
+    public static void notifyDataChanged(){
         hFio.setText(AccountHolder.account.getFullName());
         hPhone.setText(AccountHolder.account.mPhone);
     }
@@ -168,5 +169,12 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        int uiOptions = decorView.getSystemUiVisibility();
+        int newUiOptions = uiOptions;
+        newUiOptions |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(newUiOptions);
     }
 }

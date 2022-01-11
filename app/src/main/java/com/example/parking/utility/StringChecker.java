@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class StringChecker {
 
     private static final String nameRegEx = "^[А-ЯЁA-Zа-яёa-z \\-]{2,}$";
-    private static final String cardRegEx = "^\\d{0,10}$";
+    private static final String cardRegEx = "^\\d{1,10}$";
     private static final String passRegEx = "^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$";
     private static final String emailRegEx ="[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
     private static final String platesRegEx = "^[АВЕКМНОРСТУХABEKMHOPCTYXавекмнорстухabekmhopctyx]{1}\\d{3}(?<!000)[АВЕКМНОРСТУХABEKMHOPCTYXавекмнорстухabekmhopctyx]{2}\\d{2,3}(?<!000|00|0\\d\\d)$";

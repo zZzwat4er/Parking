@@ -19,6 +19,7 @@
         android:inputType="number"
         android:maxLength="7"
         android:textSize="18sp"
+        style="@style/edit_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

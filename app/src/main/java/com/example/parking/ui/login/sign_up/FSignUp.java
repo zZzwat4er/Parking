@@ -59,11 +59,36 @@ public class FSignUp extends Fragment{
         email = root.findViewById(R.id.register_email_field);
         phone = root.findViewById(R.id.register_phone_field);
         password = root.findViewById(R.id.register_password_field);
+
+        lastName.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus) lastName.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+            else if (lastName.getText().toString().isEmpty())
+                lastName.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+        });
+        firstName.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus) firstName.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+            else if (firstName.getText().toString().isEmpty())
+                firstName.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+        });
+        email.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus) email.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+            else if (!StringChecker.isEmail(email.getText().toString()))
+                email.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+        });
+        password.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus) password.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+            else if (!StringChecker.isPassword(password.getText().toString()))
+                password.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+        });
+
         phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus) phone.setText("+7");
                 else if (phone.getText().toString().length() <= 3)phone.setText("");
+                if (hasFocus) phone.setBackground(requireActivity().getDrawable(R.drawable.field_form));
+                else if (!Pattern.matches("\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}", phone.getText().toString()))
+                    phone.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
             }
         });
         vm = new ViewModelProvider(this).get(SignUpVM.class);
@@ -142,6 +167,17 @@ public class FSignUp extends Fragment{
                                 firstName.getText().toString(),
                                 lastName.getText().toString(),
                                 secondName.getText().toString());
+                }else {
+                    if (lastName.getText().toString().isEmpty())
+                        lastName.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+                    if (firstName.getText().toString().isEmpty())
+                        firstName.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+                    if (!StringChecker.isEmail(email.getText().toString()))
+                        email.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+                    if (!StringChecker.isPassword(password.getText().toString()))
+                        password.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
+                    if (!Pattern.matches("\\+7\\s\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}", phone.getText().toString()))
+                        phone.setBackground(requireActivity().getDrawable(R.drawable.wrong_field_form));
                 }
             }
         });
@@ -160,4 +196,3 @@ public class FSignUp extends Fragment{
         return s;
     }
 }
-//s = s.replaceFirst("(\\+7)\\s?(\\d{0,3})?\\s?(\\d{0,3})?-?(\\d{0,2})?-?(\\d{0,2})?" "$1 ($2) $3-$4-$5")

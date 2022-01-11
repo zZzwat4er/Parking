@@ -41,7 +41,7 @@ public class FVehicle extends Fragment {
                     case SUC:
                         loadinglayout.setVisibility(View.INVISIBLE);
                         recyclerView.setClickable(true);
-                        recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.mCars));
+                        recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.getCars()));
                         break;
 
                     case ERR:
@@ -67,7 +67,7 @@ public class FVehicle extends Fragment {
         recyclerView = (RecyclerView) root.findViewById(R.id.vehiacle_rview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.mCars));
+        recyclerView.setAdapter(new Adapter(getActivity(), AccountHolder.account.getCars()));
 
         if(isNetworkConnected()){
             viewModel.serverRequest(getActivity());
