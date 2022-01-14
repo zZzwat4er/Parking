@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/login_sign_in"
         android:name="com.example.parking.ui.login.sign_in.FSignIn"
-        android:label="Sign in"
+        android:label="@string/sign_in_title"
         tools:layout="@layout/f_login_sign_in">
         <action
             android:id="@+id/action_login_sign_in_to_login_pass_restore"
@@ -29,12 +29,12 @@
     <fragment
         android:id="@+id/login_sign_up"
         android:name="com.example.parking.ui.login.sign_up.FSignUp"
-        android:label="Sign up"
+        android:label="@string/register_title"
         tools:layout="@layout/f_login_sign_up"/>
 
     <fragment
         android:id="@+id/login_pass_restore"
         android:name="com.example.parking.ui.login.sign_in.FSignInPassRestore"
-        android:label="Restore Password"
+        android:label="@string/password_restoring"
         tools:layout="@layout/f_login_sin_pass_restore"/>
 </navigation>

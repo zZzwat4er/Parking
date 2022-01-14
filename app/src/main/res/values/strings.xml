@@ -9,6 +9,10 @@
     <string name="phone_number">Номер телефона</string>
     <string name="are_you_sure">Вы уверены что хотите выйти из аккаунта?</string>
 
+    <string name="sign_in_title">Вход</string>
+    <string name="register_title">Регистрация</string>
+    <string name="password_restoring">Восстоновление пароля</string>
+
     <string name="top_up_an_account">Пополнить счет</string>
     <string name="history">История</string>
     <string name="notifications">Уведомления</string>

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        NavigationUI.setupActionBarWithNavController(this, navController);
     }
 
     @Override
