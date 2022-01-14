@@ -55,7 +55,7 @@
     <string name="payed">Оплачено</string>
     <string name="choose_place">Выбрать место</string>
     <string name="no_place">Место не выбрано</string>
-    <string name="add_vehicle">Добавить транспорт</string>
+    <string name="add_vehicle">Добавить машину</string>
     <string name="vehicle_data">Информация о транспорте</string>
 
     <string name="card_number">Номер карты</string>
