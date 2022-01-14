@@ -65,103 +65,86 @@ public class FVehicleDataTariffPlace extends Fragment {
         progressBar = root.findViewById(R.id.tariff_place_progress_bar);
         //TODO: init wheelSelector
 
-        place.setText((cCar.parkingLotName != null)? cCar.parkingLotName : getString(R.string.no_place));
+        vm.postCurrentPlace((cCar.parkingLotName != null)? cCar.parkingLotName : getString(R.string.no_place));
 
         final MapTouchListener listener = new MapTouchListener();
         map.setOnTouchListener(listener);
 
-        root.findViewById(R.id.zoom_in).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
-                listener.zoomIn(map);
-                listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
-            }
+        root.findViewById(R.id.zoom_in).setOnClickListener(v -> {
+            listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
+            listener.zoomIn(map);
+            listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
         });
-        root.findViewById(R.id.zoom_out).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
-                listener.zoomOut(map);
-                listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
-            }
+        root.findViewById(R.id.zoom_out).setOnClickListener(v -> {
+            listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0, 0, 0));
+            listener.zoomOut(map);
+            listener.onTouch(map, MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0, 0, 0));
         });
 
-        choosePlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(wheelSelector.getVisibility() == View.VISIBLE) wheelSelector.setVisibility(View.GONE);
-                else wheelSelector.setVisibility(View.VISIBLE);
-            }
+        choosePlace.setOnClickListener(v -> {
+            if(wheelSelector.getVisibility() == View.VISIBLE) wheelSelector.setVisibility(View.GONE);
+            else wheelSelector.setVisibility(View.VISIBLE);
         });
-        progressBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                root.clearFocus();
-            }
-        });
-        wheelSelector.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                Log.d("valueChanged", String.format("%s", newVal));
-                curState = newVal;
-                updateApprove();
-            }
+        progressBar.setOnClickListener(v -> root.clearFocus());
+        wheelSelector.setOnValueChangedListener((picker, oldVal, newVal) -> {
+            Log.d("valueChanged", String.format("%s", newVal));
+            curState = newVal;
+            if(curState == 0) vm.postCurrentPlace((cCar.parkingLotName != null)? cCar.parkingLotName : getString(R.string.no_place));
+            else vm.postCurrentPlace(vmLot.getLots()[curState - 1].id);
+            updateApprove();
         });
 
-        vm.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
-            @Override
-            public void onChanged(ServerReqCodes serverReqCodes) {
-                switch (serverReqCodes){
-                    case ERR:
-                        Integer err = vm.getErrorCode();
-                        if(err == 2) {
-                            AccountHolder.dataFlesh(getActivity().getApplication());
-                            Intent intent = new Intent(getActivity(), LoginActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
-                        }
-                        break;
-                    case SUC:
-                        NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                        navController.navigateUp();
-                        //TODO: navigate to tariff payment;
-                        break;
-                    case NONE:
-                    default:
-                        break;
-                }
+        vm.getOutPutCode().observe(getActivity(), serverReqCodes -> {
+            switch (serverReqCodes){
+                case ERR:
+                    Integer err = vm.getErrorCode();
+                    if(err == 2) {
+                        AccountHolder.dataFlesh(getActivity().getApplication());
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                    break;
+                case SUC:
+                    NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    navController.navigateUp();
+                    //TODO: navigate to tariff payment;
+                    break;
+                case NONE:
+                default:
+                    break;
             }
         });
-        vmLot.getOutPutCode().observe(getActivity(), new Observer<ServerReqCodes>() {
-            @Override
-            public void onChanged(ServerReqCodes serverReqCodes) {
-                switch (serverReqCodes){
-                    case ERR:
-                        Integer err = vm.getErrorCode();
-                        if(err != null && err == 2) {
-                            AccountHolder.dataFlesh(getActivity().getApplication());
-                            Intent intent = new Intent(getActivity(), LoginActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
-                        }
-                        break;
-                    case SUC:
-                        progressBar.setVisibility(View.GONE);
-                        ParkingLot[] lots = vmLot.getLots();
-                        String[] data = new String[lots.length + 1];
-                        data[0] = cCar.parkingLotName != null? String.format("%s - (текущее)", cCar.parkingLotName) : getString(R.string.no_place);
-                        for(int i = 0; i < lots.length; i++){
-                            data[i + 1] = lots[i].toString();
-                        }
-                        wheelSelector.setMinValue(0);
-                        wheelSelector.setMaxValue(lots.length);
-                        wheelSelector.setDisplayedValues(data);
-                        break;
-                    case NONE:
-                    default:
-                        break;
-                }
+        vm.getCurrentPlace().observe(requireActivity(), s -> {
+            place.setText(s);
+        });
+
+        vmLot.getOutPutCode().observe(getActivity(), serverReqCodes -> {
+            switch (serverReqCodes){
+                case ERR:
+                    Integer err = vm.getErrorCode();
+                    if(err != null && err == 2) {
+                        AccountHolder.dataFlesh(getActivity().getApplication());
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                    break;
+                case SUC:
+                    progressBar.setVisibility(View.GONE);
+                    ParkingLot[] lots = vmLot.getLots();
+                    String[] data = new String[lots.length + 1];
+                    data[0] = cCar.parkingLotName != null? String.format("%s - (текущее)", cCar.parkingLotName) : getString(R.string.no_place);
+                    for(int i = 0; i < lots.length; i++){
+                        data[i + 1] = lots[i].toString();
+                    }
+                    wheelSelector.setMinValue(0);
+                    wheelSelector.setMaxValue(lots.length);
+                    wheelSelector.setDisplayedValues(data);
+                    break;
+                case NONE:
+                default:
+                    break;
             }
         });
 

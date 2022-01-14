@@ -19,12 +19,20 @@ public class VehicleDataTariffPlaceVM extends ViewModel {
 
     private Integer errCode;
     private MutableLiveData<ServerReqCodes> sOut;
+    private MutableLiveData<String> currentPlace;
 
     public VehicleDataTariffPlaceVM(){
         sOut = new MutableLiveData<>(ServerReqCodes.NONE);
+        currentPlace = new MutableLiveData<String>("0");
     }
 
     public LiveData<ServerReqCodes> getOutPutCode(){ return sOut; }
+    public MutableLiveData<String> getCurrentPlace(){ return currentPlace; }
+
+    public void postCurrentPlace(String currentPlace) {
+        this.currentPlace.postValue(currentPlace);
+    }
+
     public Integer getErrorCode(){
         if(sOut.getValue() == ServerReqCodes.ERR) return errCode;
         return 0;

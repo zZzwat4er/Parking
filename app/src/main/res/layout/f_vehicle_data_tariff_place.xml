@@ -99,7 +99,7 @@
                 android:id="@+id/zoom_out"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:drawableStart="@drawable/ic_baseline_add_24"
+                android:drawableStart="@drawable/ic_baseline_horizontal_rule_24"
                 android:padding="18dp"
                 android:background="@drawable/circle_btn_shape"
                 android:layout_marginEnd="12dp"
