@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         hPhone = header.findViewById(R.id.header_phone);
         hFio.setText(AccountHolder.account.getFullName());
         hPhone.setText(AccountHolder.account.mPhone);
-        hideSystemUI();
     }
 
     public static void notifyDataChanged(){
@@ -169,15 +168,5 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
-    }
-    private void hideSystemUI() {
-        View decorView = getWindow().getDecorView();
-        int uiOptions = decorView.getSystemUiVisibility();
-        int newUiOptions = uiOptions;
-        newUiOptions |= View.SYSTEM_UI_FLAG_LOW_PROFILE;
-        newUiOptions |= View.SYSTEM_UI_FLAG_FULLSCREEN;
-        newUiOptions |= View.SYSTEM_UI_FLAG_IMMERSIVE;
-        newUiOptions |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(newUiOptions);
     }
 }

@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        hideSystemUI();
     }
 
     @Override
@@ -45,15 +44,5 @@ public class LoginActivity extends AppCompatActivity {
 //        imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         NavController navController = Navigation.findNavController(this, R.id.login_nav_host);
         return navController.navigateUp();
-    }
-    private void hideSystemUI() {
-        View decorView = getWindow().getDecorView();
-        int uiOptions = decorView.getSystemUiVisibility();
-        int newUiOptions = uiOptions;
-        newUiOptions |= View.SYSTEM_UI_FLAG_LOW_PROFILE;
-        newUiOptions |= View.SYSTEM_UI_FLAG_FULLSCREEN;
-        newUiOptions |= View.SYSTEM_UI_FLAG_IMMERSIVE;
-        newUiOptions |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(newUiOptions);
     }
 }

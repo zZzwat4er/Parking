@@ -29,18 +29,7 @@ public class LoadActivity extends AppCompatActivity {
         }else{
             intent = new Intent(this, LoginActivity.class);
         }
-        hideSystemUI();
         startActivity(intent);
         finish();
-    }
-    private void hideSystemUI() {
-        View decorView = getWindow().getDecorView();
-        int uiOptions = decorView.getSystemUiVisibility();
-        int newUiOptions = uiOptions;
-        newUiOptions |= View.SYSTEM_UI_FLAG_LOW_PROFILE;
-        newUiOptions |= View.SYSTEM_UI_FLAG_FULLSCREEN;
-        newUiOptions |= View.SYSTEM_UI_FLAG_IMMERSIVE;
-        newUiOptions |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-        decorView.setSystemUiVisibility(newUiOptions);
     }
 }
