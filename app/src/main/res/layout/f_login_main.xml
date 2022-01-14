@@ -9,11 +9,11 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_height="match_parent"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/bg_first_page" />
 
