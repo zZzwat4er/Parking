@@ -5,7 +5,7 @@
     android:id="@+id/nav_user_info"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/side_menu_head"
+    android:background="@color/MainText"
     android:gravity="center">
 
     <LinearLayout
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/FIO"
-            android:textColor="@color/design_default_color_on_primary"
+            android:textColor="@color/whiteText"
             android:textSize="18sp" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/phone_number"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/gray"
             android:textSize="12sp" />
     </LinearLayout>
 
