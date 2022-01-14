@@ -70,6 +70,18 @@ public class MapTouchListener implements View.OnTouchListener{
 
                 Log.d(TAG, String.format("%f", (params[Matrix.MTRANS_X] - startParams[Matrix.MTRANS_X])));
                 Log.d(TAG, String.format("%f", (params[Matrix.MTRANS_Y] - startParams[Matrix.MTRANS_Y])));
+
+                if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 1){
+                    while(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 1) {
+                        matrix.postScale(1.01f, 1.01f, mid.x, mid.y);
+                        matrix.getValues(params);
+                    }
+                }else if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] > 5){
+                    while(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] > 5){
+                        matrix.postScale(.99f, .99f, mid.x, mid.y);
+                        matrix.getValues(params);
+                    }
+                }
                 while((params[Matrix.MTRANS_X] - startParams[Matrix.MTRANS_X]) > 200){
                     matrix.postTranslate(-1, 0);
                     matrix.getValues(params);
@@ -89,18 +101,6 @@ public class MapTouchListener implements View.OnTouchListener{
                         (params[Matrix.MTRANS_Y] - startParams[Matrix.MTRANS_Y]) < -5500){
                     matrix.postTranslate(0, 1);
                     matrix.getValues(params);
-                }
-
-                if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 1){
-                    while(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] < 1) {
-                        matrix.postScale(1.01f, 1.01f, mid.x, mid.y);
-                        matrix.getValues(params);
-                    }
-                }else if(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] > 5){
-                    while(params[Matrix.MSCALE_X]/startParams[Matrix.MSCALE_X] > 5){
-                        matrix.postScale(.99f, .99f, mid.x, mid.y);
-                        matrix.getValues(params);
-                    }
                 }
 
                 mode = NONE;
