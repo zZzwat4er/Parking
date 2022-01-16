@@ -41,6 +41,7 @@
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_current_layout_tittle">
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_current_type_tittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,6 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_current_type_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -76,6 +78,7 @@
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_current_type_layout">
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_current_place_tittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,6 +88,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_current_place_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -120,6 +124,7 @@
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_current_place_layout">
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_current_payed_till_tittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,6 +134,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_current_payed_till_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -155,6 +161,7 @@
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_current_payed_till_layout">
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_current_payment_type_tittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -164,6 +171,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_current_payment_type_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -228,6 +236,7 @@
             app:layout_constraintTop_toBottomOf="@id/vehicle_data_tariff_become_owner_layout_tittle">
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/vehicle_data_tariff_become_owner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

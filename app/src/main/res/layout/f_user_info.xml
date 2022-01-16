@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+<!--    TODO: remake user info page-->
     <LinearLayout
         android:id="@+id/user_fio_edit_lastname_layout"
         android:layout_width="match_parent"

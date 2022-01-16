@@ -10,6 +10,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@color/MainText</item>
+    </style>
+
     <style name="btn_main">
         <item name="android:background">@drawable/main_btn</item>
         <item name="android:textColor">@color/whiteText</item>

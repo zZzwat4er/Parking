@@ -45,6 +45,7 @@
                 android:id="@+id/vehicle_data_tariff_payment_method_auto_tittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:text="@string/from_internal_balance"
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/manually"
+                android:textSize="20sp"
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -149,6 +151,7 @@
                 android:id="@+id/vehicle_data_tariff_payment_method_pay_WIP_tittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:text="WIP"
                 android:textColor="@color/design_default_color_on_secondary"
                 app:layout_constraintStart_toStartOf="parent"

@@ -82,6 +82,7 @@ public class MapTouchListener implements View.OnTouchListener{
                         matrix.getValues(params);
                     }
                 }
+                //todo: make map returning more universal
                 while((params[Matrix.MTRANS_X] - startParams[Matrix.MTRANS_X]) > 200){
                     matrix.postTranslate(-1, 0);
                     matrix.getValues(params);

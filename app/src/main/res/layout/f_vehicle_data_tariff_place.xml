@@ -25,6 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/tariff_place_current_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,6 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:textSize="20sp"
                 android:id="@+id/tariff_place_current_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,6 +50,7 @@
             android:id="@+id/tariff_place_wheel_selector"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:textSize="20sp"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/tariff_place_current_layout"
             app:layout_constraintStart_toStartOf="parent"
